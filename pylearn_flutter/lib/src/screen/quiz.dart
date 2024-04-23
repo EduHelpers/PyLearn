@@ -27,6 +27,7 @@ class Quiz extends StatelessWidget {
                       SizedBox(
                           width:
                               4), // Adjust the spacing between the text and the bell icon
+                      AnimatedBell(),
                     ],
                   ),
                   InkWell(

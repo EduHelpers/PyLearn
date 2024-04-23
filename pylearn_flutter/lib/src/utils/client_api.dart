@@ -3,10 +3,10 @@ import 'package:serverpod_flutter/serverpod_flutter.dart';
 import 'package:pylearn_client/pylearn_client.dart';
 
 abstract class CliAPi {
-  Future<void> initializing();
-
   late Client clnt;
   late SessionManager mngr;
+
+  Future<void> initializing();
 }
 
 class Impl extends CliAPi {

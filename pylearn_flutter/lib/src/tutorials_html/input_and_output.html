@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Tutorial: Variables</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .language-python {
+            color: #3572A5;
+        }
+    </style>
+</head>
+<body>
+<h2 style="text-align:center"><strong>Вывод</strong></h2>
+
+<p>За вывод данных на экран компьютера в Python отвечает функция print(). Она позволяет вывести на экран то, что мы передали в круглые скобки. Рассмотрим нашу первую программу:</p>
+
+<pre>
+<code class="language-python">print(“Hello, world!”)</code></pre>
+
+<p>Данная программа выводит на экран:&nbsp;</p>
+
+<pre>
+<code class="language-python">Hello, world!</code></pre>
+
+<p>В Python тип кавычек не имеет никакого значения при выводе текста на экран. То есть следующие команды:</p>
+
+<pre>
+<code class="language-python">print("Hello, world!") 
+print('Hello, world!')</code></pre>
+
+<p>Выведут одно и то же:</p>
+
+<pre>
+<code class="language-python">Hello, world! 
+Hello, world!</code></pre>
+
+<p>То, что мы передаем в круглые скобки, называет аргументом функции, и у функции print() их может быть несколько. Команда:</p>
+
+<pre>
+<code class="language-python">print("Три", "кота", "три", "хвоста")</code></pre>
+
+<p>Выведет:&nbsp;</p>
+
+<pre>
+<code class="language-python">Три кота три хвоста</code></pre>
+
+<p>Обратите внимание, что функция print() по умолчанию выводит все переданные аргументы, разделяя их пробелом. Кроме того, после вывода данных на экран print() выполняет перевод строки, следовательно, когда вы в следующий раз вызовите функцию, она выведет данные на экран уже с новой строки.<br />
+    &nbsp;</p>
+
+<pre>
+<code class="language-python">print("Три", "кота", "три", "хвоста") 
+print("Три", "кота", "три", "хвоста")</code></pre>
+
+<p>&nbsp;</p>
+
+<p>Выведет:</p>
+
+<pre>
+<code class="language-python">Три кота три хвоста 
+Три кота три хвоста</code></pre>
+
+<p><br />
+    <br />
+    Даже если в функцию print() ничего не передать, она выполнит перевод строки, то есть следующий код:</p>
+
+<pre>
+<code class="language-python">print('Hello, world!')
+print()
+print('Hello, world!')</code></pre>
+
+<p>Выведет:</p>
+
+<pre>
+<code class="language-python">Hello, world!
+
+Hello, world!</code></pre>
+
+<p>Теперь поговорим про параметры функции print(), а именно sep и end. Они нужны для того, чтобы менять поведение функции. В частности sep влияет на то, каким символом будут разделены аргументы функции, а end на то, какое действие print() будет выполнять после своего выполнения.</p>
+
+<p>Например следующий код:</p>
+
+<pre>
+<code class="language-python">print("Три", "кота", "три", "хвоста") 
+print("Три", "кота", "три", "хвоста", sep='#')</code></pre>
+
+<p>Выведет:</p>
+
+<pre>
+<code class="language-python">Три кота три хвоста 
+Три#кота#три#хвоста</code></pre>
+
+<p>Логика работы параметра sep предельно ясна, перейдем к end и рассмотрим следующий код:</p>
+
+<pre>
+<code class="language-python">print("А") 
+print("и") 
+print("Б") 
+print("Сидели на трубе")</code></pre>
+
+<p>Выведет:&nbsp;</p>
+
+<pre>
+<code class="language-python">А</code>
+<code class="language-python">и</code>
+<code class="language-python">Б</code>
+Сидели на трубе</code></pre>
+
+<p>А вот такой:&nbsp;</p>
+
+<pre>
+<code class="language-python">print("А", end="//") 
+print("и", end="!!") 
+print("Б", end="$$")
+print("Сидели на трубе", end="11")</code></pre>
+
+<p>Выведет:&nbsp;</p>
+
+<pre>
+<code class="language-python">А//и!!Б$$Сидели на трубе11</code></pre>
+
+<h4>Примечание 1.&nbsp;</h4>
+
+<p>В языках программирования есть специальные символы такие как: перевод строки - \n, табуляция - &nbsp;\t и т.д. (Для пробела нет определенного символа - его по прежнему пишет как &quot; &quot;)</p>
+
+<h4>Примечание 2.</h4>
+
+<p>Если воспользоваться знаниями примечания 1, то оказывается, что по умолчанию в функции print() параметры sep и end равны &quot; &quot; и &quot;\n&quot; соответсвенно.</p>
+
+<p>&nbsp;</p>
+
+<h2 style="text-align:center">Ввод</h2>
+
+<p>Большинство программ имеют смысл при наличие входных данных - информацией с которой они будут работать. Данные можно брать отовсюду, но сейчас мы поговорим про те, которые вводятся с клавиатуры, и за них отвечают функция input().<br />
+    <br />
+    Рассмотрим следующую программу:</p>
+
+<pre>
+<code class="language-python">print('Как тебя зовут?')
+name = input()
+print('Привет, меня зовут', name)</code></pre>
+
+<p>Сначала программа распечатает текст на экран &laquo;Как тебя зовут?&raquo;. Далее&nbsp;программа будет&nbsp;ждать&nbsp;от&nbsp;пользователя ввода данных. Ввод данных реализуется с помощью команды&nbsp;<code>input()</code>. И в конце произойдет вывод текста вместе с введенными от пользователя данными. Например мы ввели имя &quot;Саша&quot;, тогда программа выведет на экран:</p>
+
+<pre>
+<code class="language-python">Как тебя зовут?
+Привет, меня зовут Саша</code></pre>
+
+<p>Обратите внимание, что в этом коде мы использовали <u>переменную</u> name. Переменная это место в памяти компьютера, куда мы сохраняем данные. В переменные можно сохранять как числа, строки так и другие типы данных. (Подробнее о типах данных мы поговорим позже)</p>
+
+<p>На самом деле код выше мы можем переписать более компактно:</p>
+
+<pre>
+<code class="language-python">name = input('Как тебя зовут?')
+print('Привет, меня зовут', name)</code></pre>
+
+<p>Если передать функции <code>input()</code> в аргументы какую-то строку, то она сначала выведет ее на экран, а только потом будет готова принимать входные данные. Благодаря этому, пользователь увидит наш вопрос!</p>
+
+<p>Важно сказать, что вводить данные мы можем как нам угодно. Пусть мы ввели данные таким образом:</p>
+
+<pre>
+<code class="language-python">Саша
+20</code></pre>
+
+<p>Сохранить эти данные мы можем в две переменные name и age, последовательно написав для каждой свой input(), т.е.:</p>
+
+<pre>
+<code class="language-python">name = input()
+age = input()
+print("Меня зовут", name, end =",")
+print(" мне", age, "лет")</code></pre>
+
+<p>Выведи:</p>
+
+<pre>
+<code class="language-python">Меня зовут Саша,  мне 20 лет</code></pre>
+</body>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Tutorial: Variables</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .language-python {
+            color: #3572A5;
+        }
+    </style>
+</head>
+<body>
+<h2 style="text-align:center">Условные операторы</h2>
+
+<p>Конечно же очень часто возникают ситуации, когда условий несколько. Как раз поэтому в Python есть 4 оператора (3 логических и 1 принадлежности), которые позволяют создавать сложные условия:</p>
+
+<ul>
+    <li><code class="language-python">and</code>&nbsp;&mdash; логическое умножение;</li>
+    <li><code class="language-python">or</code>&nbsp;&mdash; логическое сложение;</li>
+    <li><code class="language-python">not</code>&nbsp;&mdash; логическое отрицание.</li>
+    <li><code class="language-python">in</code>&nbsp;-&nbsp;принадлежность</li>
+</ul>
+
+<h2 style="text-align:center">Оператор in</h2>
+
+<p>Оператор&nbsp;<code class="language-python">in</code>&nbsp;проверяет, находится ли тот или иной объект в другому объекте. Этот оператор нельзя использовать с числовым типом данных!</p>
+
+<p>Предположим, у нас есть список участников мероприятия.&nbsp; Мы написали программу, которая пропускает (Или наоборот - не пускает) людей на это мероприятие в зависимости от того, есть они в списке или нет.</p>
+
+<pre>
+<code class="language-python">surname = input('Какая у вас фамилия?: ')
+surnames = "Попов, Иванов, Сергеев, Петров"
+
+if surname in surnames:
+    print('Вход разрешен.')
+else:
+    print('Вход запрещен.')</code></pre>
+
+<h2 style="text-align:center">Оператор and</h2>
+
+<p>Предположим, у нас есть список участников мероприятия 18+. Мы написали программу, которая пропускает (Или наоборот - не пускает) людей на это мероприятие в зависимости от их возраста и наличие в списке их имени.</p>
+
+<pre>
+<code class="language-python">age = int(input('Сколько вам лет?: '))
+surname = input('Какая у вас фамилия?: ')
+surnames = "Попов, Иванов, Сергеев, Петров"
+
+if age &gt;= 18 and surname in surnames:
+    print('Вход разрешен.')
+else:
+    print('Вход запрещен.')</code></pre>
+
+<p>Мы объединили два условия при помощи оператора&nbsp;<code class="language-python">and</code>. Оно означает, что в этом ветвлении блок кода выполняется только при выполнении&nbsp;<strong>обоих условий</strong>&nbsp;<strong>одновременно</strong>!&nbsp;</p>
+
+<p>Оператор&nbsp;<code class="language-python">and</code>&nbsp;может объединять произвольное количество условий!</p>
+
+<p>Обратите внимание, что если хоть одно условие (которое мы связали оператором&nbsp;<code class="language-python">and</code>&nbsp;) не выполнено, то и вся конструкция выдаст&nbsp;<code>False</code>&nbsp;и перейдет к ветке&nbsp;<code>else:</code>.</p>
+
+<h2 style="text-align:center">Оператор or</h2>
+
+<p>Предположим, что на то самое мероприятие вам можно пройти либо если вам уже есть 18, либо если вас туда пригласили (Вы есть в списках), либо если ваше имя Саша:</p>
+
+<p>Заметьте, что в отличие от оператора&nbsp;<code class="language-python">and</code>, оператору&nbsp;<code class="language-python">or</code>&nbsp;достаточно, чтобы выполнялось ХОТЯ БЫ ОДНО условие (которое мы связали оператором <code class="language-python">or</code>). То есть если вам нет 18, и вы приглашены, но вас зовут Саша - &nbsp;вы прошли!</p>
+
+<pre>
+<code class="language-python">age = int(input('Сколько вам лет?: '))
+name = input('Как вас зовут?: ')
+surname = input('Какая у вас фамилия?: ')
+surnames = "Попов, Иванов, Сергеев, Петров"
+
+if age &gt;= 18
+    or surname in surnames or name == 'Саша':
+    print('Вход разрешен.')
+else:
+    print('Вход запрещен.')</code></pre>
+
+<h2 style="text-align:center">Оператор not</h2>
+
+<p>Оператор&nbsp;<code class="language-python">not</code>&nbsp;позволяет инвертировать&nbsp;(т.е. заменить на противоположный) результат логического выражения. Например, следующий код:</p>
+
+<p>Теперь, давайте представим, что на данное мероприятие можно пройти только если вам есть 18, и вашей фамилии нет в списке людей, которым запрещено заходить в помещение.</p>
+
+<pre>
+<code class="language-python">age = int(input('Сколько вам лет?: '))
+surname = input('Какая у вас фамилия?: ')
+surnames = "Попов, Иванов, Сергеев, Петров"
+
+if not(age &lt; 18) and surname not in surnames:
+    print('Вход разрешен.')
+else:
+    print('Вход запрещен.')</code></pre>
+
+<p>Данная программа выведет &quot;Вход разрешен&quot; для тех, кому больше либо равно 18 и чья фамилия отсутствует в списке нежелательных гостей.&nbsp;</p>
+</body>
+</html>

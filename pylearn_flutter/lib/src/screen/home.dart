@@ -1,11 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:pylearn_flutter/src/tutorlal_screens/Intro.dart';
-//import 'package:pylearn_flutter/src/Assets/free-python-3629591-3032289.png' as pic;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pylearn_flutter/src/provs/stats_prov.dart';
+import 'package:pylearn_flutter/src/screen/main_screen.dart';
+import 'package:pylearn_flutter/src/screen/tutorials_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+// double getProgress(WidgetRef ref) {
+// double res = stats[0].quiz1.toDouble() +
+//     stats[0].quiz2.toDouble() +
+//     stats[0].quiz3.toDouble() +
+//     stats[0].quiz4.toDouble() +
+//     stats[0].quiz5.toDouble() +
+//     stats[0].quiz6.toDouble() +
+//     stats[0].quiz7.toDouble() +
+//     stats[0].quiz8.toDouble() +
+//     stats[0].quiz9.toDouble() +
+//     stats[0].quiz10.toDouble();
+
+//   return res;
+// }
+
+class HomeScreen extends MainScreen {
+  const HomeScreen({super.key});
+
   @override
-  Widget build(BuildContext context) {
-    double progressValue = 0.2;
+  Widget body(BuildContext context, WidgetRef ref) {
+    final stats = ref.watch(prov_stats);
+    double progressValue = (stats[0].quiz1.toDouble() +
+            stats[0].quiz2.toDouble() +
+            stats[0].quiz3.toDouble() +
+            stats[0].quiz4.toDouble() +
+            stats[0].quiz5.toDouble() +
+            stats[0].quiz6.toDouble() +
+            stats[0].quiz7.toDouble() +
+            stats[0].quiz8.toDouble() +
+            stats[0].quiz9.toDouble() +
+            stats[0].quiz10.toDouble()) /
+        10;
+
+    final Size screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: AppBar(
@@ -14,7 +46,7 @@ class HomeScreen extends StatelessWidget {
           style: TextStyle(
             color: Colors.black,
             fontFamily: 'Cygre',
-            fontSize: 25,
+            fontSize: screenSize.width * 0.05, // 5% of screen width
           ),
         ),
       ),
@@ -24,47 +56,49 @@ class HomeScreen extends StatelessWidget {
               MainAxisAlignment.start, // Align children to the top
           children: [
             Container(
-              margin:
-                  EdgeInsets.only(top: 20), // Adjust the top margin as needed
-              width: 400, // Adjust the width as needed
-              height: 300, // Adjust the height as needed
+              margin: EdgeInsets.only(
+                  top: screenSize.height * 0.02), // 2% of screen height
+              width: screenSize.width * 0.9, // 90% of screen width
+              height: screenSize.height * 0.3, // 30% of screen height
               decoration: BoxDecoration(
-                color: Color.fromRGBO(212, 225, 243, 0.9019607843137255),
-                borderRadius: BorderRadius.circular(
-                    20), // Adjust the border radius as needed
-                border: Border.all(
-                  color: Colors.black,
-                  width: 5, // Adjust the border width as needed
+                gradient: LinearGradient(
+                  colors: [Color(0xFF46A0AE), Color(0xFF00FFCB)],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
                 ),
+                borderRadius: BorderRadius.circular(
+                    screenSize.width * 0.05), // 5% of screen width
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            right: 20), // Add padding between text and image
-                        child: Text(
-                          'Python course for beginners',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                  Padding(
+                    padding: EdgeInsets.only(left: screenSize.width * 0.05),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding:
+                              EdgeInsets.only(right: screenSize.width * 0.04),
+                          child: Text(
+                            'Python course for beginners',
+                            style: TextStyle(
+                              fontSize: screenSize.width * 0.045,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
                           ),
                         ),
-                      ),
-                      // Image.asset(
-                      //   'package:pylearn_flutter/src/Assets/free-python-3629591-3032289.png', // Provide the path to your image asset
-                      //   width: 30, // Adjust the width of the image
-                      //   height: 30, // Adjust the height of the image
-                      // ),
-                    ],
+                        Image.asset(
+                          'lib/src/Assets/free-python-3629591-3032289.png',
+                          width: screenSize.width * 0.1, // 5% of screen width
+                          height: screenSize.width * 0.1, // 5% of screen width
+                        ),
+                      ],
+                    ),
                   ),
-                  SizedBox(height: 10),
                   SizedBox(
-                    width: 350, // Adjust the width as needed
+                    width: screenSize.width * 0.8, // 87.5% of screen width
                     child: LinearProgressIndicator(
                       backgroundColor: Colors
                           .grey[300], // Set background color of progress bar
@@ -72,17 +106,20 @@ class HomeScreen extends StatelessWidget {
                           Colors.blue), // Set foreground color of progress bar
                       value:
                           progressValue, // Set progress value (between 0 and 1)
-                      minHeight: 10, // Set minimum height of the progress bar
+                      minHeight:
+                          screenSize.height * 0.01, // 1% of screen height
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 20),
+                    padding: EdgeInsets.only(
+                        left: screenSize.width * 0.05), // 5% of screen width
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         '${(progressValue * 100).toStringAsFixed(0)}% of solved tasks', // Display the percentage value
                         style: TextStyle(
-                          fontSize: 15,
+                          fontSize:
+                              screenSize.width * 0.025, // 2.5% of screen width
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ),
@@ -90,7 +127,8 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 20),
+                    padding: EdgeInsets.only(
+                        left: screenSize.width * 0.05), // 5% of screen width
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: ElevatedButton(
@@ -98,29 +136,27 @@ class HomeScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => PythonTutorialScreen()),
+                                builder: (context) => PythonTutorialApp()),
                           );
                         },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(
-                                20), // Adjust the radius to change the button's curvature
+                            borderRadius:
+                                BorderRadius.circular(screenSize.width * 0.02),
                           ),
-                          backgroundColor: Colors
-                              .green, // Set the background color of the button
+                          backgroundColor: Colors.green,
                         ),
                         child: Container(
-                          width: 150, // Set a fixed width for the button
-                          height: 70, // Set a fixed height for the button
-                          alignment:
-                              Alignment.center, // Align text to the center
-                          padding: EdgeInsets.only(
-                              left: 0), // Add some left padding to text
+                          width: screenSize.width * 0.25,
+                          height: screenSize.height * 0.07,
+                          alignment: Alignment.center,
+                          padding:
+                              EdgeInsets.only(left: screenSize.width * 0.0),
                           child: Text(
                             'Continue',
                             style: TextStyle(
-                              color: Colors.white, // Set text color to white
-                              fontSize: 16, // Set font size
+                              color: Colors.white,
+                              fontSize: screenSize.width * 0.035,
                             ),
                           ),
                         ),
