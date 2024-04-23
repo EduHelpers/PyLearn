@@ -91,7 +91,7 @@ class _PythonTutorialAppState extends State<PythonTutorialApp> {
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           title: null,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Color.fromARGB(255, 255, 255, 255),
           elevation: 0,
           leading: IconButton(
             icon: Icon(Icons.arrow_back_ios),
@@ -108,7 +108,8 @@ class _PythonTutorialAppState extends State<PythonTutorialApp> {
               children: [
                 SizedBox(height: screenSize.height * 0.12),
                 Padding(
-                  padding: EdgeInsets.only(right: screenSize.width * 0.735),
+                  padding: EdgeInsets.fromLTRB(
+                      0, screenSize.height * 0.03, screenSize.width * 0.735, 0),
                   child: Text(
                     'Section 1',
                     style: TextStyle(
@@ -203,7 +204,7 @@ class _PythonTutorialAppState extends State<PythonTutorialApp> {
                                 progressStrokeWidth: 10,
                                 backStrokeWidth: 10,
                                 size: 30,
-                                value: 50,
+                                value: i * 5,
                                 mergeMode: true,
                               ),
                             )

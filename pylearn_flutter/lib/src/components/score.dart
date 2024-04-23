@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:pylearn_flutter/src/components/question_controller.dart';
 import 'package:pylearn_flutter/src/screen/home_screen.dart';
+import 'package:pylearn_flutter/src/screen/main_screen.dart';
 
-class ScoreScreen extends StatelessWidget {
+class ScoreScreen extends MainScreen {
+  final String quizId;
+
+  ScoreScreen({required this.quizId});
+
   @override
-  Widget build(BuildContext context) {
-    QuestionController _qnController =
-        Get.put(QuestionController("Ввод и вывод \nданных"));
+  Widget body(BuildContext context, WidgetRef ref) {
+    QuestionController _qnController = Get.put(QuestionController(quizId));
     return Scaffold(
       body: Center(
         child: Column(

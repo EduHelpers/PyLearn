@@ -90,7 +90,7 @@ class QuestionController extends GetxController
         }
       });
     } else {
-      Get.to(ScoreScreen());
+      Get.to(ScoreScreen(quizId: quizId));
     }
   }
 
