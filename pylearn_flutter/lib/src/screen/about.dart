@@ -1,10 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pylearn_flutter/src/screen/main_screen.dart';
 
-class Friends extends MainScreen {
-  const Friends({super.key});
+class About extends MainScreen {
+  const About({super.key});
 
   @override
   Widget body(BuildContext context, WidgetRef ref) {
@@ -14,7 +13,7 @@ class Friends extends MainScreen {
         appBar: AppBar(
           foregroundColor: Colors.white,
           title: const Text(
-            'Ваши друзья',
+            'О приложении',
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'MainFont',
@@ -22,16 +21,20 @@ class Friends extends MainScreen {
               fontWeight: FontWeight.w600,
             ),
           ),
-          backgroundColor: Colors.blue.shade300,
+          backgroundColor: const Color.fromARGB(255, 88, 204, 84),
         ),
-        body: Padding(
-            padding: EdgeInsets.fromLTRB(0, screenSize.height * 0.08, 0, 0),
-            child: Column(
+        body: Column(
+          children: [
+            Row(
               children: [
-                Row(
-                  children: [],
-                )
+                Padding(
+                    padding: EdgeInsets.fromLTRB(screenSize.width * 0.08,
+                        screenSize.height * 0.08, screenSize.width * 0.38, 0),
+                    child: const Text(
+                        "Данное приложение создано в качестве курсовой работы"))
               ],
-            )));
+            ),
+          ],
+        ));
   }
 }

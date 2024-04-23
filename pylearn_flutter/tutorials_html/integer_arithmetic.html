@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Tutorial: Variables</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .language-python {
+            color: #3572A5;
+        }
+        pre code {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+<h1 style="text-align: center;">Целочисленная арифметика</h1>
+
+<p>Чтобы в Python создать переменную целого типа данных, нужно опустить кавычки при объявлении переменной. Рассмотрим следующий код:</p>
+
+<pre><code>num1 = 7            # num1 - это число
+num2 = 10           # num2 - это число
+num3 = num1 + num2  # num3 - это число
+num2 += num1        # num2 - это число, запись num2 += num1 равносильна num2 = num2 + num1
+
+print(num3)
+print(num2)</code></pre>
+
+<p>В результате выполнения такой программы будет выведено:</p>
+
+<pre><code>17
+17</code></pre>
+
+<p>Запомните, что числа обозначаются без кавычек, а строки — с кавычками.</p>
+
+<h2>Основные операции с числами</h2>
+
+<p>В языке Python, как и в математике, над числами можно совершать 4 основные операции (<code>+</code>, <code><strong>−</strong></code>, <code>*</code>, <code>/</code>) - сложение, вычитание, умножение и деление соответсвенно.</p>
+
+<pre><code class="language-python">a = 3
+b = 2
+
+print(a + b)
+print(a - b)
+print(a * b)
+print(a / b)</code></pre>
+
+<p>Результатом выполнения такой программы будут числа:</p>
+
+<pre><code class="language-python">5
+1
+6
+1.5</code></pre>
+
+<h2>Порядок выполнения операций</h2>
+
+<p>Порядок выполнения операций в Python аналогичен порядку выполнения операций, которые вы изучали на уроках математики.</p>
+
+<pre><code>num1 = 2 + 3 * 4
+num2 = (2 + 3) * 4
+
+print(num1)
+print(num2)
+</code></pre>
+
+<p>Результатом выполнения такой программы будут числа <code>14</code> и <code>20</code>. </p>
+
+<h2>Преобразование типов</h2>
+
+<p>Напишем программу, которая считывает два целых числа и выводит на экран их сумму. Следующий код тут не сработает:</p>
+
+<pre><code>num1 = input()
+num2 = input()
+
+print(num1 + num2)</code></pre>
+
+<p>Python считает, что в переменных <code>num1</code> и <code>num2</code> находится <strong>текст</strong>, поскольку команда <code>input()</code> по умолчанию считывает именно <strong>текст</strong>. Значит в переменные <code>num1</code> и <code>num2</code> требуется положить данные типа <code>int</code>, а значит мы должны применить функцию <code>int()</code>:</p>
+
+<pre><code>num1 = int(input())
+num2 = int(input())
+
+print(num1 + num2)</code></pre>
+</body>

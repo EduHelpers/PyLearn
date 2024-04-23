@@ -19,13 +19,13 @@ class ScoreScreen extends MainScreen {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Score",
+              "Ваш результат",
               style: Theme.of(context)
                   .textTheme
                   .headline3!
                   .copyWith(color: Color(0xFF8B94BC)),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               "${_qnController.numOfCorrectAns * 10}/${_qnController.questions.length * 10}",
               style: Theme.of(context)
@@ -33,7 +33,7 @@ class ScoreScreen extends MainScreen {
                   .headline4!
                   .copyWith(color: Color(0xFF8B94BC)),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 // Reset the QuestionController
@@ -42,7 +42,7 @@ class ScoreScreen extends MainScreen {
                 Get.offAll(
                     NavigationScreen()); // Replace Home() with your actual Home screen widget
               },
-              child: Text('Home'),
+              child: const Text('Домой'),
             ),
           ],
         ),

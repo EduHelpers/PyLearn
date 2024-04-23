@@ -29,7 +29,7 @@ class ProgressBar extends StatelessWidget {
                 builder: (context, constraints) => Container(
                   width: constraints.maxWidth * controller.animation!.value,
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
+                    gradient: const LinearGradient(
                       colors: [Color(0xFF46A0AE), Color(0xFF00FFCB)],
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
@@ -45,7 +45,7 @@ class ProgressBar extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                          "${15 - (controller.animation!.value * 15).round()} sec"),
+                          "${15 - (controller.animation!.value * 15).round()} c."),
                     ],
                   ),
                 ),

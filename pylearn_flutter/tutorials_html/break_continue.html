@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Tutorial: Variables</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .language-python {
+            color: #3572A5;
+        }
+        pre code {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+<h2>Оператор прерывания цикла break</h2>
+
+<p>Иногда бывает нужно <strong>прервать выполнение цикла преждевременно</strong>. Оператор <code>break</code> прерывает ближайший цикл <code>for</code> или <code>while</code>.</p>
+
+<p>Усовершенствуем с помощью оператора <code>break</code> программу, проверяющую число на простоту:</p>
+
+<pre><code>num = int(input())
+flag = True
+
+for i in range(2, num):
+    if num % i == 0:        #  если исходное число делится на какое-либо отличное от 1 и самого себя
+        flag = False
+        break               # останавливаем цикл если встретили делитель числа
+
+if flag:  # эквивалентно if flag == True:
+    print('Число простое')
+else:
+    print('Число составное')</code></pre>
+
+<p>Как только мы встречаем делитель отличный от 1 и <code>num</code>, мы меняем значение сигнальной метки и прерываем цикл, так как число уже не будет являться простым. А в конце мы проверяем является ли число простым с помощью сигнальной метки. Таким образом оператор прерывания цикла <code>break</code> позволяет ускорять программы, так как мы избавляемся от лишних итераций.</p>
+
+<p>Напишем программу, использующую цикл <code>for</code>, которая считывает 10 чисел и суммирует их до тех пор, пока не обнаружит отрицательное число. В этом случае выполнение цикла прерывается командой <code>break</code>:</p>
+
+<pre><code>result = 0
+for i in range(10):
+    num = int(input())
+    if num &lt; 0:
+        break
+    result += num
+print(result)</code></pre>
+
+<p>Оператор прерывания цикла <code>break</code> удобен в связке с <strong>сигнальными метками</strong>: когда после проверки некоторого условия нам нет смысла продолжать выполнение цикла.</p>
+
+<h2 style="text-align: center;">Оператор continue</h2>
+
+<p>Оператор <code>continue</code> позволяет перейти к следующей итерации цикла <code>for</code> или <code>while</code> до завершения всех команд в теле цикла. Обратите внимание, что он не прерывает работу целого цикла, а лишь одной его итерации!</p>
+
+<p>Напишем программу, которая выводит все числа от 1 до 100, кроме чисел 7, 17, 29 и 78.</p>
+
+<pre><code>for i in range(1, 101):
+    if i == 7 or i == 17 or i == 29 or i == 78:
+        continue  # переходим на следующую итерацию
+    print(i)</code></pre>
+</body>

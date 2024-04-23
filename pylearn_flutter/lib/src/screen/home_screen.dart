@@ -53,7 +53,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'PyLearn',
           style: TextStyle(
             color: Colors.white,
@@ -62,7 +62,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
             fontWeight: FontWeight.w600,
           ),
         ),
-        backgroundColor: Color.fromRGBO(6, 23, 54, 0.9),
+        backgroundColor: const Color.fromRGBO(6, 23, 54, 0.9),
       ),
       body: Stack(
         children: [
@@ -102,7 +102,7 @@ class FlyingBottomBar extends StatelessWidget {
     return Container(
       height: 90,
       width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color.fromRGBO(6, 23, 54, 0.9),
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(0),
@@ -168,14 +168,12 @@ class FlyingBottomBarItem extends StatelessWidget {
             ),
             child: Padding(
               padding: EdgeInsets.all(0),
-              child: Icon(
-                icon,
-                color: index == currentIndex ? Colors.white : Colors.grey,
-                size: index == currentIndex ? 36 : 30, // Increase size on tap
-              ),
+              child: Icon(icon,
+                  color: index == currentIndex ? Colors.white : Colors.grey,
+                  size: index == currentIndex ? 36 : 30),
             ),
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Text(
             label,
             style: TextStyle(

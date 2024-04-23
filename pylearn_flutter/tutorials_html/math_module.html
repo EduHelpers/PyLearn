@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Tutorial: Variables</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .language-python {
+            color: #3572A5;
+        }
+        pre code {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+<h1 style="text-align: center;">Модуль math</h1>
+
+<p>В Python есть множество разнообразных модулей, в которых хранятся уже реализованные и готовые к использованию функции, которые помогают в работе с числами. Модули это своеобразные библиотеки функций.</p>
+
+<p>Один из них это модуль <code>math</code> – один из наиважнейших в Python. Этот модуль предоставляет обширный функционал для проведения вычислений с вещественными числами.</p>
+
+<p>Для использования этих функций в начале программы необходимо подключить модуль, что делается командой <strong>import</strong>:</p>
+
+<pre><code>import math
+
+# программный код</code></pre>
+
+<p>После подключения модуля мы можем использовать его функции. Пусть мы хотим:</p>
+
+<ul>
+    <li>вычислить ​корень квадратный из двух;</li>
+    <li>округлить число 3.8 до ближайшего целого числа вверх и вниз</li>
+</ul>
+
+<pre><code>import math
+
+num1 = math.sqrt(2)     # вычисление квадратного корня из двух
+num2 = math.ceil(3.8)   # округление числа вверх
+num3 = math.floor(3.8)  # округление числа вниз
+
+print(num1)
+print(num2)
+print(num3)</code></pre>
+
+<p>Выводит:</p>
+
+<pre><code>1.4142135623730951
+4
+3</code></pre>
+
+<h2 style="text-align: center;">Особенности подключения модулей</h2>
+
+<p>Как можно заметить из примера выше, для вызова функции мы вынуждены указывать название модуля и символ точки.Для того, чтобы не указывать название модуля и символ точки при вызове функций, мы пишем следующий код:</p>
+
+<pre><code>from math import *
+
+num1 = sqrt(2)     # вычисление корня квадратного из двух
+num2 = ceil(3.8)   # округление числа вверх
+num3 = floor(3.8)  # округление числа вниз
+
+print(num1)
+print(num2)
+print(num3)</code></pre>
+
+<p>Если нужно использовать только некоторые функции модуля, то мы можем импортировать только их следующим образом:</p>
+
+<pre><code>from math import sqrt, ceil</code></pre>
+
+<p>Теперь мы можем вызывать функции <code>sqrt()</code> и <code>ceil()</code> без префикса <code>math.</code>, однако мы не можем вызвать функцию <code>floor()</code>, так как она не подключена:</p>
+
+<pre><code>from math import sqrt, ceil
+
+print(sqrt(25))
+print(ceil(34.7))
+
+print(floor(12.8))  # приведет к ошибке, так как функция floor не подключена</code></pre>
+
+<h2 style="text-align: center;">Список функций модуля math</h2>
+
+<p>Список наиболее часто используемых функций модуля <code>math</code>:</p>
+
+<table align="center" border="1" cellpadding="1" cellspacing="1">
+    <thead>
+    <tr>
+        <th>Функция</th>
+        <th>Описание</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><strong>Округления</strong></td>
+    </tr>
+    <tr>
+        <td><code>int()</code></td>
+        <td>Округляет число в сторону нуля</td>
+    </tr>
+    <tr>
+        <td><code>round(x)</code></td>
+        <td>Округляет число <code>x</code> до ближайшего целого. Если дробная часть числа равна 0.5, то число округляется до ближайшего четного числа</td>
+    </tr>
+    <tr>
+        <td><code>round(x, n)</code></td>
+        <td>Округляет число <code>x</code> до n знаков после точки</td>
+    </tr>
+    <tr>
+        <td><code>floor(x)</code></td>
+        <td>Округляет число <code>x</code> вниз («пол»)</td>
+    </tr>
+    <tr>
+        <td><code>ceil(x)</code></td>
+        <td>Округляет число <code>x</code> вверх («потолок»)</td>
+    </tr>
+    <tr>
+        <td><code>abs(x)</code></td>
+        <td>Модуль числа <code>x</code> (абсолютная величина)</td>
+    </tr>
+    <tr>
+        <td><strong>Корни, логарифмы, степени и факториал</strong></td>
+    </tr>
+    <tr>
+        <td><code>sqrt(x)</code></td>
+        <td>Квадратный корень числа <code>x</code></td>
+    </tr>
+    <tr>
+        <td><code>pow(x, n)</code></td>
+        <td>Возведение числа <code>x</code> в степень <code>n</code></td>
+    </tr>
+    <tr>
+        <td><code>log(x)</code></td>
+        <td>Натуральный логарифм числа <code>x</code>. Основание натурального логарифма равно числу <code>e</code></td>
+    </tr>
+    <tr>
+        <td><code>log10(x)</code></td>
+        <td>Десятичный логарифм числа <code>x</code>. Основание десятичного логарифма равно числу 10</td>
+    </tr>
+    <tr>
+        <td><code>log(x, b)</code></td>
+        <td>Логарифм числа <code>x</code> по основанию <code>b</code></td>
+    </tr>
+    <tr>
+        <td><code>factorial(n)</code></td>
+        <td>Факториал натурального числа <code>n</code></td>
+    </tr>
+    <tr>
+        <td><strong>Тригонометрия</strong></td>
+    </tr>
+    <tr>
+        <td><code>degrees(x)</code></td>
+        <td>Преобразует угол <code>x</code>, заданный в радианах, в градусы</td>
+    </tr>
+    <tr>
+        <td><code>radians(x)</code></td>
+        <td>Преобразует угол <code>x</code>, заданный в градусах, в радианы</td>
+    </tr>
+    <tr>
+        <td><code>cos(x)</code></td>
+        <td>Косинус угла <code>x</code>, задаваемого в радианах</td>
+    </tr>
+    <tr>
+        <td><code>sin(x)</code></td>
+        <td>Синус угла <code>x</code>, задаваемого в радианах</td>
+    </tr>
+    <tr>
+        <td><code>tan(x)</code></td>
+        <td>Тангенс угла <code>x</code>, задаваемого в радианах</td>
+    </tr>
+    <tr>
+        <td><code>acos(x)</code></td>
+        <td>Возвращает угол в радианах от 00 до ππ, <code>cos</code> которого равен <code>x</code></td>
+    </tr>
+    <tr>
+        <td><code>asin(x)</code></td>
+        <td>Возвращает угол в радианах от −π2−2π​ до π22π​, <code>sin</code> которого равен <code>x</code></td>
+    </tr>
+    <tr>
+        <td><code>atan(x)</code></td>
+        <td>Возвращает угол в радианах от −π2−2π​ до π22π​, <code>tan</code> которого равен <code>x</code></td>
+    </tr>
+    <tr>
+        <td><code>atan2(y, x)</code></td>
+        <td>Полярный угол (в радианах) точки с координатами <code>(x, y)</code></td>
+    </tr>
+    </tbody>
+</table>
+</body>

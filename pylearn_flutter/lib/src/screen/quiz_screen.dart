@@ -21,7 +21,7 @@ class QuizScreen extends StatelessWidget {
               Get.put(QuestionController(quizId));
               Get.find<QuestionController>().nextQuestion();
             },
-            child: Text("Skip"),
+            child: const Text("Пропустить вопрос"),
           ),
         ],
       ),

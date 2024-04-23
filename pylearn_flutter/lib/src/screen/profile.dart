@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get/get.dart';
 import 'package:pylearn_flutter/src/provs/session.dart';
 import 'package:pylearn_flutter/src/provs/stats_prov.dart';
+import 'package:pylearn_flutter/src/screen/about.dart';
 import 'package:pylearn_flutter/src/screen/friends.dart';
 import 'package:pylearn_flutter/src/screen/main_screen.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:pylearn_flutter/src/screen/settings.dart';
 
 class ProfileScreen extends MainScreen {
+  const ProfileScreen({super.key});
+
   @override
   Widget body(BuildContext context, WidgetRef ref) {
     final Size sizeScreen = MediaQuery.of(context).size;
@@ -17,7 +20,7 @@ class ProfileScreen extends MainScreen {
     String day = stats[0].lastAction.day.toString();
     String month = stats[0].lastAction.month.toString();
     if (month.length == 1) {
-      month = "0" + month;
+      month = "0$month";
     }
     String year = stats[0].lastAction.year.toString();
     String hour = stats[0].lastAction.hour.toString();
@@ -70,8 +73,10 @@ class ProfileScreen extends MainScreen {
                       minWidth: sizeScreen.width * 0.8,
                       height: 55,
                       onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Friends()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Friends()));
                       },
                       child: Stack(
                         alignment: Alignment.center,
@@ -84,8 +89,9 @@ class ProfileScreen extends MainScreen {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Container(
-                                child: Icon(Icons.people, color: Colors.white),
-                                padding: EdgeInsets.all(6),
+                                padding: const EdgeInsets.all(6),
+                                child: const Icon(Icons.people,
+                                    color: Colors.white),
                               )
                             ],
                           )
@@ -103,7 +109,10 @@ class ProfileScreen extends MainScreen {
                       minWidth: sizeScreen.width * 0.8,
                       height: 55,
                       onPressed: () {
-                        //TODO
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Settings()));
                       },
                       child: Stack(
                         alignment: Alignment.center,
@@ -116,9 +125,9 @@ class ProfileScreen extends MainScreen {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Container(
-                                child:
-                                    Icon(Icons.settings, color: Colors.white),
-                                padding: EdgeInsets.all(6),
+                                padding: const EdgeInsets.all(6),
+                                child: const Icon(Icons.settings,
+                                    color: Colors.white),
                               )
                             ],
                           )
@@ -134,12 +143,15 @@ class ProfileScreen extends MainScreen {
                 child: Material(
                     elevation: 5,
                     borderRadius: BorderRadius.circular(20.0),
-                    color: Color.fromARGB(255, 88, 204, 84),
+                    color: const Color.fromARGB(255, 88, 204, 84),
                     child: MaterialButton(
                       minWidth: sizeScreen.width * 0.8,
                       height: 55,
                       onPressed: () {
-                        //TODO
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const About()));
                       },
                       child: Stack(
                         alignment: Alignment.center,
@@ -152,9 +164,9 @@ class ProfileScreen extends MainScreen {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Container(
-                                child: Icon(Icons.question_mark_sharp,
+                                padding: const EdgeInsets.all(6),
+                                child: const Icon(Icons.question_mark_sharp,
                                     color: Colors.white),
-                                padding: EdgeInsets.all(6),
                               )
                             ],
                           )
@@ -207,24 +219,5 @@ class ProfileScreen extends MainScreen {
                     ),
                   )))
         ]));
-
-    // return Center(
-    //     child: Column(
-    //   mainAxisSize: MainAxisSize.min,
-    //   children: [
-    //     ListView.builder(
-    //         itemCount: stats.length,
-    //         shrinkWrap: true,
-    //         physics: NeverScrollableScrollPhysics(),
-    //         itemBuilder: (context, index) {
-    //           return Text(stats[0].id.toString());
-    //         }),
-    //     TextButton(
-    //         onPressed: () {
-    //           ref.read(prov.notifier).out();
-    //         },
-    //         child: Text("LOG OUT ANDREW!!!!!! TATE"))
-    //   ],
-    // ));
   }
 }

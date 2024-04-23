@@ -3,6 +3,8 @@ import 'quiz_screen.dart';
 import 'package:get/get.dart';
 
 class Quiz extends StatelessWidget {
+  const Quiz({super.key});
+
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
@@ -22,14 +24,16 @@ class Quiz extends StatelessWidget {
                     children: [
                       Text(
                         "Генератор случайного квиза",
-                        style: Theme.of(context).textTheme.headline4!.copyWith(
-                            color: const Color.fromRGBO(6, 23, 54, 0.9),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "MainFont",
-                            fontSize: screenSize.width * 0.055),
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineMedium!
+                            .copyWith(
+                                color: const Color.fromRGBO(6, 23, 54, 0.9),
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "MainFont",
+                                fontSize: screenSize.width * 0.055),
                       ),
                       const SizedBox(width: 4),
-                      AnimatedBell(),
                     ],
                   ),
                   SizedBox(

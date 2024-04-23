@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Tutorial: Variables</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .language-python {
+            color: #3572A5;
+        }
+        pre code {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+<h1 style="text-align: center;">Числовые типы данных</h1>
+
+<h2>Целочисленный тип данных</h2>
+
+<p>Целые числа в Python представлены типом данных <code>int</code> (integer - целое число).<br>
+     </p>
+
+<pre><code>n = 17 # целое число
+
+m = -17 # целое число
+
+k = 0 # целое число</code></pre>
+
+<p>Для преобразования строки в целое число, мы используем команду <code>int()</code>:</p>
+
+<pre><code class="language-python">num = int(input())  # преобразование введеной строки в целое число</code></pre>
+
+<p>То же самое можно сделать не вводя данные с клавиатуры:</p>
+
+<pre><code class="language-python">n = int('12345')  # преобразование строки в целое число</code></pre>
+
+<p>Обратите внимание, что если входная строка не является целым числом (То есть выглядит как-то так "abcdefg"), то при преобразование произойдет ошибка.</p>
+
+<pre><code>n = int("abcdefg") # ERROR</code></pre>
+
+<h2>Вещественные числа</h2>
+
+<p>Дробные (вещественные) числа в информатике называют <strong>числами с плавающей точкой</strong>.</p>
+
+<p>Для представления чисел с плавающей точкой в Python используется тип данных <code>float</code>.</p>
+
+<pre><code>e = 2.71828  # вещественное число
+pi = 3.1415  # вещественное число</code></pre>
+
+<p>В Python, когда вы используете операцию деления <code>/</code>, результат всегда будет числом с плавающей точкой, даже если оба числа являются целыми. Вот пример:</p>
+
+<pre><code class="language-python">print(4 / 2)  # Результат: 2.0, а не 2</code></pre>
+
+<p>Заметьте, что разделение целой и дробной части осуществляется через точку, а не запятую!</p>
+
+<p>Для преобразования строки к числу с плавающей точкой мы используем команду <code>float()</code>:</p>
+
+<pre><code>num = float(input()) # преобразование считанной строки в число с плавающей точкой</code></pre>
+
+<p>То же самое можно сделать не вводя данные с клавиатуры:</p>
+
+<pre><code class="language-python">n = float('1.2345')  # преобразование строки к числу с плавающей точкой</code></pre>
+
+<p> Обратите внимание, что если входная строка не является вещественным числом (То есть выглядит как-то так "abcdefg"), то при преобразование произойдет ошибка.</p>
+
+<pre><code>n = float("abcdefg") # ERROR</code></pre>
+</body>

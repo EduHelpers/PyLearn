@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Tutorial: Variables</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .language-python {
+            color: #3572A5;
+        }
+        pre code {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+<h1 style="text-align: center;">Строковая арифметика</h1>
+
+<p>Строки можно складывать и умножать как и числа, но с определенной логикой. Обратите внимание, что операции вычитания и деления со строками не доступны, так как не существует какой-то одной правильной логики выполнения этих операций над строками.</p>
+
+<h2 style="text-align: center;">Конкатенация строк</h2>
+
+<p>Конкуренцией называется операция сложения (склеивания) строк.</p>
+
+<p>Рассмотрим следующий программный код:</p>
+
+<pre><code>s1 = 'ab' + 'bc'
+s2 = 'bc' + 'ab'
+s3 = s1 + s2 + '!!'
+print(s1)
+print(s2)
+print(s3)</code></pre>
+
+<p>Результатом выполнения такого кода будет:</p>
+
+<pre><code>abbc
+bcab
+abbcbcab!!</code></pre>
+
+<p>Операция сложения строк в отличие от операции сложения чисел не является <a href="https://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D0%BC%D0%BC%D1%83%D1%82%D0%B0%D1%82%D0%B8%D0%B2%D0%BD%D0%B0%D1%8F_%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F" rel="noopener noreferrer nofollow" target="_blank">коммутативной</a>, то есть, от перестановки мест слагаемых-строк результат меняется!</p>
+
+<p>С помощью конкатенации строк можно эмулировать вывод данных, который раньше мы делали используя необязательные параметры <code>sep</code> и <code>end</code>. Следующие две строки кода делают одно и то же:</p>
+
+<pre><code class="language-python">print('a', 'b', 'c', sep='*', end='!')
+print()
+print('a' + '*' + 'b' + '*' + 'c' + '!')</code></pre>
+
+<p>Результатом выполнения такого кода будет:</p>
+
+<pre><code>a*b*c!
+a*b*c!</code></pre>
+</body>

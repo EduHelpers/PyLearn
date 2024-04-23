@@ -4,21 +4,6 @@ import 'package:pylearn_flutter/src/provs/stats_prov.dart';
 import 'package:pylearn_flutter/src/screen/main_screen.dart';
 import 'package:pylearn_flutter/src/screen/tutorials_screen.dart';
 
-// double getProgress(WidgetRef ref) {
-// double res = stats[0].quiz1.toDouble() +
-//     stats[0].quiz2.toDouble() +
-//     stats[0].quiz3.toDouble() +
-//     stats[0].quiz4.toDouble() +
-//     stats[0].quiz5.toDouble() +
-//     stats[0].quiz6.toDouble() +
-//     stats[0].quiz7.toDouble() +
-//     stats[0].quiz8.toDouble() +
-//     stats[0].quiz9.toDouble() +
-//     stats[0].quiz10.toDouble();
-
-//   return res;
-// }
-
 class HomeScreen extends MainScreen {
   const HomeScreen({super.key});
 
@@ -40,35 +25,35 @@ class HomeScreen extends MainScreen {
     final Size screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Мои курсы',
-          style: TextStyle(
-            color: Colors.black,
-            fontFamily: 'MainFont',
-            fontWeight: FontWeight.w600,
-            fontSize: screenSize.width * 0.05, // 5% of screen width
-          ),
-        ),
-      ),
       body: Center(
         child: Column(
-          mainAxisAlignment:
-              MainAxisAlignment.start, // Align children to the top
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            Row(
+              children: [
+                Padding(
+                    padding: EdgeInsets.fromLTRB(
+                        screenSize.width * 0.05, screenSize.width * 0.05, 0, 0),
+                    child: const Text(
+                      "Мои курсы",
+                      style: TextStyle(
+                          fontFamily: 'MainFont',
+                          fontWeight: FontWeight.w600,
+                          fontSize: 40),
+                    ))
+              ],
+            ),
             Container(
-              margin: EdgeInsets.only(
-                  top: screenSize.height * 0.02), // 2% of screen height
-              width: screenSize.width * 0.9, // 90% of screen width
-              height: screenSize.height * 0.3, // 30% of screen height
+              margin: EdgeInsets.only(top: screenSize.height * 0.02),
+              width: screenSize.width * 0.9,
+              height: screenSize.height * 0.3,
               decoration: BoxDecoration(
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                   colors: [Color(0xFF46A0AE), Color(0xFF00FFCB)],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                 ),
-                borderRadius: BorderRadius.circular(
-                    screenSize.width * 0.05), // 5% of screen width
+                borderRadius: BorderRadius.circular(screenSize.width * 0.05),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -93,43 +78,37 @@ class HomeScreen extends MainScreen {
                         ),
                         Image.asset(
                           'lib/src/Assets/free-python-3629591-3032289.png',
-                          width: screenSize.width * 0.1, // 5% of screen width
-                          height: screenSize.width * 0.1, // 5% of screen width
+                          width: screenSize.width * 0.1,
+                          height: screenSize.width * 0.1,
                         ),
                       ],
                     ),
                   ),
                   SizedBox(
-                    width: screenSize.width * 0.8, // 87.5% of screen width
+                    width: screenSize.width * 0.8,
                     child: LinearProgressIndicator(
-                      backgroundColor: Colors
-                          .grey[300], // Set background color of progress bar
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                          Colors.blue), // Set foreground color of progress bar
-                      value:
-                          progressValue, // Set progress value (between 0 and 1)
-                      minHeight:
-                          screenSize.height * 0.01, // 1% of screen height
+                      backgroundColor: Colors.grey[300],
+                      valueColor:
+                          const AlwaysStoppedAnimation<Color>(Colors.blue),
+                      value: progressValue,
+                      minHeight: screenSize.height * 0.01,
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(
-                        left: screenSize.width * 0.05), // 5% of screen width
+                    padding: EdgeInsets.only(left: screenSize.width * 0.05),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         '${(progressValue * 100).toStringAsFixed(0)}% пройденных уроков', // Display the percentage value
                         style: TextStyle(
-                          fontSize:
-                              screenSize.width * 0.035, // 2.5% of screen width
+                          fontSize: screenSize.width * 0.035,
                           color: Colors.black,
                         ),
                       ),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(
-                        left: screenSize.width * 0.05), // 5% of screen width
+                    padding: EdgeInsets.only(left: screenSize.width * 0.05),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: ElevatedButton(
@@ -145,7 +124,8 @@ class HomeScreen extends MainScreen {
                             borderRadius:
                                 BorderRadius.circular(screenSize.width * 0.02),
                           ),
-                          backgroundColor: Color.fromARGB(255, 88, 204, 84),
+                          backgroundColor:
+                              const Color.fromARGB(255, 88, 204, 84),
                         ),
                         child: Container(
                           width: screenSize.width * 0.25,

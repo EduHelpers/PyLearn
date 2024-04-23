@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Tutorial: Variables</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .language-python {
+            color: #3572A5;
+        }
+        pre code {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+<h1 style="text-align: center;">Строковый тип данных</h1>
+
+<p>Теперь следует познакомиться со строковым типом данных <code>str</code>(string - строка).</p>
+
+<p>Для создания строковой переменной в Python, мы должны заключить нужный текст в кавычки, а если данные вводятся с клавиатуры - просто считать их с помощью команды input() (Так как она, как мы помним, считывает данные и передает их в переменную в формате строк). В Python можно использовать как одинарные кавычки, так и двойные:</p>
+
+<pre><code>s1 = 'Python rocks!'
+s2 = "Python rocks!"
+s = input()  # переменная s имеет строковый тип str</code></pre>
+
+<p>Для задания пустой строки, мы используем две кавычки одинакового типа:</p>
+
+<pre><code>s1 = ''   # пустая строка
+s2 = ""   # пустая строка
+s3 = ' '  # строка состоящая из одного символа пробела
+s4 = " "  # строка состоящая из одного символа пробела</code></pre>
+
+<p>В Python мы можем преобразовывать строки к числу, для этого мы используем функцию <code>str()</code>:</p>
+
+<p>Рассмотрим следующий программный код:</p>
+
+<pre><code>num1 = 1777    # целое число
+num2 = 17.77   # число с плавающей точкой
+s1 = str(num1) # преобразовали целое число в строку '1777'
+s2 = str(num2) # преобразовали число с плавающей точкой в строку '17.77'</code></pre>
+
+<p>В Python для удобства работы со строками существуют множество функции. Разберем некоторые, наиболее важные, из них.<br>
+    <br>
+    Функция <code>len()</code> предназначена для определения длины строки. Длина строки - количество символов в ней.</p>
+
+<pre><code class="language-python">s1 = 'abcdef'
+length1 = len(s1)               # считаем длину строки из переменной s1
+length2 = len('Hello, world!')  # считаем длину введенной строки
+print(length2)</code></pre>
+
+<p>выведет:</p>
+
+<pre><code>6
+13</code></pre>
+</body>

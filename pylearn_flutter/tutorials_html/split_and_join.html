@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Tutorial: Variables</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .language-python {
+            color: #3572A5;
+        }
+        pre code {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+<h2 style="text-align: center;"> Функции split() и join()</h2>
+
+<p>Одними из важнейших методов в языке Python являются <code>split()</code> и <code>join()</code>. Эти методы очень полезны, а соответственно и часто используемые в коде. Поговорим про <code>split()</code>.</p>
+
+<p>Метод <code>split()</code> в Python разделяет строку на список подстрок по разделителю, который мы указываем как параметр.</p>
+
+<p>Синтаксис:</p>
+
+<pre><code class="language-python">str = 'bla bla bla'
+str.split(sep, maxsplit)
+</code></pre>
+
+<ul>
+    <li><em>sep</em> - необязательный параметр, позволяющий задать разделитель вручную. По умолчанию любой пробел является разделителем. </li>
+    <li><em>maxsplit</em> - необязательный параметр, указывающий максимальное количество разбиений, которое требуется выполнить. Если параметр указан,то выполняется не более <em>maxsplit</em> разбиений, то есть итоговый список будет содержать не более <em>maxsplit</em>+1 элементов. Если <em>maxsplit</em> не указан или равен -1, то ограничения на количество сплитов нет.</li>
+</ul>
+
+<p>Рассмотрим работу метода на примере:</p>
+
+<pre><code class="language-python">a = 'Пример работы метода split'
+print(a.split())
+
+num = '1, 2, 3, 4, 5'
+#Все параметры по умолчанию.
+print(num.split())
+
+# Указываем разделитель - ', '
+print(num.split(', '))
+
+# Указываем разделитель и ограничиваем количество сплитов.
+print(num.split(', ', 2))
+
+</code></pre>
+
+<p>Эта программа выведет:</p>
+
+<pre><code>['Пример', 'работы', 'метода', 'split']
+['1,', '2,', '3,', '4,', '5']
+['1', '2', '3', '4', '5']
+['1', '2', '3, 4, 5'] </code></pre>
+
+<p>То есть метод split() разделяет строку на подстроки согласно параметру разбиения. Этот метод не меняет саму строку, а возвращает массив строк, на которые разбилась изначальная. </p>
+
+<p>Метод <code>join()</code> в Python возвращает строку, конкатенируя все элементы итерации, разделенные заданным разделителем.</p>
+
+<p>Синтаксис:</p>
+
+<pre><code class="language-python">separator.join(iterable)
+</code></pre>
+
+<ul>
+    <li><em>iterable</em> - любой итерируемый объект, все возвращаемые значения которого являются строками. Если итерируемый объект содержит какие-либо не строковые значения, то будет вызавно исключение <code>TypeError</code>.</li>
+    <li><em>separator</em> - разделитель, с которым будут конкатенироваться элементы итерации</li>
+</ul>
+
+<pre><code class="language-python">a = ['Раз', 'два', 'три', 'четыре', 'пять']
+print(', '.join(a))
+
+# Спецсимвол '\n' в качестве разделителя
+print('\n'.join(a))
+
+</code></pre>
+</body>
