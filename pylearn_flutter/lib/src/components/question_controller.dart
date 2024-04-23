@@ -1,90 +1,88 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
 import 'package:pylearn_flutter/src/screen/Questions.dart';
 import 'score.dart';
 
 class QuestionController extends GetxController
-    with SingleGetTickerProviderMixin {
+    // ignore: deprecated_member_use
+    with
+        // ignore: deprecated_member_use
+        SingleGetTickerProviderMixin {
   String quizId;
   QuestionController(this.quizId);
-  late AnimationController aniController;
+  late AnimationController animationController;
   late Animation ani;
-  late PageController _pageController;
+  late PageController _pageControl;
 
-  Animation? get animation => this.ani;
-  PageController? get pageController => this._pageController;
+  Animation? get animation => ani;
+  PageController? get pageControl => _pageControl;
 
   late final List<Question> _questions = sample_data[quizId] ?? [];
   List<Question> get questions {
     if (quizId == "Random") {
-      this._questions.shuffle();
-      return this._questions.sublist(0, 3);
+      _questions.shuffle();
+      return _questions.sublist(0, 3);
     }
 
-    return this._questions;
+    return _questions;
   }
 
-  bool _isAnswered = false;
-  bool get isAnswered => this._isAnswered;
-
-  int _correctAns = 0;
-  int get correctAns => this._correctAns;
-
+  bool _isAns = false;
+  bool get isAnswered => _isAns;
+  int _corAns = 0;
+  int get correctAns => _corAns;
   int _selectedAns = 0;
-  int get selectedAns => this._selectedAns;
-
-  RxInt _questionNumber = 1.obs;
-  RxInt get questionNumber => this._questionNumber;
-
-  int _numOfCorrectAns = 0;
-  int get numOfCorrectAns => this._numOfCorrectAns;
+  int get selectedAns => _selectedAns;
+  final RxInt _questionNumber = 1.obs;
+  RxInt get questionNumber => _questionNumber;
+  int _numerOfCorrectAns = 0;
+  int get numOfCorrectAns => _numerOfCorrectAns;
 
   @override
   void onInit() {
-    aniController =
-        AnimationController(duration: Duration(seconds: 15), vsync: this);
-    ani = Tween<double>(begin: 0, end: 1).animate(aniController)
+    animationController =
+        AnimationController(duration: const Duration(seconds: 15), vsync: this);
+    ani = Tween<double>(begin: 0, end: 1).animate(animationController)
       ..addListener(() {
         update();
       });
 
-    aniController.forward().whenComplete(nextQuestion);
-    _pageController = PageController();
+    animationController.forward().whenComplete(nextQuestion);
+    _pageControl = PageController();
     super.onInit();
   }
 
   @override
   void onClose() {
     super.onClose();
-    aniController.dispose();
-    _pageController.dispose();
+    animationController.dispose();
+    _pageControl.dispose();
   }
 
   void checkAns(Question question, int selectedIndex) {
-    _isAnswered = true;
-    _correctAns = question.answer;
+    _isAns = true;
+    _corAns = question.answer;
     _selectedAns = selectedIndex;
 
-    if (_correctAns == _selectedAns) _numOfCorrectAns++;
+    if (_corAns == _selectedAns) _numerOfCorrectAns++;
 
-    aniController.stop();
+    animationController.stop();
     update();
 
-    Future.delayed(Duration(seconds: 1), () {
+    Future.delayed(const Duration(seconds: 1), () {
       nextQuestion();
     });
   }
 
   void nextQuestion() {
     if (_questionNumber.value != questions.length) {
-      _isAnswered = false;
-      _pageController.nextPage(
-          duration: Duration(milliseconds: 120), curve: Curves.ease);
+      _isAns = false;
+      _pageControl.nextPage(
+          duration: const Duration(milliseconds: 120), curve: Curves.ease);
 
-      aniController.reset();
+      animationController.reset();
 
-      aniController.forward().whenComplete(() {
+      animationController.forward().whenComplete(() {
         if (_questionNumber.value != questions.length) {
           nextQuestion();
         }
@@ -100,10 +98,10 @@ class QuestionController extends GetxController
 
   void reset() {
     _questionNumber.value = 1;
-    _numOfCorrectAns = 0;
-    _isAnswered = false;
+    _numerOfCorrectAns = 0;
+    _isAns = false;
     _selectedAns = 0;
-    aniController.reset();
-    aniController.forward().whenComplete(nextQuestion);
+    animationController.reset();
+    animationController.forward().whenComplete(nextQuestion);
   }
 }

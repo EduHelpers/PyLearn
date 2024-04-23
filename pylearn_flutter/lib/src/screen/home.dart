@@ -116,7 +116,8 @@ class HomeScreen extends MainScreen {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => PythonTutorialApp()),
+                                builder: (context) =>
+                                    const PythonTutorialApp()),
                           );
                         },
                         style: ElevatedButton.styleFrom(

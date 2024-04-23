@@ -8,39 +8,36 @@ import 'package:pylearn_flutter/src/screen/main_screen.dart';
 class ScoreScreen extends MainScreen {
   final String quizId;
 
-  ScoreScreen({required this.quizId});
+  const ScoreScreen({super.key, required this.quizId});
 
   @override
   Widget body(BuildContext context, WidgetRef ref) {
-    QuestionController _qnController = Get.put(QuestionController(quizId));
+    QuestionController qnController = Get.put(QuestionController(quizId));
     return Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Ваш результат",
+              "Ваш результат:",
               style: Theme.of(context)
                   .textTheme
-                  .headline3!
-                  .copyWith(color: Color(0xFF8B94BC)),
+                  .displaySmall!
+                  .copyWith(color: const Color(0xFF8B94BC)),
             ),
             const SizedBox(height: 10),
             Text(
-              "${_qnController.numOfCorrectAns * 10}/${_qnController.questions.length * 10}",
+              "${qnController.numOfCorrectAns * 10}/${qnController.questions.length * 10}",
               style: Theme.of(context)
                   .textTheme
-                  .headline4!
-                  .copyWith(color: Color(0xFF8B94BC)),
+                  .headlineMedium!
+                  .copyWith(color: const Color(0xFF8B94BC)),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Reset the QuestionController
-                _qnController.reset();
-                // Navigate to the Home screen
-                Get.offAll(
-                    NavigationScreen()); // Replace Home() with your actual Home screen widget
+                qnController.reset();
+                Get.offAll(const NavigationScreen());
               },
               child: const Text('Домой'),
             ),

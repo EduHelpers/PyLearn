@@ -40,7 +40,7 @@ class Quiz extends StatelessWidget {
                     height: screenSize.height * 0.03,
                   ),
                   InkWell(
-                    onTap: () => Get.off(QuizScreen(quizId: "Random")),
+                    onTap: () => Get.off(const QuizScreen(quizId: "Random")),
                     child: Container(
                       width: double.infinity,
                       alignment: Alignment.center,
@@ -57,7 +57,7 @@ class Quiz extends StatelessWidget {
                         "НАЧАТЬ",
                         style: Theme.of(context)
                             .textTheme
-                            .button!
+                            .labelLarge!
                             .copyWith(color: Colors.black),
                       ),
                     ),
@@ -69,46 +69,6 @@ class Quiz extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class AnimatedBell extends StatefulWidget {
-  @override
-  _AnimatedBellState createState() => _AnimatedBellState();
-}
-
-class _AnimatedBellState extends State<AnimatedBell>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _animation;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: 1),
-      reverseDuration: Duration(seconds: 1),
-    )..repeat(reverse: true);
-    _animation = Tween(begin: -0.1, end: 0.1)
-        .animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _animation,
-      builder: (context, child) {
-        return Transform.translate(
-          offset: Offset(0, _animation.value * 10),
-          child: const Icon(
-            Icons.notifications,
-            size: 24,
-            color: Colors.amber,
-          ),
-        );
-      },
     );
   }
 }

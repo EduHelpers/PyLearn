@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pylearn_flutter/src/components/question_controller.dart';
-import 'package:pylearn_flutter/src/screen/Questions.dart';
-
 import 'progress_bar.dart';
 import 'question.dart';
 
 class Body extends StatelessWidget {
-  const Body({Key? key, required this.quizId}) : super(key: key);
+  const Body({super.key, required this.quizId});
 
   final String quizId;
 
   @override
   Widget build(BuildContext context) {
-    QuestionController _questionController =
-        Get.put(QuestionController(quizId));
+    QuestionController questionController = Get.put(QuestionController(quizId));
     return Stack(
       children: [
         SafeArea(
@@ -27,43 +24,42 @@ class Body extends StatelessWidget {
                   quizId: quizId,
                 ),
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Obx(
                   () => Text.rich(
                     TextSpan(
-                      text:
-                          "Вопрос ${_questionController.questionNumber.value}",
+                      text: "Вопрос ${questionController.questionNumber.value}",
                       style: Theme.of(context)
                           .textTheme
-                          .headline4!
-                          .copyWith(color: Color(0xFF8B94BC)),
+                          .headlineMedium!
+                          .copyWith(color: const Color(0xFF8B94BC)),
                       children: [
                         TextSpan(
-                          text: "/${_questionController.questions.length}",
+                          text: "/${questionController.questions.length}",
                           style: Theme.of(context)
                               .textTheme
-                              .headline5!
-                              .copyWith(color: Color(0xFF8B94BC)),
+                              .headlineSmall!
+                              .copyWith(color: const Color(0xFF8B94BC)),
                         ),
                       ],
                     ),
                   ),
                 ),
               ),
-              Divider(thickness: 1.5),
-              SizedBox(height: 20.0),
+              const Divider(thickness: 1.5),
+              const SizedBox(height: 20.0),
               Expanded(
                 child: PageView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  controller: _questionController.pageController!,
+                  physics: const NeverScrollableScrollPhysics(),
+                  controller: questionController.pageControl!,
                   onPageChanged: (index) {
-                    _questionController.updateTheQnNum(index);
+                    questionController.updateTheQnNum(index);
                   },
-                  itemCount: _questionController.questions.length,
+                  itemCount: questionController.questions.length,
                   itemBuilder: (context, index) => QuestionCard(
-                    question: _questionController.questions[index],
+                    question: questionController.questions[index],
                     quizId: quizId,
                   ),
                 ),

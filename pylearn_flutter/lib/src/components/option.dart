@@ -4,12 +4,12 @@ import 'question_controller.dart';
 
 class Option extends StatelessWidget {
   const Option({
-    Key? key,
+    super.key,
     required this.text,
     required this.index,
     required this.press,
     required this.quizid,
-  }) : super(key: key);
+  });
   final String text;
   final int index;
   final VoidCallback press;
@@ -23,17 +23,17 @@ class Option extends StatelessWidget {
           Color getTheRightColor() {
             if (qnController.isAnswered) {
               if (index == qnController.correctAns) {
-                return Color(0xFF6AC259);
+                return const Color(0xFF6AC259);
               } else if (index == qnController.selectedAns &&
                   qnController.selectedAns != qnController.correctAns) {
-                return Color(0xFFE92E30);
+                return const Color(0xFFE92E30);
               }
             }
-            return Color(0xFFC1C1C1);
+            return const Color(0xFFC1C1C1);
           }
 
           IconData getTheRightIcon() {
-            return getTheRightColor() == Color(0xFFE92E30)
+            return getTheRightColor() == const Color(0xFFE92E30)
                 ? Icons.close
                 : Icons.done;
           }
@@ -41,8 +41,8 @@ class Option extends StatelessWidget {
           return InkWell(
             onTap: press,
             child: Container(
-              margin: EdgeInsets.only(top: 20.0),
-              padding: EdgeInsets.all(20.0),
+              margin: const EdgeInsets.only(top: 20.0),
+              padding: const EdgeInsets.all(20.0),
               decoration: BoxDecoration(
                 border: Border.all(color: getTheRightColor()),
                 borderRadius: BorderRadius.circular(15),
@@ -58,13 +58,13 @@ class Option extends StatelessWidget {
                     height: 26,
                     width: 26,
                     decoration: BoxDecoration(
-                      color: getTheRightColor() == Color(0xFFC1C1C1)
+                      color: getTheRightColor() == const Color(0xFFC1C1C1)
                           ? Colors.transparent
                           : getTheRightColor(),
                       borderRadius: BorderRadius.circular(50),
                       border: Border.all(color: getTheRightColor()),
                     ),
-                    child: getTheRightColor() == Color(0xFFC1C1C1)
+                    child: getTheRightColor() == const Color(0xFFC1C1C1)
                         ? null
                         : Icon(getTheRightIcon(), size: 16),
                   )

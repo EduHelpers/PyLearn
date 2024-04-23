@@ -1,4 +1,6 @@
+// ignore: depend_on_referenced_packages
 import 'package:freezed_annotation/freezed_annotation.dart';
+// ignore: depend_on_referenced_packages
 import 'package:serverpod_auth_client/module.dart';
 
 part 'sess_models.freezed.dart';

@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 class Question {
   final int id, answer;
   final String question;
@@ -10,6 +12,7 @@ class Question {
       required this.options});
 }
 
+// ignore: non_constant_identifier_names
 final Map<String, List<Question>> sample_data = {
   "Ввод и вывод \nданных": [
     Question(

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pylearn_flutter/src/screen/main_screen.dart';
@@ -26,7 +25,7 @@ class Settings extends MainScreen {
         ),
         body: Padding(
             padding: EdgeInsets.fromLTRB(0, screenSize.height * 0.08, 0, 0),
-            child: Column(
+            child: const Column(
               children: [
                 Row(
                   children: [],

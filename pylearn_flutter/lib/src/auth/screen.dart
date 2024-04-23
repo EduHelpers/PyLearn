@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get/get.dart';
 import 'package:pylearn_flutter/src/provs/session.dart';
 import 'package:pylearn_flutter/src/provs/stats_prov.dart';
 import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';

@@ -4,7 +4,7 @@ import 'package:pylearn_flutter/src/components/question_controller.dart';
 import 'package:pylearn_flutter/src/components/body.dart';
 
 class QuizScreen extends StatelessWidget {
-  QuizScreen({required this.quizId});
+  const QuizScreen({super.key, required this.quizId});
 
   final String quizId;
 

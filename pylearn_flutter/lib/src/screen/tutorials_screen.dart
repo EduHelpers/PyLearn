@@ -1,38 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pylearn_client/pylearn_client.dart';
 import 'package:pylearn_flutter/src/provs/stats_prov.dart';
-import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:pylearn_flutter/src/screen/quiz_screen.dart';
-import 'package:pylearn_flutter/src/screen/home.dart';
 import 'package:get/get.dart';
 
 class PythonTutorialApp extends StatefulWidget {
+  const PythonTutorialApp({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _PythonTutorialAppState createState() => _PythonTutorialAppState();
 }
 
 class _PythonTutorialAppState extends State<PythonTutorialApp> {
-  double _borderRadius = 7.0;
-  int _currentProgressIndex = 0;
+  final double _borderRadius = 7.0;
 
   void displayTutorial(
       BuildContext context, String htmlFilePath, String quizId) {
-    print("Opening tutorial from HTML file: $htmlFilePath");
-
-    WebViewController controller;
-
-    // Create a WebView with a WebViewController
     WebView webView = WebView(
         initialUrl: 'file:///$htmlFilePath',
-        javascriptMode:
-            JavascriptMode.unrestricted, // Enable JavaScript in WebView
-        onWebViewCreated: (WebViewController webViewController) {
-          controller = webViewController;
-        },
         onPageStarted: (String url) {},
         onPageFinished: (String url) {},
+        onWebViewCreated: (WebViewController webViewController) {},
+        javascriptMode: JavascriptMode.unrestricted,
         onWebResourceError: (WebResourceError error) {});
 
     final Size screenSize = MediaQuery.of(context).size;
@@ -48,7 +39,7 @@ class _PythonTutorialAppState extends State<PythonTutorialApp> {
             children: [
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.all(0.5),
+                  padding: const EdgeInsets.all(0.5),
                   child: webView,
                 ),
               ),
@@ -94,17 +85,17 @@ class _PythonTutorialAppState extends State<PythonTutorialApp> {
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           title: null,
-          backgroundColor: Color.fromARGB(255, 255, 255, 255),
+          backgroundColor: const Color.fromARGB(255, 255, 255, 255),
           elevation: 0,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
         ),
         body: SingleChildScrollView(
-          physics: AlwaysScrollableScrollPhysics(),
+          physics: const AlwaysScrollableScrollPhysics(),
           child: Center(
             child: Consumer(builder: (context, ref, _) {
               final stats = ref.watch(prov_stats);
@@ -176,13 +167,13 @@ class _PythonTutorialAppState extends State<PythonTutorialApp> {
                                   }
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  primary: Colors.white,
+                                  backgroundColor: Colors.white,
                                   padding: EdgeInsets.only(
                                       right: screenSize.width * 0.1),
                                   shape: RoundedRectangleBorder(
                                     borderRadius:
                                         BorderRadius.circular(_borderRadius),
-                                    side: BorderSide(
+                                    side: const BorderSide(
                                       color: Colors.white24,
                                       width: 2,
                                     ),
@@ -200,9 +191,7 @@ class _PythonTutorialAppState extends State<PythonTutorialApp> {
                                           CrossAxisAlignment.center,
                                       children: [
                                         Text(
-                                          (i + 1 < 10 ? '0' : '') +
-                                              (i + 1).toString() +
-                                              '.',
+                                          '${i + 1 < 10 ? '0' : ''}${i + 1}.',
                                           style: TextStyle(
                                             fontSize: screenSize.width * 0.07,
                                             fontWeight: FontWeight.bold,
@@ -227,20 +216,18 @@ class _PythonTutorialAppState extends State<PythonTutorialApp> {
                               Padding(
                                 padding: EdgeInsets.only(
                                     right: screenSize.width * 0.04),
-                                child: SimpleCircularProgressBar(
-                                  progressStrokeWidth: 10,
-                                  backStrokeWidth: 10,
+                                child: CircularProgressBar(
+                                  progressSW: 10,
+                                  backSW: 10,
                                   size: 30,
                                   value: progress[i],
-                                  mergeMode: true,
+                                  merge: true,
                                 ),
                               )
                             ],
                           ),
                         ),
-                        SizedBox(
-                            height: screenSize.height *
-                                0.01), // Add space between buttons
+                        SizedBox(height: screenSize.height * 0.01),
                       ],
                     ),
                 ],
@@ -271,6 +258,7 @@ class _PythonTutorialAppState extends State<PythonTutorialApp> {
     "Вложенные циклы"
   ];
 
+  // ignore: non_constant_identifier_names
   final Map<String, String> html_files = {
     "Ввод и вывод \nданных":
         '/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/input_and_output.html',
@@ -293,39 +281,40 @@ class _PythonTutorialAppState extends State<PythonTutorialApp> {
   };
 }
 
-class SimpleCircularProgressBar extends StatelessWidget {
+class CircularProgressBar extends StatelessWidget {
   final double value;
-  final double maxValue;
-  final double progressStrokeWidth;
-  final double backStrokeWidth;
+  final double maxVal;
+  final double progressSW;
+  final double backSW;
   final double size;
-  final bool mergeMode;
+  final bool merge;
 
-  SimpleCircularProgressBar({
+  const CircularProgressBar({
+    super.key,
     this.value = 0,
-    this.maxValue = 1,
-    this.progressStrokeWidth = 10,
-    this.backStrokeWidth = 10,
+    this.maxVal = 1,
+    this.progressSW = 10,
+    this.backSW = 10,
     this.size = 30,
-    this.mergeMode = true,
+    this.merge = true,
   });
 
   @override
   Widget build(BuildContext context) {
-    double percentage = (value / maxValue).clamp(0.0, 1.0);
+    double percentage = (value / maxVal).clamp(0.0, 1.0);
     return Stack(
       children: [
-        Container(
+        SizedBox(
           width: size,
           height: size,
           child: CircularProgressIndicator(
             value: percentage,
-            strokeWidth: progressStrokeWidth,
+            strokeWidth: progressSW,
             backgroundColor: Colors.grey,
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+            valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
           ),
         ),
-        if (mergeMode && percentage == 1.0)
+        if (merge && percentage == 1.0)
           Center(
             child: Icon(
               Icons.check,

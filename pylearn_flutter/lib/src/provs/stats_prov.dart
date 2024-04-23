@@ -2,8 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pylearn_client/pylearn_client.dart';
 import 'package:pylearn_flutter/src/utils/client_api.dart';
 import 'package:pylearn_flutter/src/utils/stons.dart';
-import 'package:pylearn_flutter/src/models/sess_models.dart';
-import 'package:serverpod_auth_shared_flutter/serverpod_auth_shared_flutter.dart';
 
 // "Поставщик" сеансов
 class StatsProv extends StateNotifier<List<Stats>> {
@@ -27,5 +25,6 @@ class StatsProv extends StateNotifier<List<Stats>> {
   }
 }
 
+// ignore: non_constant_identifier_names
 final prov_stats =
     StateNotifierProvider<StatsProv, List<Stats>>((ref) => StatsProv(ref));

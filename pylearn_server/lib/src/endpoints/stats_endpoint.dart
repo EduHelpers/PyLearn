@@ -14,6 +14,7 @@ class StatsEndpoint extends Endpoint {
       return [];
     }
 
+    // ignore: deprecated_member_use_from_same_package
     return await Stats.find(session, where: (i) => i.userId.equals(userId));
   }
 
@@ -232,6 +233,7 @@ class StatsEndpoint extends Endpoint {
 
     List<Stats> data = await futureList;
     if (data.isEmpty) {
+      // ignore: deprecated_member_use_from_same_package
       await Stats.insert(sess, stat);
     }
     return true;

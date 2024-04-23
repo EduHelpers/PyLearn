@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -10,7 +9,7 @@ class MainScreen extends ConsumerWidget {
   }
 
   Widget body(BuildContext context, WidgetRef ref) {
-    return Scaffold();
+    return const Scaffold();
   }
 
   @override

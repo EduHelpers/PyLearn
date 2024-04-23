@@ -2,7 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pylearn_flutter/src/utils/client_api.dart';
 import 'package:pylearn_flutter/src/utils/stons.dart';
 import 'package:pylearn_flutter/src/models/sess_models.dart';
-import 'package:serverpod_auth_shared_flutter/serverpod_auth_shared_flutter.dart';
 
 // "Поставщик" сеансов
 class SessionProv extends StateNotifier<Sess> {
