@@ -1,3 +1,4 @@
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:pylearn_client/pylearn_client.dart';
 import 'package:flutter/material.dart';
 import 'package:pylearn_flutter/src/auth/screen.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
         title: 'PyLearn',
         theme: ThemeData(
           useMaterial3: true,

@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:pylearn_flutter/src/screen/quiz.dart';
 import 'question_controller.dart';
 
 class ProgressBar extends StatelessWidget {
   const ProgressBar({
     Key? key,
+    required this.quizId,
   }) : super(key: key);
+
+  final String quizId;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +21,7 @@ class ProgressBar extends StatelessWidget {
         borderRadius: BorderRadius.circular(50),
       ),
       child: GetBuilder<QuestionController>(
-        init: QuestionController(),
+        init: QuestionController(quizId),
         builder: (controller) {
           return Stack(
             children: [
@@ -36,12 +40,12 @@ class ProgressBar extends StatelessWidget {
               ),
               Positioned.fill(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 10.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("${15 - (controller.animation!.value * 15).round()} sec"),
+                      Text(
+                          "${15 - (controller.animation!.value * 15).round()} sec"),
                     ],
                   ),
                 ),

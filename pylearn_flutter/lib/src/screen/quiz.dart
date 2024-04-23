@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 class Quiz extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final Size screenSize = MediaQuery.of(context).size;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -14,29 +16,32 @@ class Quiz extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Spacer(flex: 1),
+                  const Spacer(flex: 1),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Daily Quiz",
+                        "Генератор случайного квиза",
                         style: Theme.of(context).textTheme.headline4!.copyWith(
-                            color: Color.fromRGBO(6, 23, 54, 0.9),
-                            fontWeight: FontWeight.bold),
+                            color: const Color.fromRGBO(6, 23, 54, 0.9),
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "MainFont",
+                            fontSize: screenSize.width * 0.055),
                       ),
-                      SizedBox(
-                          width:
-                              4), // Adjust the spacing between the text and the bell icon
+                      const SizedBox(width: 4),
                       AnimatedBell(),
                     ],
                   ),
+                  SizedBox(
+                    height: screenSize.height * 0.03,
+                  ),
                   InkWell(
-                    onTap: () => Get.off(QuizScreen()),
+                    onTap: () => Get.off(QuizScreen(quizId: "Random")),
                     child: Container(
                       width: double.infinity,
                       alignment: Alignment.center,
-                      padding: EdgeInsets.all(20.0 * 0.75), // 15
-                      decoration: BoxDecoration(
+                      padding: EdgeInsets.all(screenSize.width * 0.06),
+                      decoration: const BoxDecoration(
                         gradient: LinearGradient(
                           colors: [Color(0xFF46A0AE), Color(0xFF00FFCB)],
                           begin: Alignment.centerLeft,
@@ -45,7 +50,7 @@ class Quiz extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(12)),
                       ),
                       child: Text(
-                        "Start Quiz",
+                        "НАЧАТЬ",
                         style: Theme.of(context)
                             .textTheme
                             .button!
@@ -53,7 +58,7 @@ class Quiz extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Spacer(flex: 2), // it will take 2/6 spaces
+                  const Spacer(flex: 3),
                 ],
               ),
             ),
@@ -93,12 +98,10 @@ class _AnimatedBellState extends State<AnimatedBell>
       builder: (context, child) {
         return Transform.translate(
           offset: Offset(0, _animation.value * 10),
-          // Adjust the amplitude of the animation
-          child: Icon(
+          child: const Icon(
             Icons.notifications,
-            // Replace this with the bell icon you want to use
-            size: 24, // Adjust the size of the bell icon
-            color: Colors.amber, // Adjust the color of the bell icon
+            size: 24,
+            color: Colors.amber,
           ),
         );
       },

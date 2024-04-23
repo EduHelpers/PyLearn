@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:pylearn_flutter/src/provs/session.dart';
 import 'package:pylearn_flutter/src/provs/stats_prov.dart';
+import 'package:pylearn_flutter/src/screen/friends.dart';
 import 'package:pylearn_flutter/src/screen/main_screen.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 
@@ -69,7 +70,8 @@ class ProfileScreen extends MainScreen {
                       minWidth: sizeScreen.width * 0.8,
                       height: 55,
                       onPressed: () {
-                        //TODO
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Friends()));
                       },
                       child: Stack(
                         alignment: Alignment.center,
@@ -132,7 +134,7 @@ class ProfileScreen extends MainScreen {
                 child: Material(
                     elevation: 5,
                     borderRadius: BorderRadius.circular(20.0),
-                    color: Colors.green.shade400,
+                    color: Color.fromARGB(255, 88, 204, 84),
                     child: MaterialButton(
                       minWidth: sizeScreen.width * 0.8,
                       height: 55,

@@ -6,7 +6,8 @@ import 'package:pylearn_flutter/src/screen/home_screen.dart';
 class ScoreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    QuestionController _qnController = Get.put(QuestionController());
+    QuestionController _qnController =
+        Get.put(QuestionController("Ввод и вывод \nданных"));
     return Scaffold(
       body: Center(
         child: Column(

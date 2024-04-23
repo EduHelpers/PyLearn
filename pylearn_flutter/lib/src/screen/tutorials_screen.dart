@@ -14,7 +14,8 @@ class _PythonTutorialAppState extends State<PythonTutorialApp> {
   double _borderRadius = 7.0;
   int _currentProgressIndex = 0;
 
-  void displayTutorial(BuildContext context, String htmlFilePath) {
+  void displayTutorial(
+      BuildContext context, String htmlFilePath, String quizId) {
     print("Opening tutorial from HTML file: $htmlFilePath");
 
     WebViewController controller;
@@ -50,7 +51,7 @@ class _PythonTutorialAppState extends State<PythonTutorialApp> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  Get.off(QuizScreen());
+                  Get.off(QuizScreen(quizId: quizId));
                 },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
@@ -100,7 +101,7 @@ class _PythonTutorialAppState extends State<PythonTutorialApp> {
           ),
         ),
         body: SingleChildScrollView(
-          physics: AlwaysScrollableScrollPhysics(), // Enable scrolling
+          physics: AlwaysScrollableScrollPhysics(),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -133,12 +134,10 @@ class _PythonTutorialAppState extends State<PythonTutorialApp> {
                 for (int i = 0; i < tutorialItems.length; i++)
                   Column(
                     children: [
+                      SizedBox(height: screenSize.height * 0.02),
                       SizedBox(
-                          height:
-                              screenSize.height * 0.02), // 5% of screen height
-                      SizedBox(
-                        width: screenSize.width * 0.92, // 90% of screen width
-                        height: screenSize.height * 0.1, // 10% of screen height
+                        width: screenSize.width * 0.92,
+                        height: screenSize.height * 0.1,
                         child: Stack(
                           alignment: Alignment.centerRight,
                           children: [
@@ -146,7 +145,8 @@ class _PythonTutorialAppState extends State<PythonTutorialApp> {
                               onPressed: () {
                                 final path = html_files[tutorialItems[i]];
                                 if (path != null) {
-                                  displayTutorial(context, path);
+                                  displayTutorial(
+                                      context, path, tutorialItems[i]);
                                 }
                               },
                               style: ElevatedButton.styleFrom(

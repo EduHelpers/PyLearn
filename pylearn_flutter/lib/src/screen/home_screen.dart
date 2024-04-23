@@ -57,8 +57,9 @@ class _NavigationScreenState extends State<NavigationScreen> {
           'PyLearn',
           style: TextStyle(
             color: Colors.white,
-            fontFamily: 'Cygre',
+            fontFamily: 'MainFont',
             fontSize: 25,
+            fontWeight: FontWeight.w600,
           ),
         ),
         backgroundColor: Color.fromRGBO(6, 23, 54, 0.9),

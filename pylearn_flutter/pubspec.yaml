@@ -89,6 +89,10 @@ flutter:
       fonts:
         - asset: fonts/CormorantGaramond-Bold.ttf
 
+    - family: Cygre
+      fonts:
+         - asset: fonts/ofont.ru_Cygre.ttf
+
   
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

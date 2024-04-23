@@ -6,6 +6,8 @@ import 'score.dart';
 
 class QuestionController extends GetxController
     with SingleGetTickerProviderMixin {
+  String quizId;
+  QuestionController(this.quizId);
   late AnimationController aniController;
   late Animation ani;
   late PageController _pageController;
@@ -13,14 +15,15 @@ class QuestionController extends GetxController
   Animation? get animation => this.ani;
   PageController? get pageController => this._pageController;
 
-  List<Question> _questions = sample_data
-      .map((question) => Question(
-          id: question['id'],
-          question: question['question'],
-          options: question['options'],
-          answer: question['answer_index']))
-      .toList();
-  List<Question> get questions => this._questions;
+  late final List<Question> _questions = sample_data[quizId] ?? [];
+  List<Question> get questions {
+    if (quizId == "Random") {
+      this._questions.shuffle();
+      return this._questions.sublist(0, 3);
+    }
+
+    return this._questions;
+  }
 
   bool _isAnswered = false;
   bool get isAnswered => this._isAnswered;
@@ -74,7 +77,7 @@ class QuestionController extends GetxController
   }
 
   void nextQuestion() {
-    if (_questionNumber.value != _questions.length) {
+    if (_questionNumber.value != questions.length) {
       _isAnswered = false;
       _pageController.nextPage(
           duration: Duration(milliseconds: 120), curve: Curves.ease);
@@ -82,7 +85,7 @@ class QuestionController extends GetxController
       aniController.reset();
 
       aniController.forward().whenComplete(() {
-        if (_questionNumber.value != _questions.length) {
+        if (_questionNumber.value != questions.length) {
           nextQuestion();
         }
       });

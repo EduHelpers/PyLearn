@@ -8,15 +8,17 @@ class Option extends StatelessWidget {
     required this.text,
     required this.index,
     required this.press,
+    required this.quizid,
   }) : super(key: key);
   final String text;
   final int index;
   final VoidCallback press;
+  final String quizid;
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<QuestionController>(
-        init: QuestionController(),
+        init: QuestionController(quizid),
         builder: (qnController) {
           Color getTheRightColor() {
             if (qnController.isAnswered) {
@@ -31,7 +33,9 @@ class Option extends StatelessWidget {
           }
 
           IconData getTheRightIcon() {
-            return getTheRightColor() == Color(0xFFE92E30) ? Icons.close : Icons.done;
+            return getTheRightColor() == Color(0xFFE92E30)
+                ? Icons.close
+                : Icons.done;
           }
 
           return InkWell(

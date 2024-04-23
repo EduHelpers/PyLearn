@@ -7,11 +7,14 @@ import 'progress_bar.dart';
 import 'question.dart';
 
 class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
+  const Body({Key? key, required this.quizId}) : super(key: key);
+
+  final String quizId;
 
   @override
   Widget build(BuildContext context) {
-    QuestionController _questionController = Get.put(QuestionController());
+    QuestionController _questionController =
+        Get.put(QuestionController(quizId));
     return Stack(
       children: [
         SafeArea(
@@ -20,7 +23,9 @@ class Body extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: ProgressBar(),
+                child: ProgressBar(
+                  quizId: quizId,
+                ),
               ),
               SizedBox(height: 20.0),
               Padding(
@@ -58,7 +63,9 @@ class Body extends StatelessWidget {
                   },
                   itemCount: _questionController.questions.length,
                   itemBuilder: (context, index) => QuestionCard(
-                      question: _questionController.questions[index]),
+                    question: _questionController.questions[index],
+                    quizId: quizId,
+                  ),
                 ),
               ),
             ],

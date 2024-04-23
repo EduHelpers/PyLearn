@@ -42,10 +42,11 @@ class HomeScreen extends MainScreen {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'My education',
+          'Мои курсы',
           style: TextStyle(
             color: Colors.black,
-            fontFamily: 'Cygre',
+            fontFamily: 'MainFont',
+            fontWeight: FontWeight.w600,
             fontSize: screenSize.width * 0.05, // 5% of screen width
           ),
         ),
@@ -81,10 +82,11 @@ class HomeScreen extends MainScreen {
                           padding:
                               EdgeInsets.only(right: screenSize.width * 0.04),
                           child: Text(
-                            'Python course for beginners',
+                            'Основы программирования\nна Python',
                             style: TextStyle(
+                              fontFamily: 'Cygre',
                               fontSize: screenSize.width * 0.045,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w400,
                               color: Colors.black,
                             ),
                           ),
@@ -116,11 +118,10 @@ class HomeScreen extends MainScreen {
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        '${(progressValue * 100).toStringAsFixed(0)}% of solved tasks', // Display the percentage value
+                        '${(progressValue * 100).toStringAsFixed(0)}% пройденных уроков', // Display the percentage value
                         style: TextStyle(
                           fontSize:
-                              screenSize.width * 0.025, // 2.5% of screen width
-                          fontWeight: FontWeight.bold,
+                              screenSize.width * 0.035, // 2.5% of screen width
                           color: Colors.black,
                         ),
                       ),
@@ -144,7 +145,7 @@ class HomeScreen extends MainScreen {
                             borderRadius:
                                 BorderRadius.circular(screenSize.width * 0.02),
                           ),
-                          backgroundColor: Colors.green,
+                          backgroundColor: Color.fromARGB(255, 88, 204, 84),
                         ),
                         child: Container(
                           width: screenSize.width * 0.25,
@@ -153,7 +154,7 @@ class HomeScreen extends MainScreen {
                           padding:
                               EdgeInsets.only(left: screenSize.width * 0.0),
                           child: Text(
-                            'Continue',
+                            'Продолжить',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: screenSize.width * 0.035,

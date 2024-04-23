@@ -4,6 +4,10 @@ import 'package:pylearn_flutter/src/components/question_controller.dart';
 import 'package:pylearn_flutter/src/components/body.dart';
 
 class QuizScreen extends StatelessWidget {
+  QuizScreen({required this.quizId});
+
+  final String quizId;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,13 +18,14 @@ class QuizScreen extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () {
+              Get.put(QuestionController(quizId));
               Get.find<QuestionController>().nextQuestion();
             },
             child: Text("Skip"),
           ),
         ],
       ),
-      body: Body(),
+      body: Body(quizId: quizId),
     );
   }
 }

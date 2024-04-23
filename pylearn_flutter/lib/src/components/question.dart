@@ -5,16 +5,15 @@ import 'package:pylearn_flutter/src/screen/Questions.dart';
 import 'option.dart';
 
 class QuestionCard extends StatelessWidget {
-  const QuestionCard({
-    Key? key,
-    required this.question,
-  }) : super(key: key);
+  const QuestionCard({Key? key, required this.question, required this.quizId})
+      : super(key: key);
 
+  final String quizId;
   final Question question;
 
   @override
   Widget build(BuildContext context) {
-    QuestionController _controller = Get.put(QuestionController());
+    QuestionController _controller = Get.put(QuestionController(quizId));
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20.0),
       padding: EdgeInsets.all(20.0),
@@ -38,6 +37,7 @@ class QuestionCard extends StatelessWidget {
               index: index,
               text: question.options[index],
               press: () => _controller.checkAns(question, index),
+              quizid: quizId,
             ),
           ),
         ],
