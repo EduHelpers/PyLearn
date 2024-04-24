@@ -13,6 +13,8 @@ class QuestionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     QuestionController controller = Get.put(QuestionController(quizId));
+    final Size screenSize = MediaQuery.of(context).size;
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20.0),
       padding: const EdgeInsets.all(20.0),
@@ -24,10 +26,9 @@ class QuestionCard extends StatelessWidget {
         children: [
           Text(
             question.question,
-            style: Theme.of(context)
-                .textTheme
-                .titleLarge!
-                .copyWith(color: const Color(0xFF101010)),
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                color: const Color(0xFF101010),
+                fontSize: screenSize.width * 0.05),
           ),
           const SizedBox(height: 10.0),
           ...List.generate(

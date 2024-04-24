@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pylearn_flutter/src/provs/stats_prov.dart';
 import 'package:pylearn_flutter/src/screen/home.dart';
+import 'package:pylearn_flutter/src/screen/main_screen.dart';
 import 'package:pylearn_flutter/src/screen/quiz.dart';
 import 'package:pylearn_flutter/src/screen/profile.dart';
 
@@ -33,7 +36,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
         children: [
           IndexedStack(
             index: _currentIndex,
-            children: const [
+            children: [
               Quiz(),
               HomeScreen(),
               ProfileScreen(),
@@ -104,7 +107,7 @@ class BottomBar extends StatelessWidget {
   }
 }
 
-class BottomBarItem extends StatelessWidget {
+class BottomBarItem extends MainScreen {
   final IconData icon;
   final String label;
   final int index;
@@ -121,9 +124,13 @@ class BottomBarItem extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
-      onTap: () => onTap(index),
+      //onTap: () => onTap(index),
+      onTap: () {
+        //final stats0 = ref.read(prov_stats.notifier).update();
+        onTap(index);
+      },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

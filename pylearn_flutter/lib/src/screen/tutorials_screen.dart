@@ -302,6 +302,14 @@ class CircularProgressBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double percentage = (value / maxVal).clamp(0.0, 1.0);
+    Color c = Colors.grey;
+    if (0 < percentage && percentage < 0.4) {
+      c = Colors.red.shade600;
+    } else if (percentage < 0.7) {
+      c = Colors.yellow.shade700;
+    } else {
+      c = Colors.green.shade600;
+    }
     return Stack(
       children: [
         SizedBox(
@@ -311,17 +319,17 @@ class CircularProgressBar extends StatelessWidget {
             value: percentage,
             strokeWidth: progressSW,
             backgroundColor: Colors.grey,
-            valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
+            valueColor: AlwaysStoppedAnimation<Color>(c),
           ),
         ),
-        if (merge && percentage == 1.0)
-          Center(
-            child: Icon(
-              Icons.check,
-              size: size / 2,
-              color: Colors.green,
-            ),
-          ),
+        // if (merge && percentage == 1.0)
+        //   Center(
+        //     child: Icon(
+        //       Icons.check,
+        //       size: size / 2,
+        //       color: Colors.green,
+        //     ),
+        //   ),
       ],
     );
   }

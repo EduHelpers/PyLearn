@@ -13,6 +13,8 @@ class ProfileScreen extends MainScreen {
 
   @override
   Widget body(BuildContext context, WidgetRef ref) {
+    // ignore: unused_local_variable
+    final stats0 = ref.read(prov_stats.notifier);
     final Size sizeScreen = MediaQuery.of(context).size;
     final stats = ref.watch(prov_stats);
     final session = ref.watch(prov);
@@ -23,8 +25,11 @@ class ProfileScreen extends MainScreen {
       month = "0$month";
     }
     String year = stats[0].lastAction.year.toString();
-    String hour = stats[0].lastAction.hour.toString();
+    String hour = (stats[0].lastAction.hour + 3).toString();
     String minute = stats[0].lastAction.minute.toString();
+    if (minute.length == 1) {
+      minute = "0$minute";
+    }
 
     return SafeArea(
         child: Column(
@@ -34,8 +39,8 @@ class ProfileScreen extends MainScreen {
             Row(
               children: [
                 Padding(
-                    padding: EdgeInsets.fromLTRB(
-                        sizeScreen.width * 0.05, sizeScreen.width * 0.05, 0, 0),
+                    padding: EdgeInsets.fromLTRB(sizeScreen.width * 0.05,
+                        sizeScreen.height * 0.03, 0, 0),
                     child: const Text(
                       "Ваш профиль",
                       style: TextStyle(
@@ -104,7 +109,7 @@ class ProfileScreen extends MainScreen {
                 child: Material(
                     elevation: 5,
                     borderRadius: BorderRadius.circular(20.0),
-                    color: Colors.grey.shade600,
+                    color: const Color.fromARGB(255, 72, 72, 72),
                     child: MaterialButton(
                       minWidth: sizeScreen.width * 0.8,
                       height: 55,
@@ -176,7 +181,7 @@ class ProfileScreen extends MainScreen {
           ]),
           Padding(
               padding: EdgeInsets.fromLTRB(sizeScreen.width * 0.02, 0,
-                  sizeScreen.width * 0.02, sizeScreen.height * 0.1),
+                  sizeScreen.width * 0.02, sizeScreen.height * 0.12),
               child: Material(
                   elevation: 5,
                   borderRadius: BorderRadius.circular(20.0),

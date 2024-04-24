@@ -41,7 +41,7 @@ class QuestionController extends GetxController
   @override
   void onInit() {
     animationController =
-        AnimationController(duration: const Duration(seconds: 15), vsync: this);
+        AnimationController(duration: const Duration(seconds: 30), vsync: this);
     ani = Tween<double>(begin: 0, end: 1).animate(animationController)
       ..addListener(() {
         update();
@@ -59,10 +59,10 @@ class QuestionController extends GetxController
     _pageControl.dispose();
   }
 
-  void checkAns(Question question, int selectedIndex) {
+  void checkAns(Question question, int index) {
     _isAns = true;
     _corAns = question.answer;
-    _selectedAns = selectedIndex;
+    _selectedAns = index;
 
     if (_corAns == _selectedAns) _numerOfCorrectAns++;
 

@@ -25,14 +25,19 @@ class About extends MainScreen {
         ),
         body: Column(
           children: [
-            Row(
-              children: [
-                Padding(
-                    padding: EdgeInsets.fromLTRB(screenSize.width * 0.08,
-                        screenSize.height * 0.08, screenSize.width * 0.38, 0),
-                    child: const Text(
-                        "Данное приложение создано в качестве курсовой работы"))
-              ],
+            Padding(
+              padding: EdgeInsets.fromLTRB(screenSize.width * 0.08,
+                  screenSize.height * 0.08, screenSize.width * 0.08, 0),
+              child: Column(children: [
+                Text(
+                  "Данное приложение создано в качестве курсовой работы студентами Факультета компьютерных наук НИУ ВШЭ образовательной "
+                  "программы \"Прикладная математика и информатика\" группы БПМИ2210.\n\nРаботу выполнили:\n1."
+                  " Муштаков Макар Игоревич\n2. Ли Андрей Алексеевич\n3. Улыбин Александр Романович\n4. "
+                  "Фахретдинов Артур Эдуардович.\n\nПод руководством научного руководителя:\nПетрова Тимура Александровича.\n\nМосква, 2024",
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(fontSize: screenSize.width * 0.045),
+                ),
+              ]),
             ),
           ],
         ));

@@ -20,8 +20,46 @@ class StatsProv extends StateNotifier<List<Stats>> {
     update();
   }
 
+  reset() async {
+    await statsmngr.resetStats();
+    update();
+  }
+
   get() async {
     return await statsmngr.list();
+  }
+  // rename(int index, String name) async {
+  //   final ingredient = state[index];
+  //   final updatedIngredient = await client.rename(ingredientId: ingredient.id!, name: name);
+
+  //   if (updatedIngredient != null) {
+  //     state = [...state]
+  //       ..removeAt(index)
+  //       ..insert(index, updatedIngredient);
+  //   }
+  // }
+
+  reWriteStats(String s, double d) async {
+    final stats = state[0];
+    final upd = await statsmngr.restat(s: s, d: d);
+
+    if (upd != null) {
+      state = [...state]
+        ..removeAt(0)
+        ..insert(0, upd);
+    }
+    update();
+  }
+
+  reTime() async {
+    final time = state[0];
+    final upd = await statsmngr.retime();
+    if (upd != null) {
+      state = [...state]
+        ..removeAt(0)
+        ..insert(0, upd);
+    }
+    update();
   }
 }
 

@@ -9,6 +9,9 @@ class HomeScreen extends MainScreen {
 
   @override
   Widget body(BuildContext context, WidgetRef ref) {
+    // ignore: unused_local_variable
+    //final stats0 = ref.read(prov_stats.notifier).update();
+    //final stats = ref.read(prov_stats.notifier);
     final stats = ref.watch(prov_stats);
     double progressValue = (stats[0].quiz1.toDouble() +
             stats[0].quiz2.toDouble() +
@@ -19,8 +22,14 @@ class HomeScreen extends MainScreen {
             stats[0].quiz7.toDouble() +
             stats[0].quiz8.toDouble() +
             stats[0].quiz9.toDouble() +
-            stats[0].quiz10.toDouble()) /
-        10;
+            stats[0].quiz10.toDouble() +
+            stats[0].quiz11.toDouble() +
+            stats[0].quiz12.toDouble() +
+            stats[0].quiz13.toDouble() +
+            stats[0].quiz14.toDouble() +
+            stats[0].quiz15.toDouble() +
+            stats[0].quiz16.toDouble()) /
+        16;
 
     final Size screenSize = MediaQuery.of(context).size;
 
@@ -32,8 +41,8 @@ class HomeScreen extends MainScreen {
             Row(
               children: [
                 Padding(
-                    padding: EdgeInsets.fromLTRB(
-                        screenSize.width * 0.05, screenSize.width * 0.05, 0, 0),
+                    padding: EdgeInsets.fromLTRB(screenSize.width * 0.05,
+                        screenSize.height * 0.03, 0, 0),
                     child: const Text(
                       "Мои курсы",
                       style: TextStyle(
