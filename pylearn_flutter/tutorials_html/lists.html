@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Tutorial: Variables</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .language-python {
+            color: #3572A5;
+        }
+        pre code {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align:center">Контейнеры&nbsp;</h1>
+
+    <p>Контейнерами называются структуры данных, направленные на хранение большого объёма информации. Например, нужно хранить оценки всех школьников в классе. Заводить несколько десятков переменных крайне неудобно и муторно, контейнеры в этом случае необходимы. В этом разделе мы разберём несколько типов контейнеров: списки, словари&nbsp;</p>
+    
+    <h2 style="text-align:center">Списки&nbsp;</h2>
+    
+    <p><strong>Списки</strong> &mdash; это последовательность переменных. Сам список тоже может являться переменной, то есть по сути это новый тип хранимых данных (мы уже знаем <code>int</code>, <code>string</code> и <code>float)</code>. Допустим, мы хотим создать список из чисел 1, 4, 5, 9. В коде это будет выглядеть вот так&nbsp;</p>
+    
+    <pre>
+    <code class="language-python">l = [1, 4, 5, 9]</code></pre>
+    
+    <p>l &mdash; это как раз наш список. Элементы записываются внутри квадратных скобок через запятую. Как же нам достать из списка какой-нибудь элемент? В списке элементы нумеруются от <code>0</code> до <code>n &ndash; 1</code>, то есть так же, как символы в строках. Важно это помнить, <strong>путаница с индексами</strong> в начале изучения программирования возникает очень часто! Итак, обращаться к элементу в списке можно также, как и в строках.&nbsp;</p>
+    
+    <p>Пример:&nbsp;</p>
+    
+    <pre>
+    <code class="language-python">l = [1, 4, 5, 9] 
+    print(l[0], l[1], l[2], l[3])</code></pre>
+    
+    <p>Output:&nbsp;</p>
+    
+    <pre>
+    <code class="language-no-highlight">1 4 5 9</code></pre>
+    
+    <p>Списки можно составлять и из строк.&nbsp;</p>
+    
+    <p>Пример:&nbsp;</p>
+    
+    <pre>
+    <code class="language-python">l = ["Я", "люблю", "питон"] 
+    print(l[0], l[1], l[2])</code></pre>
+    
+    <p>Output:&nbsp;</p>
+    
+    <pre>
+    <code>Я люблю питон</code></pre>
+    
+    <p>Если мы обратимся к элементу списка с индексом больше, чем длина массива, возникнет ошибка.&nbsp;</p>
+    
+    <p>Пример:&nbsp;</p>
+    
+    <pre>
+    <code class="language-python">l = ["Я", "люблю", "питон"] 
+    print(l[5])</code></pre>
+    
+    <p>Output:&nbsp;</p>
+    
+    <pre>
+    <code class="language-no-highlight">IndexError: list index out of range</code></pre>
+    
+    <p>Поэтому и нужно следить за индексами. Также списки могут хранить данные разных типов.&nbsp;</p>
+    
+    <p>Пример:&nbsp;</p>
+    
+    <pre>
+    <code class="language-python">l = ["слово", 24, 65.56] 
+    print(l)</code></pre>
+    
+    <p>Output:&nbsp;</p>
+    
+    <pre>
+    <code class="language-no-highlight">['слово', 24, 65.56]</code></pre>
+    
+    <p>Список можно создать пустым. Для этого есть 2 способа&nbsp;</p>
+    
+    <pre>
+    <code class="language-python">l = []</code></pre>
+    
+    <p>Или:&nbsp;</p>
+    
+    <pre>
+    <code class="language-python">l = list()</code></pre>
+    
+    <p>Вообще команда <code>list()</code> преобразует аргумент в список, если аргумента нет, то создастся пустой список. В список можно преобразовать строку.&nbsp;</p>
+    
+    <p>Пример:&nbsp;</p>
+    
+    <pre>
+    <code class="language-python">s = "abacaba" 
+    l = list(s) 
+    print(l)</code></pre>
+    
+    <p>Output:&nbsp;</p>
+    
+    <pre>
+    <code class="language-no-highlight">['a', 'b', 'a', 'c', 'a', 'b', 'a']</code></pre>
+    
+    <p>Также мы говорили о функции <code>range</code>, генерирующей последовательность чисел, <code>list()</code> может преобразовать её в список.&nbsp;</p>
+    
+    <p>Пример:&nbsp;</p>
+    
+    <pre>
+    <code class="language-python">r = range(10) 
+    l = list(r) 
+    print(l)</code></pre>
+    
+    <p>Output:&nbsp;</p>
+    
+    <pre>
+    <code class="language-no-highlight">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</code></pre>
+    
+    <p>Способы вывода&nbsp;</p>
+    
+    <p>В питоне есть несколько способов выводить элементы списка без ненужных скобок и запятых:&nbsp;</p>
+    
+    <p>1. <strong>Через цикл for поэлементно</strong></p>
+    
+    <p>Пример:&nbsp;</p>
+    
+    <pre>
+    <code class="language-python">l = [0, 1, 2, 3, 4, 5] 
+    for i in range(len(l)): 
+        print(l[i], end=" ")</code></pre>
+    
+    <p>Output:&nbsp;</p>
+    
+    <pre>
+    <code class="language-no-highlight">0 1 2 3 4 5</code></pre>
+    
+    <ol>
+        <li>
+        <p>Распаковка. Если поставить перед аргументом в функции <code>print</code> символ <code>*</code>, то список выведется поэлементно с промежутком между символами sep (то есть через пробел если ничего не менять).&nbsp;</p>
+        </li>
+    </ol>
+    
+    <p>Пример:&nbsp;</p>
+    
+    <pre>
+    <code class="language-python">l = [0, 1, 2, 3, 4, 5] 
+    print(*l)</code></pre>
+    
+    <p>Output:&nbsp;</p>
+    
+    <pre>
+    <code class="language-no-highlight">0 1 2 3 4 5</code></pre>
+    
+    <p>Подобный вывод может потребоваться при решении задач, в наших лекциях мы продолжим использовать обычный вывод через <code>print(l)</code> для лучшего понимания.&nbsp;</p>
+    
+    <h3 style="text-align:center">Методы списков&nbsp;</h3>
+    
+    <p>Рассмотрим методы списков. Во-первых, в списки можно добавлять новые элементы или же добавлять один список в конец другого. Это делается с помощью методов append и extend, которые в качестве аргумента принимают элемент или список соответственно, который нужно добавить.&nbsp;</p>
+    
+    <p>Пример:&nbsp;</p>
+    
+    <pre>
+    <code class="language-python">l = [1, 5, 9] 
+    r = ["book", "abc"] 
+    l.append(7) 
+    print(l) 
+    l.extend(r) 
+    print(l)</code></pre>
+    
+    <p>Output:&nbsp;</p>
+    
+    <pre>
+    <code class="language-no-highlight">[1, 5, 9, 7] 
+    [1, 5, 9, 7, 'book', 'abc']</code></pre>
+    
+    <p>Кроме того, элементы можно удалять из списка. Это делается с помощью команды del. В качестве аргумента подаётся элемент или срез (да, срезы в списках работают так же, как и в строках), причём аргумент даётся через пробел и без скобочек.&nbsp;</p>
+    
+    <p>Пример:&nbsp;</p>
+    
+    <pre>
+    <code class="language-python">l = [1, 5, 9, 7, 4, 2]  
+    del l[1]  
+    print(l) 
+    del l[1:3] 
+    print(l)</code></pre>
+    
+    <p>Output:&nbsp;</p>
+    
+    <pre>
+    <code class="language-no-highlight">[1, 9, 7, 4, 2] 
+    [1, 4, 2]</code></pre>
+    
+    <p>Обратите внимание, срез делается по уже изменённому списку l.&nbsp;</p>
+    
+    <p>Метод <code>insert()</code> позволяет вставлять элемент на заданную индексом позицию. Элементы на этом индексе и больше сдвигаются в конец списка.&nbsp;</p>
+    
+    <p>Пример:&nbsp;</p>
+    
+    <pre>
+    <code class="language-python">l = ['mom', 'dad' , 'son'] 
+    print(l) 
+    l.insert(0, 'daughter') 
+    print(l) 
+    l.insert(3, 'cat') 
+    print(l)</code></pre>
+    
+    <p>Output:&nbsp;</p>
+    
+    <pre>
+    <code class="language-no-highlight">['mom', 'dad', 'son'] 
+    ['daughter', 'mom', 'dad', 'son'] 
+    ['daughter', 'mom', 'dad', 'cat', 'son']</code></pre>
+    
+    <p>Метод <code>pop()</code> удаляет элемент по его индексу и возвращает его.&nbsp;</p>
+    
+    <p>Пример:&nbsp;</p>
+    
+    <pre>
+    <code class="language-python">l = ['mom', 'dad' , 'son'] 
+    print(l.pop(0)) 
+    print(l)</code></pre>
+    
+    <p>Output:&nbsp;</p>
+    
+    <pre>
+    <code class="language-no-highlight">mom 
+    ['dad', 'son']</code></pre>
+    
+    <p>Метод <code>index()</code> возвращает индекс первого элемента, найденного по значению. Значение передаётся в качестве аргумента.&nbsp;</p>
+    
+    <p>Пример:&nbsp;</p>
+    
+    <pre>
+    <code class="language-python">l = ['mom', 'dad' , 'son'] 
+    print(l.index('dad'))</code></pre>
+    
+    <p>Output:&nbsp;</p>
+    
+    <pre>
+    <code class="language-no-highlight">1</code></pre>
+    
+    <p>Метод remove() удаляет первый найденный элемент, значение которого совпадает с аргументом.&nbsp;</p>
+    
+    <p>Пример:&nbsp;</p>
+    
+    <pre>
+    <code class="language-python">l = ['mom', 'dad' , 'son'] 
+    l.remove('dad') 
+    print(l)</code></pre>
+    
+    <p>Output:&nbsp;</p>
+    
+    <pre>
+    <code class="language-no-highlight">['mom', 'son']</code></pre>
+    
+    <p>Метод <code>count()</code> возвращает кол-во элементов, равных значению аргумента.&nbsp;</p>
+    
+    <p>Пример:&nbsp;</p>
+    
+    <pre>
+    <code class="language-python">l = ['mom', 'dad' , 'son', 'cat', 'boy', 'son'] 
+    print(l.count('son'))</code></pre>
+    
+    <p>Output:&nbsp;</p>
+    
+    <pre>
+    <code class="language-no-highlight">2</code></pre>
+    
+    <p>Метод <code>reverse()</code> переворачивает список.&nbsp;</p>
+    
+    <p>Пример:&nbsp;</p>
+    
+    <pre>
+    <code class="language-python">l = ['mom', 'dad' , 'son', 'cat', 'boy', 'son'] 
+    l.reverse() 
+    print(l)</code></pre>
+    
+    <p>Output:&nbsp;</p>
+    
+    <pre>
+    <code class="language-no-highlight">['son', 'boy', 'cat', 'son', 'dad', 'mom']</code></pre>
+    
+    <p>&nbsp;Метод <code>clear()</code> очищает список, делает его пустым.&nbsp;</p>
+    
+    <p>Пример:&nbsp;</p>
+    
+    <pre>
+    <code class="language-python">l = ['mom', 'dad' , 'son', 'cat', 'boy', 'son'] 
+    l.clear() 
+    print(l)</code></pre>
+    
+    <p>Output:&nbsp;</p>
+    
+    <pre>
+    <code>[]</code></pre>
+    
+    <p>Метод <code>copy()</code> копирует список. Если просто сделать присвоение одного списка другому, возникнет ситуация, когда при изменении элемента в одном списке этот же элемент изменяется в другом.&nbsp;</p>
+    
+    <p>Пример:&nbsp;</p>
+    
+    <pre>
+    <code class="language-python">l = ['mom', 'dad' , 'son'] 
+    r = l 
+    print("Список l:", l) 
+    print("Список r:", r) 
+    l[1] = "grandpa" 
+    print("Список l:", l) 
+    print("Список r:", r)</code></pre>
+    
+    <p>Output:&nbsp;</p>
+    
+    <pre>
+    <code class="language-no-highlight">Список l: ['mom', 'dad', 'son'] 
+    Список r: ['mom', 'dad', 'son'] 
+    Список l: ['mom', 'grandpa', 'son'] 
+    Список r: ['mom', 'grandpa', 'son'']</code></pre>
+    
+    <p>Метод <code>copy()</code> позволяет избежать такой ситуации.&nbsp;</p>
+    
+    <p>Пример:&nbsp;</p>
+    
+    <pre>
+    <code class="language-python">l = ['mom', 'dad' , 'son'] 
+    r = l.copy() 
+    print("Список l:", l) 
+    print("Список r:", r) 
+    l[1] = "grandpa" 
+    print("Список l:", l) 
+    print("Список r:", r)</code></pre>
+    
+    <p>Output:&nbsp;</p>
+    
+    <pre>
+    <code class="language-no-highlight">Список l: ['mom', 'dad', 'son'] 
+    Список r: ['mom', 'dad', 'son'] 
+    Список l: ['mom', 'grandpa', 'son'] 
+    Список r: ['mom', 'dad', 'son']</code></pre>
+    
+    <h3 style="text-align:center">Генераторы&nbsp;</h3>
+    
+    <p>Рассмотрим код для заполнения списка квадратами чисел от <code>0</code> до&nbsp;<code>9</code>:&nbsp;</p>
+    
+    <pre>
+    <code class="language-python">l = list() 
+    for i in range(10): 
+        l.append(i**2) 
+    print(l)</code></pre>
+    
+    <p>Output:&nbsp;</p>
+    
+    <pre>
+    <code class="language-no-highlight">[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]</code></pre>
+    
+    <p>Программистам часто приходится прибегать к таким заполнениям, поэтому для этого в питоне есть специальный механизм - генераторы.&nbsp;</p>
+    
+    <p>Пример:&nbsp;</p>
+    
+    <pre>
+    <code class="language-python">l = [i**2 for i in range(10)] 
+    print(l)</code></pre>
+    
+    <p>Output:&nbsp;</p>
+    
+    <pre>
+    <code class="language-no-highlight">[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]</code></pre>
+    
+    <p>Общий вид генераторов такой: <strong>[выражение for переменная in последовательность(range)]</strong>.&nbsp;</p>
+    
+    <h3 style="text-align:center">Сортировка&nbsp;</h3>
+    
+    <p>Сортировка списков крайне востребована для программиста и встречается повсеместно, в основном при анализе данных. Существует множество видов сортировок, но в нашем курсе мы не будем углубляться в эту тему и просто рассмотрим функцию <code>sort()</code> в Питоне. Она сортирует элементы списка в порядке возрастания. Также у <code>sort()</code> есть параметр reverse, принимающий значения <code>True</code> или <code>False</code>. Если <code>reverse=True</code>, то элементы сортируются в порядке убывания.&nbsp;</p>
+    
+    <p>Пример:&nbsp;</p>
+    
+    <pre>
+    <code class="language-python">l = [5, 7, 14, 2, 1, 8] 
+    l.sort() 
+    print(l) 
+    l.sort(reverse=True) 
+    print(l)</code></pre>
+    
+    <p>Output:</p>
+    
+    <pre>
+    <code class="language-no-highlight">[1, 2, 5, 7, 8, 14] 
+    [14, 8, 7, 5, 2, 1]</code></pre>
+    
+</body>

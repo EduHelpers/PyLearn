@@ -1,11 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pylearn_client/pylearn_client.dart';
+import 'package:pylearn_flutter/src/provs/session.dart';
 import 'package:pylearn_flutter/src/utils/client_api.dart';
 import 'package:pylearn_flutter/src/utils/stons.dart';
 
 // "Поставщик" сеансов
 class StatsProv extends StateNotifier<List<Stats>> {
   final Ref ref;
+  //List<Stats> emailList = [];
   StatsProv(this.ref) : super([]) {
     update();
   }
@@ -28,16 +30,20 @@ class StatsProv extends StateNotifier<List<Stats>> {
   get() async {
     return await statsmngr.list();
   }
-  // rename(int index, String name) async {
-  //   final ingredient = state[index];
-  //   final updatedIngredient = await client.rename(ingredientId: ingredient.id!, name: name);
 
-  //   if (updatedIngredient != null) {
-  //     state = [...state]
-  //       ..removeAt(index)
-  //       ..insert(index, updatedIngredient);
-  //   }
+  // ExistingEmail(String email) async {
+  //   emailList = await statsmngr.ExistingEmail(email: email);
   // }
+
+  setName(String name) async {
+    await statsmngr.setName(n: name);
+    update();
+  }
+
+  setDuration(int time) async {
+    await statsmngr.setDuration(t: time);
+    update();
+  }
 
   reWriteStats(String s, double d) async {
     final stats = state[0];
@@ -54,6 +60,18 @@ class StatsProv extends StateNotifier<List<Stats>> {
   reTime() async {
     final time = state[0];
     final upd = await statsmngr.retime();
+    if (upd != null) {
+      state = [...state]
+        ..removeAt(0)
+        ..insert(0, upd);
+    }
+    update();
+  }
+
+  setEmailAndUser(String email, String username) async {
+    final stats = state[0];
+    final upd = await statsmngr.setEmailAndUsername(e: email, u: username);
+
     if (upd != null) {
       state = [...state]
         ..removeAt(0)

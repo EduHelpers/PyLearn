@@ -9,7 +9,10 @@ class QuestionController extends GetxController
         // ignore: deprecated_member_use
         SingleGetTickerProviderMixin {
   String quizId;
-  QuestionController(this.quizId);
+  int duration;
+  List<bool> lst;
+  int randNum;
+  QuestionController(this.quizId, this.duration, this.lst, this.randNum);
   late AnimationController animationController;
   late Animation ani;
   late PageController _pageControl;
@@ -21,7 +24,7 @@ class QuestionController extends GetxController
   List<Question> get questions {
     if (quizId == "Random") {
       _questions.shuffle();
-      return _questions.sublist(0, 3);
+      return _questions.sublist(0, randNum);
     }
 
     return _questions;
@@ -41,7 +44,7 @@ class QuestionController extends GetxController
   @override
   void onInit() {
     animationController =
-        AnimationController(duration: const Duration(seconds: 30), vsync: this);
+        AnimationController(duration: Duration(seconds: duration), vsync: this);
     ani = Tween<double>(begin: 0, end: 1).animate(animationController)
       ..addListener(() {
         update();
@@ -88,7 +91,7 @@ class QuestionController extends GetxController
         }
       });
     } else {
-      Get.to(ScoreScreen(quizId: quizId));
+      Get.to(ScoreScreen(quizId, duration, lst, randNum));
     }
   }
 

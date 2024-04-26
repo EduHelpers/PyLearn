@@ -1,5 +1,16 @@
 example:
   - hello:
+friends:
+  - list:
+  - create:
+  - delete:
 stats:
   - list:
+  - ExistingEmail:
+  - restat:
+  - resetStats:
+  - setEmailAndUsername:
+  - setName:
+  - setDuration:
+  - retime:
   - create:

@@ -1,3 +1,2 @@
 UPDATE stats
-SET quiz1 = 1
-WHERE id = 9
+SET duration = 30

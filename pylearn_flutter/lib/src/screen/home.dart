@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pylearn_flutter/src/provs/stats_prov.dart';
 import 'package:pylearn_flutter/src/screen/main_screen.dart';
+import 'package:pylearn_flutter/src/screen/newCourses.dart';
 import 'package:pylearn_flutter/src/screen/tutorials_screen.dart';
 
 class HomeScreen extends MainScreen {
@@ -28,10 +29,19 @@ class HomeScreen extends MainScreen {
             stats[0].quiz13.toDouble() +
             stats[0].quiz14.toDouble() +
             stats[0].quiz15.toDouble() +
-            stats[0].quiz16.toDouble()) /
-        16;
+            stats[0].quiz16.toDouble() +
+            stats[0].quiz17.toDouble() +
+            stats[0].quiz18.toDouble() +
+            stats[0].quiz19.toDouble() +
+            stats[0].quiz20.toDouble() +
+            stats[0].quiz21.toDouble() +
+            stats[0].quiz22.toDouble() +
+            stats[0].quiz23.toDouble() +
+            stats[0].quiz24.toDouble()) /
+        24;
 
     final Size screenSize = MediaQuery.of(context).size;
+    final Size sizeScreen = MediaQuery.of(context).size;
 
     return Scaffold(
       body: Center(
@@ -157,6 +167,42 @@ class HomeScreen extends MainScreen {
                 ],
               ),
             ),
+            // Padding(
+            //     padding: EdgeInsets.fromLTRB(sizeScreen.width * 0.02,
+            //         sizeScreen.height * 0.05, sizeScreen.width * 0.02, 0),
+            //     child: Material(
+            //         elevation: 5,
+            //         borderRadius: BorderRadius.circular(20.0),
+            //         color: Colors.blue.shade300,
+            //         child: MaterialButton(
+            //           minWidth: sizeScreen.width * 0.8,
+            //           height: 55,
+            //           onPressed: () {
+            //             Navigator.push(
+            //                 context,
+            //                 MaterialPageRoute(
+            //                     builder: (context) =>  newCourses()));
+            //           },
+            //           child: Stack(
+            //             alignment: Alignment.center,
+            //             children: [
+            //               const Text(
+            //                 'Ваши друзья',
+            //                 style: TextStyle(fontSize: 16, color: Colors.white),
+            //               ),
+            //               Row(
+            //                 mainAxisAlignment: MainAxisAlignment.end,
+            //                 children: [
+            //                   Container(
+            //                     padding: const EdgeInsets.all(6),
+            //                     child: const Icon(Icons.people,
+            //                         color: Colors.white),
+            //                   )
+            //                 ],
+            //               )
+            //             ],
+            //           ),
+            //         )))
           ],
         ),
       ),

@@ -10,9 +10,10 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'dart:async' as _i2;
-import 'package:pylearn_client/src/protocol/user_quizStats.dart' as _i3;
-import 'package:serverpod_auth_client/module.dart' as _i4;
-import 'protocol.dart' as _i5;
+import 'package:pylearn_client/src/protocol/user_friends.dart' as _i3;
+import 'package:pylearn_client/src/protocol/user_quizStats.dart' as _i4;
+import 'package:serverpod_auth_client/module.dart' as _i5;
+import 'protocol.dart' as _i6;
 
 /// {@category Endpoint}
 class EndpointExample extends _i1.EndpointRef {
@@ -29,16 +30,109 @@ class EndpointExample extends _i1.EndpointRef {
 }
 
 /// {@category Endpoint}
+class EndpointFriends extends _i1.EndpointRef {
+  EndpointFriends(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'friends';
+
+  _i2.Future<List<_i3.Friends>> list() =>
+      caller.callServerEndpoint<List<_i3.Friends>>(
+        'friends',
+        'list',
+        {},
+      );
+
+  _i2.Future<bool> create({
+    required int userId1,
+    required int userId2,
+  }) =>
+      caller.callServerEndpoint<bool>(
+        'friends',
+        'create',
+        {
+          'userId1': userId1,
+          'userId2': userId2,
+        },
+      );
+
+  _i2.Future<bool> delete(int userId2) => caller.callServerEndpoint<bool>(
+        'friends',
+        'delete',
+        {'userId2': userId2},
+      );
+}
+
+/// {@category Endpoint}
 class EndpointStats extends _i1.EndpointRef {
   EndpointStats(_i1.EndpointCaller caller) : super(caller);
 
   @override
   String get name => 'stats';
 
-  _i2.Future<List<_i3.Stats>> list() =>
-      caller.callServerEndpoint<List<_i3.Stats>>(
+  _i2.Future<List<_i4.Stats>> list() =>
+      caller.callServerEndpoint<List<_i4.Stats>>(
         'stats',
         'list',
+        {},
+      );
+
+  _i2.Future<List<_i4.Stats>> ExistingEmail({required String email}) =>
+      caller.callServerEndpoint<List<_i4.Stats>>(
+        'stats',
+        'ExistingEmail',
+        {'email': email},
+      );
+
+  _i2.Future<_i4.Stats?> restat({
+    required String s,
+    required double d,
+  }) =>
+      caller.callServerEndpoint<_i4.Stats?>(
+        'stats',
+        'restat',
+        {
+          's': s,
+          'd': d,
+        },
+      );
+
+  _i2.Future<_i4.Stats?> resetStats() => caller.callServerEndpoint<_i4.Stats?>(
+        'stats',
+        'resetStats',
+        {},
+      );
+
+  _i2.Future<_i4.Stats?> setEmailAndUsername({
+    required String e,
+    required String u,
+  }) =>
+      caller.callServerEndpoint<_i4.Stats?>(
+        'stats',
+        'setEmailAndUsername',
+        {
+          'e': e,
+          'u': u,
+        },
+      );
+
+  _i2.Future<_i4.Stats?> setName({required String n}) =>
+      caller.callServerEndpoint<_i4.Stats?>(
+        'stats',
+        'setName',
+        {'n': n},
+      );
+
+  _i2.Future<_i4.Stats?> setDuration({required int t}) =>
+      caller.callServerEndpoint<_i4.Stats?>(
+        'stats',
+        'setDuration',
+        {'t': t},
+      );
+
+  _i2.Future<_i4.Stats?> retime() => caller.callServerEndpoint<_i4.Stats?>(
+        'stats',
+        'retime',
         {},
       );
 
@@ -51,10 +145,10 @@ class EndpointStats extends _i1.EndpointRef {
 
 class _Modules {
   _Modules(Client client) {
-    auth = _i4.Caller(client);
+    auth = _i5.Caller(client);
   }
 
-  late final _i4.Caller auth;
+  late final _i5.Caller auth;
 }
 
 class Client extends _i1.ServerpodClient {
@@ -66,18 +160,21 @@ class Client extends _i1.ServerpodClient {
     Duration? connectionTimeout,
   }) : super(
           host,
-          _i5.Protocol(),
+          _i6.Protocol(),
           securityContext: securityContext,
           authenticationKeyManager: authenticationKeyManager,
           streamingConnectionTimeout: streamingConnectionTimeout,
           connectionTimeout: connectionTimeout,
         ) {
     example = EndpointExample(this);
+    friends = EndpointFriends(this);
     stats = EndpointStats(this);
     modules = _Modules(this);
   }
 
   late final EndpointExample example;
+
+  late final EndpointFriends friends;
 
   late final EndpointStats stats;
 
@@ -86,6 +183,7 @@ class Client extends _i1.ServerpodClient {
   @override
   Map<String, _i1.EndpointRef> get endpointRefLookup => {
         'example': example,
+        'friends': friends,
         'stats': stats,
       };
 

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Tutorial: Variables</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .language-python {
+            color: #3572A5;
+        }
+        pre code {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 style="text-align:center">Глобальные и локальные переменные</h2>
+
+<p>Рассмотрим следующую функцию:</p>
+
+<pre>
+<code class="language-python">def dif_mid(a, b):
+    mid = 100
+    print(mid - a, mid - b)
+</code></pre>
+
+<p>В ней мы использовали переменную <code>mid</code>. Так как мы её использовали внутри функции, она не будет доступна в нашем основном коде, то есть если мы попробуем её вывести после объявления функции, вызовется ошибка:</p>
+
+<pre>
+<code class="language-python">def dif_mid(a, b):
+    mid = 100
+    print(mid - a, mid - b)
+print(mid)
+</code></pre>
+
+<p>Output:</p>
+
+<pre>
+<code class="language-no-highlight">Traceback (most recent call last):
+  File ..., line 4, in &lt;module&gt;
+    print(mid)
+NameError: name 'mid' is not defined.</code></pre>
+
+<p>Такие переменные, доступные только внутри функции, называются <strong>локальными</strong>. Важно следить за тем, что вы используете локальные переменные только внутри функции, в которой они объявлены.</p>
+
+<p>Также существуют <strong>глобальные переменные</strong> - переменные, доступные как внутри объявления функции, так и в основной части программы:</p>
+
+<pre>
+<code class="language-python">mid = 100
+def dif_mid(a, b):
+    print(mid - a, mid - b)
+print(mid)
+</code></pre>
+
+<p>Output:</p>
+
+<pre>
+<code class="language-no-highlight">100</code></pre>
+
+<p>Как мы видим, переменная <code>mid</code> считывается и внутри <code>def</code>, и при вызове функции <code>print()</code>.</p>
+
+</body>

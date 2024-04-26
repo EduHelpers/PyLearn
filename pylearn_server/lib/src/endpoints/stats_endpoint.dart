@@ -1,5 +1,7 @@
 // ignore_for_file: dead_code
 
+import 'dart:math';
+
 import 'package:pylearn_server/src/generated/protocol.dart';
 import 'package:serverpod/serverpod.dart';
 
@@ -18,12 +20,190 @@ class StatsEndpoint extends Endpoint {
     return await Stats.find(session, where: (i) => i.userId.equals(userId));
   }
 
+  Future<List<Stats>> ExistingEmail(Session session, {required String email}) async {
+    final userId = await session.auth.authenticatedUserId;
+
+    if (userId == null) {
+      return [];
+    }
+
+    // ignore: deprecated_member_use_from_same_package
+    return await Stats.find(session, where: (i) => i.email.equals(email));
+  }
+
+  Future<Stats?> restat(Session session,
+      {required String s, required double d}) async {
+    final userId = await session.auth.authenticatedUserId;
+    if (userId == null) return null;
+
+    // ignore: deprecated_member_use_from_same_package
+    final stata = await Stats.find(
+      session,
+      where: (item) => item.userId.equals(userId),
+    );
+
+    // ignore: unnecessary_null_comparison
+    if (stata[0] != null) {
+      if (s == "Ввод и вывод \nданных") {
+        stata[0].quiz1 = d;
+      } else if (s == 'Числовые типы \nданных') {
+        stata[0].quiz2 = d;
+      } else if (s == 'Строковый тип \nданных') {
+        stata[0].quiz3 = d;
+      } else if (s == 'Целочисленная \nарифметика') {
+        stata[0].quiz4 = d;
+      } else if (s == 'Вещественная \nарифметика') {
+        stata[0].quiz5 = d;
+      } else if (s == 'Модуль math') {
+        stata[0].quiz6 = d;
+      } else if (s == 'Строковая \nарифметика') {
+        stata[0].quiz7 = d;
+      } else if (s == 'Индексация и срезы') {
+        stata[0].quiz8 = d;
+      } else if (s == 'Строковые методы') {
+        stata[0].quiz9 = d;
+      } else if (s == 'Условные \nоператоры') {
+        stata[0].quiz10 = d;
+      } else if (s == 'Вложенные условные \nоператоры') {
+        stata[0].quiz11 = d;
+      } else if (s == 'Split и Join') {
+        stata[0].quiz12 = d;
+      } else if (s == 'Цикл for') {
+        stata[0].quiz13 = d;
+      } else if (s == 'Цикл while') {
+        stata[0].quiz14 = d;
+      } else if (s == 'Операторы break \nи continue') {
+        stata[0].quiz15 = d;
+      } else if (s == 'Вложенные циклы') {
+        stata[0].quiz16 = d;
+      } else {
+        stata[0].quiz200 = d;
+      }
+      await Stats.db.update(session, stata);
+      return stata[0];
+    }
+
+    return null;
+  }
+
+
+  Future<Stats?> resetStats(Session session) async {
+    final userId = await session.auth.authenticatedUserId;
+    if (userId == null) return null;
+
+    // ignore: deprecated_member_use_from_same_package
+    final stata = await Stats.find(
+      session,
+      where: (item) => item.userId.equals(userId),
+    );
+
+    // ignore: unnecessary_null_comparison
+    if (stata[0] != null) {
+      stata[0].quiz1 = stata[0].quiz2 = stata[0].quiz3 =
+       stata[0].quiz4 = stata[0].quiz5 = stata[0].quiz6 = 
+       stata[0].quiz7 = stata[0].quiz8 = stata[0].quiz9 = 
+       stata[0].quiz10 = stata[0].quiz11 = stata[0].quiz12 =
+       stata[0].quiz13 = stata[0].quiz14 = stata[0].quiz15 = 
+       stata[0].quiz16 = stata[0].quiz17 = stata[0].quiz18 = 
+       stata[0].quiz19 = stata[0].quiz20 = stata[0].quiz21 =
+       stata[0].quiz22 = stata[0].quiz23 = stata[0].quiz24 =
+       stata[0].quiz25 = stata[0].quiz26 = stata[0].quiz27 =
+       stata[0].quiz28 = stata[0].quiz29 = stata[0].quiz30 =
+       stata[0].quiz31 = stata[0].quiz32 = stata[0].quiz33 =
+       stata[0].quiz34 = stata[0].quiz35 = stata[0].quiz36 =
+       stata[0].quiz37 = stata[0].quiz38 = stata[0].quiz39 = 
+       stata[0].quiz200 = 0;
+      await Stats.db.update(session, stata);
+      return stata[0];
+    }
+
+    return null;
+  }
+
+  Future<Stats?> setEmailAndUsername(Session session, {required String e, required String u}) async {
+    final userId = await session.auth.authenticatedUserId;
+    if (userId == null) return null;
+
+    // ignore: deprecated_member_use_from_same_package
+    final stata = await Stats.find(
+      session,
+      where: (item) => item.userId.equals(userId),
+    );
+
+    if (stata[0] != null) {
+      stata[0].email = e;
+      stata[0].username = u;
+      await Stats.db.update(session, stata);
+      return stata[0];
+    }
+
+    return null;
+  }
+
+  Future<Stats?> setName(Session session, {required String n}) async {
+    final userId = await session.auth.authenticatedUserId;
+    if (userId == null) return null;
+
+    // ignore: deprecated_member_use_from_same_package
+    final stata = await Stats.find(
+      session,
+      where: (item) => item.userId.equals(userId),
+    );
+
+    if (stata[0] != null) {
+      stata[0].username = n;
+      await Stats.db.update(session, stata);
+      return stata[0];
+    }
+
+    return null;
+  }
+
+  Future<Stats?> setDuration(Session session, {required int t}) async {
+    final userId = await session.auth.authenticatedUserId;
+    if (userId == null) return null;
+
+    // ignore: deprecated_member_use_from_same_package
+    final stata = await Stats.find(
+      session,
+      where: (item) => item.userId.equals(userId),
+    );
+
+    if (stata[0] != null) {
+      stata[0].duration = t;
+      await Stats.db.update(session, stata);
+      return stata[0];
+    }
+
+    return null;
+  }
+
+  Future<Stats?> retime(Session session) async {
+    final userId = await session.auth.authenticatedUserId;
+    if (userId == null) return null;
+
+    // ignore: deprecated_member_use_from_same_package
+    final stata = await Stats.find(
+      session,
+      where: (item) => item.userId.equals(userId),
+    );
+
+    if (stata[0] != null) {
+      stata[0].lastAction = DateTime.now();
+      await Stats.db.update(session, stata);
+      return stata[0];
+    }
+
+    return null;
+  }
+
   Future<bool> create(Session sess) async {
     final user = await sess.auth.authenticatedUserId;
 
     if (user == null) {
       return false;
     }
+    //final profile = await Stats.findSingleRow(sess, where: (p) => p.userId.equals(user));
 
     final stat = Stats(
         userId: user,
@@ -67,172 +247,16 @@ class StatsEndpoint extends Endpoint {
         quiz37: 0,
         quiz38: 0,
         quiz39: 0,
-        quiz40: 0,
-        quiz41: 0,
-        quiz42: 0,
-        quiz43: 0,
-        quiz44: 0,
-        quiz45: 0,
-        quiz46: 0,
-        quiz47: 0,
-        quiz48: 0,
-        quiz49: 0,
-        quiz50: 0,
-        quiz51: 0,
-        quiz52: 0,
-        quiz53: 0,
-        quiz54: 0,
-        quiz55: 0,
-        quiz56: 0,
-        quiz57: 0,
-        quiz58: 0,
-        quiz59: 0,
-        quiz60: 0,
-        quiz61: 0,
-        quiz62: 0,
-        quiz63: 0,
-        quiz64: 0,
-        quiz65: 0,
-        quiz66: 0,
-        quiz67: 0,
-        quiz68: 0,
-        quiz69: 0,
-        quiz70: 0,
-        quiz71: 0,
-        quiz72: 0,
-        quiz73: 0,
-        quiz74: 0,
-        quiz75: 0,
-        quiz76: 0,
-        quiz77: 0,
-        quiz78: 0,
-        quiz79: 0,
-        quiz80: 0,
-        quiz81: 0,
-        quiz82: 0,
-        quiz83: 0,
-        quiz84: 0,
-        quiz85: 0,
-        quiz86: 0,
-        quiz87: 0,
-        quiz88: 0,
-        quiz89: 0,
-        quiz90: 0,
-        quiz91: 0,
-        quiz92: 0,
-        quiz93: 0,
-        quiz94: 0,
-        quiz95: 0,
-        quiz96: 0,
-        quiz97: 0,
-        quiz98: 0,
-        quiz99: 0,
-        quiz100: 0,
-        quiz101: 0,
-        quiz102: 0,
-        quiz103: 0,
-        quiz104: 0,
-        quiz105: 0,
-        quiz106: 0,
-        quiz107: 0,
-        quiz108: 0,
-        quiz109: 0,
-        quiz110: 0,
-        quiz111: 0,
-        quiz112: 0,
-        quiz113: 0,
-        quiz114: 0,
-        quiz115: 0,
-        quiz116: 0,
-        quiz117: 0,
-        quiz118: 0,
-        quiz119: 0,
-        quiz120: 0,
-        quiz121: 0,
-        quiz122: 0,
-        quiz123: 0,
-        quiz124: 0,
-        quiz125: 0,
-        quiz126: 0,
-        quiz127: 0,
-        quiz128: 0,
-        quiz129: 0,
-        quiz130: 0,
-        quiz131: 0,
-        quiz132: 0,
-        quiz133: 0,
-        quiz134: 0,
-        quiz135: 0,
-        quiz136: 0,
-        quiz137: 0,
-        quiz138: 0,
-        quiz139: 0,
-        quiz140: 0,
-        quiz141: 0,
-        quiz142: 0,
-        quiz143: 0,
-        quiz144: 0,
-        quiz145: 0,
-        quiz146: 0,
-        quiz147: 0,
-        quiz148: 0,
-        quiz149: 0,
-        quiz150: 0,
-        quiz151: 0,
-        quiz152: 0,
-        quiz153: 0,
-        quiz154: 0,
-        quiz155: 0,
-        quiz156: 0,
-        quiz157: 0,
-        quiz158: 0,
-        quiz159: 0,
-        quiz160: 0,
-        quiz161: 0,
-        quiz162: 0,
-        quiz163: 0,
-        quiz164: 0,
-        quiz165: 0,
-        quiz166: 0,
-        quiz167: 0,
-        quiz168: 0,
-        quiz169: 0,
-        quiz170: 0,
-        quiz171: 0,
-        quiz172: 0,
-        quiz173: 0,
-        quiz174: 0,
-        quiz175: 0,
-        quiz176: 0,
-        quiz177: 0,
-        quiz178: 0,
-        quiz179: 0,
-        quiz180: 0,
-        quiz181: 0,
-        quiz182: 0,
-        quiz183: 0,
-        quiz184: 0,
-        quiz185: 0,
-        quiz186: 0,
-        quiz187: 0,
-        quiz188: 0,
-        quiz189: 0,
-        quiz190: 0,
-        quiz191: 0,
-        quiz192: 0,
-        quiz193: 0,
-        quiz194: 0,
-        quiz195: 0,
-        quiz196: 0,
-        quiz197: 0,
-        quiz198: 0,
-        quiz199: 0,
-        quiz200: 0);
+        quiz200: 0,
+        email: "",
+        username: "",
+        duration: 30);
 
     Future<List<Stats>> futureList = list(sess);
 
     List<Stats> data = await futureList;
     if (data.isEmpty) {
+      print(1);
       // ignore: deprecated_member_use_from_same_package
       await Stats.insert(sess, stat);
     }

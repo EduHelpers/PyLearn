@@ -8,8 +8,9 @@ import 'package:pylearn_flutter/src/screen/main_screen.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:pylearn_flutter/src/screen/settings.dart';
 
-class ProfileScreen extends MainScreen {
-  const ProfileScreen({super.key});
+class friendProfile extends MainScreen {
+  const friendProfile({super.key, required this.friendId});
+  final int friendId;
 
   @override
   Widget body(BuildContext context, WidgetRef ref) {

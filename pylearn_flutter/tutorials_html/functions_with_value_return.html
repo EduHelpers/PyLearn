@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Tutorial: Variables</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .language-python {
+            color: #3572A5;
+        }
+        pre code {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 style="text-align:center">&nbsp;Функции с возвратом значения</h2>
+
+    <p>Функции могут не только принимать параметры и вызывать другие функции, они так же могут возвращать значения, причём любого типа. Значение возвращается туда, где функция была вызвана. Мы уже знаем много функций, возвращающих значения: <code>len()</code> возвращает длину строки, <code>str()</code> возвращает строку, в которую преобразовалось какое-то значение, <code>range()</code> возвращает последовательность.</p>
+    
+    <p>Формат функции с возвращаемым значением такой:</p>
+    
+    <pre>
+    <code class="language-python">def функция():
+        код
+        return выражение</code></pre>
+    
+    <p>выражение после слова <code>return</code> будет отправлено туда, где функция была вызвана. В return можно задать любое выражение с любыми переменными. Рассмотрим пример:</p>
+    
+    <pre>
+    <code>def dif(a,b):
+        return a - b
+    print(dif(5, 2))</code></pre>
+    
+    <p>Output:</p>
+    
+    <pre>
+    <code class="language-no-highlight">3</code></pre>
+    
+    <p>Как мы видим, значение, посчитанное внутри функции вернулось в аргумент функции <code>print()</code>, где мы и вызывали нашу функцию.</p>
+    
+    <p>Также в <code>return</code> можно записывать несколько значений, в таком случае принимать их нужно через множественное присваивание:</p>
+    
+    <pre>
+    <code class="language-python">def func(a):
+        return a + 5, a + 10, a + 20
+    x,y,z = func(7)
+    print(x, y, z)
+    </code></pre>
+    
+    <p>Output:</p>
+    
+    <pre>
+    <code class="language-no-highlight">12 17 27</code></pre>
+    
+</body>

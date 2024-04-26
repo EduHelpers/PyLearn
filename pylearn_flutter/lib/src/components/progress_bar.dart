@@ -3,12 +3,12 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'question_controller.dart';
 
 class ProgressBar extends StatelessWidget {
-  const ProgressBar({
-    super.key,
-    required this.quizId,
-  });
+  ProgressBar(this.quizId, this.duration, this.lst, this.randNum, {super.key});
 
   final String quizId;
+  final int duration;
+  List<bool> lst = [];
+  int randNum = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class ProgressBar extends StatelessWidget {
         borderRadius: BorderRadius.circular(50),
       ),
       child: GetBuilder<QuestionController>(
-        init: QuestionController(quizId),
+        init: QuestionController(quizId, duration, lst, randNum),
         builder: (controller) {
           return Stack(
             children: [
@@ -44,7 +44,7 @@ class ProgressBar extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                          "${30 - (controller.animation!.value * 30).round()} c."),
+                          "${duration - (controller.animation!.value * duration).round()} c."),
                     ],
                   ),
                 ),

@@ -5,14 +5,20 @@ import 'package:pylearn_flutter/src/screen/Questions.dart';
 import 'option.dart';
 
 class QuestionCard extends StatelessWidget {
-  const QuestionCard({super.key, required this.question, required this.quizId});
+  QuestionCard(
+      this.question, this.quizId, this.duration, this.lst, this.randNum,
+      {super.key});
 
   final String quizId;
   final Question question;
+  final int duration;
+  List<bool> lst = [];
+  int randNum = 0;
 
   @override
   Widget build(BuildContext context) {
-    QuestionController controller = Get.put(QuestionController(quizId));
+    QuestionController controller =
+        Get.put(QuestionController(quizId, duration, lst, randNum));
     final Size screenSize = MediaQuery.of(context).size;
 
     return Container(
@@ -34,11 +40,13 @@ class QuestionCard extends StatelessWidget {
           ...List.generate(
             question.options.length,
             (index) => Option(
-              index: index,
-              text: question.options[index],
-              press: () => controller.checkAns(question, index),
-              quizid: quizId,
-            ),
+                question.options[index],
+                index,
+                () => controller.checkAns(question, index),
+                quizId,
+                duration,
+                lst,
+                randNum),
           ),
         ],
       ),

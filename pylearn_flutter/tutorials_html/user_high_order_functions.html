@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Tutorial: Variables</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .language-python {
+            color: #3572A5;
+        }
+        pre code {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align:center">Функции высшего порядка</h1>
+
+<p>Функции высшего порядка в Питоне построены на особом свойстве функций: <strong>их можно передавать в качестве аргумента</strong>. Рассмотрим пример:</p>
+
+<pre>
+<code class="language-python">def quad(a):
+    return a**4
+solve = quad
+print(solve(2))
+</code></pre>
+
+<p>Output:</p>
+
+<pre>
+<code class="language-python">16</code></pre>
+
+<p>Здесь мы передали функцию в переменную и вызвали её через эту переменную. Тем самым через это свойство можно делать более обобщённые программные решения, и функции высшего порядка нам в этом помогут.</p>
+
+<p><strong>Функции высшего порядка</strong> - это функции, принимающие и/или возвращающие другие функции.</p>
+
+<p>Рассмотрим пример функции высшего порядка:</p>
+
+<pre>
+<code class="language-python">def repeat(n, func):
+    for i in range(n):
+        func()
+def f():
+    print("Хеллоу мир манера крутит мир")
+repeat(2, f)</code></pre>
+
+<p>Output:</p>
+
+<pre>
+<code class="language-no-highlight">Хеллоу мир манера крутит мир
+Хеллоу мир манера крутит мир</code></pre>
+
+<p>Теперь посмотрим на функцию, возвращающую другую функцию:</p>
+
+<pre>
+<code class="language-python">def double(func):
+    def inner(arg):
+        return func(func(arg))
+    return inner
+def mult_five(x):
+    return x * 5
+double(mult_five)(3)</code></pre>
+
+<p>Output:</p>
+
+<pre>
+<code class="language-no-highlight">75</code></pre>
+
+<p>Функция <code>double</code> здесь принимает на вход другую функцию и дважды её вызывает, сначала от аргумента, а потом от значения функции от аргумента. <code>double</code> возвращает функцию, поэтому чтобы получить значение функции мы в круглых скобках указываем аргумент <code>3</code>.</p>
+
+<h2 style="text-align:center">&nbsp;</h2>
+
+</body>

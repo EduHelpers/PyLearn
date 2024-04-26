@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Tutorial: Variables</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .language-python {
+            color: #3572A5;
+        }
+        pre code {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 style="text-align:center">&nbsp;Функции с параметрами</h2>
+
+<p>Параметры функции - это то, что задаётся аргументами при вызове функции. Рассмотрим написанную нами функцию <code>print_str()</code>:</p>
+
+<pre>
+<code class="language-python">def print_str():
+    for i in range(5):
+        print("#"*20)</code></pre>
+
+<p>В ней происходит вызов ровно 5 строк, в которых находится ровно 20 символов. Перепишем её так, чтобы она принимала на вход количество выводимых строк и количество символов в строке:</p>
+
+<pre>
+<code class="language-python">def print_str(str_num, symb_num):
+    for i in range(str_num):
+        print("#"*symb_num)
+print_str(2, 10)</code></pre>
+
+<p>Output:</p>
+
+<pre>
+<code class="language-no-highlight">##########
+##########</code></pre>
+
+<p>Таким образом, наша функция принимает 2 параметра:&nbsp;<code>str_num</code>, <code>symb_num</code>.</p>
+
+<p>Параметры функции можно менять внутри этой функции, при этом аргументы, которые были заданы при её вызове, никак не изменятся:</p>
+
+<pre>
+<code class="language-python">def print_str(str_num, symb_num):
+    str_num = 5
+    symb_num = 20
+    for i in range(str_num):
+        print("#"*symb_num)
+n = 2
+m = 10
+print_str(n, m)
+print(n, m)
+</code></pre>
+
+<p>Output:</p>
+
+<pre>
+<code class="language-no-highlight">####################
+####################
+####################
+####################
+####################
+2 10</code></pre>
+
+<p>&nbsp;</p>
+
+</body>

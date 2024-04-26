@@ -5,13 +5,17 @@ import 'progress_bar.dart';
 import 'question.dart';
 
 class Body extends StatelessWidget {
-  const Body({super.key, required this.quizId});
+  Body(this.quizId, this.duration, this.lst, this.randNum, {super.key});
 
   final String quizId;
+  final int duration;
+  List<bool> lst = [];
+  int randNum = 0;
 
   @override
   Widget build(BuildContext context) {
-    QuestionController questionController = Get.put(QuestionController(quizId));
+    QuestionController questionController =
+        Get.put(QuestionController(quizId, duration, lst, randNum));
     return Stack(
       children: [
         SafeArea(
@@ -20,9 +24,7 @@ class Body extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: ProgressBar(
-                  quizId: quizId,
-                ),
+                child: ProgressBar(quizId, duration, lst, randNum),
               ),
               const SizedBox(height: 20.0),
               Padding(
@@ -59,9 +61,11 @@ class Body extends StatelessWidget {
                   },
                   itemCount: questionController.questions.length,
                   itemBuilder: (context, index) => QuestionCard(
-                    question: questionController.questions[index],
-                    quizId: quizId,
-                  ),
+                      questionController.questions[index],
+                      quizId,
+                      duration,
+                      lst,
+                      randNum),
                 ),
               ),
             ],

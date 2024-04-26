@@ -8,12 +8,16 @@ import 'package:pylearn_flutter/src/screen/main_screen.dart';
 
 class ScoreScreen extends MainScreen {
   final String quizId;
+  final int duration;
+  List<bool> lst = [];
+  int randNum = 0;
 
-  const ScoreScreen({super.key, required this.quizId});
+  ScoreScreen(this.quizId, this.duration, this.lst, this.randNum, {super.key});
 
   @override
   Widget body(BuildContext context, WidgetRef ref) {
-    QuestionController qnController = Get.put(QuestionController(quizId));
+    QuestionController qnController =
+        Get.put(QuestionController(quizId, duration, lst, randNum));
     // ignore: unused_local_variable
     final stats = ref.read(prov_stats.notifier);
     stats.reWriteStats(

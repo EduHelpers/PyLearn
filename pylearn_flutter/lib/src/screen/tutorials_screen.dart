@@ -34,42 +34,45 @@ class _PythonTutorialAppState extends State<PythonTutorialApp> {
           appBar: AppBar(
             title: const Text("Теория"),
           ),
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(0.5),
-                  child: webView,
-                ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Get.off(QuizScreen(quizId: quizId));
-                },
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.circular(screenSize.width * 0.02),
+          body: Consumer(builder: (context, ref, _) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(0.5),
+                    child: webView,
                   ),
-                  backgroundColor: Colors.green,
                 ),
-                child: Container(
-                  width: screenSize.width * 0.25,
-                  height: screenSize.height * 0.07,
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.only(left: screenSize.width * 0.0),
-                  child: Text(
-                    'Начать квиз',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: screenSize.width * 0.035,
+                ElevatedButton(
+                  onPressed: () {
+                    final f = ref.watch(prov_stats);
+                    Get.off(QuizScreen(quizId, f[0].duration, [], 0));
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.circular(screenSize.width * 0.02),
+                    ),
+                    backgroundColor: Colors.green,
+                  ),
+                  child: Container(
+                    width: screenSize.width * 0.25,
+                    height: screenSize.height * 0.07,
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(left: screenSize.width * 0.0),
+                    child: Text(
+                      'Начать квиз',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: screenSize.width * 0.035,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            );
+          }),
         ),
       ),
     );
@@ -117,6 +120,13 @@ class _PythonTutorialAppState extends State<PythonTutorialApp> {
                 stats[0].quiz15,
                 stats[0].quiz16,
                 stats[0].quiz17,
+                stats[0].quiz18,
+                stats[0].quiz19,
+                stats[0].quiz20,
+                stats[0].quiz21,
+                stats[0].quiz22,
+                stats[0].quiz23,
+                stats[0].quiz24
               ];
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -255,29 +265,67 @@ class _PythonTutorialAppState extends State<PythonTutorialApp> {
     "Цикл for",
     "Цикл while",
     "Операторы break \nи continue",
-    "Вложенные циклы"
+    "Вложенные циклы",
+    "Списки",
+    "Словари",
+    "Функции \nбез параметров",
+    "Функции \nс параметрами",
+    "Глобальные \nи локальные\nпеременные",
+    "Функции \nс возвратом \nзначения",
+    "Пользовательские \nфункции \nвысшего порядка",
+    "Основные функции \nвысшего порядка",
   ];
 
   // ignore: non_constant_identifier_names
   final Map<String, String> html_files = {
     "Ввод и вывод \nданных":
         '/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/input_and_output.html',
-    "Числовые типы \nданных": 'lib/tutorials_html/numeric_types.html',
-    "Строковый тип \nданных": 'lib/tutorials_html/strings.html',
-    "Целочисленная \nарифметика": 'lib/tutorials_html/integer_arithmetic.html',
-    "Вещественная арифметика": 'lib/tutorials_html/float_arithmetic.html',
-    "Модуль math": 'lib/tutorials_html/math_module.html',
-    "Строковая арифметика": 'lib/tutorials_html/string_arithmetic.html',
-    "Индексация и срезы": 'lib/tutorials_html/slicing.html',
-    "Строковые методы": 'lib/tutorials_html/string_operations.html',
-    "Условные \nоператоры": 'lib/tutorials_html/if_conditions.html',
-    "Вложенные условные операторы":
-        'lib/tutorials_html/advanced_if_conditions.html',
-    "Split и Join": 'lib/tutorials_html/split_and_join.html',
-    "Цикл for": 'lib/tutorials_html/for_cycle.html',
-    "Цикл while": 'lib/tutorials_html/while_cycle.html',
-    "Операторы break \nи continue": 'lib/tutorials_html/break_continue.html',
-    "Вложенные циклы": 'lib/tutorials_html/advanced_cycles.html',
+    "Числовые типы \nданных":
+        '/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/numeric_types.html',
+    "Строковый тип \nданных":
+        '/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/strings.html',
+    "Целочисленная \nарифметика":
+        '/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/integer_arithmetic.html',
+    "Вещественная \nарифметика":
+        '/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/float_arithmetic.html',
+    "Модуль math":
+        '/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/math_module.html',
+    "Строковая \nарифметика":
+        '/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/string_arithmetic.html',
+    "Индексация и срезы":
+        '/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/slicing.html',
+    "Строковые методы":
+        '/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/string_operations.html',
+    "Условные \nоператоры":
+        '/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/if_conditions.html',
+    "Вложенные условные \nоператоры":
+        "/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/advanced_if_conditions.html",
+    "Split и Join":
+        "/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/split_and_join.html",
+    "Цикл for":
+        "/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/for_cycle.html",
+    "Цикл while":
+        "/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/while_cycle.html",
+    "Операторы break \nи continue":
+        "/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/break_continue.html",
+    "Вложенные циклы":
+        "/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/advanced_cycles.html",
+    "Списки":
+        "/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/lists.html",
+    "Словари":
+        "/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/dicts.html",
+    "Функции \nбез параметров":
+        "/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/functions_without_parameters.html",
+    "Функции \nс параметрами":
+        "/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/functions_with_parameters.html",
+    "Глобальные \nи локальные\nпеременные":
+        "/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/global_and_local_variables.html",
+    "Функции \nс возвратом \nзначения":
+        "/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/global_and_local_variables.html",
+    "Пользовательские \nфункции \nвысшего порядка":
+        "/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/user_high_order_functions.html",
+    "Основные функции \nвысшего порядка":
+        "/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/standard_high_order_functions.html"
   };
 }
 

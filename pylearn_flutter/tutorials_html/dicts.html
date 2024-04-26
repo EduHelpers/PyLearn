@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Tutorial: Variables</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .language-python {
+            color: #3572A5;
+        }
+        pre code {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align:center">Словари</h1>
+
+<p>Словари это тоже крайне востребованный в программировании тип контейнера. В целом словари очень похожи на списки, с отличием в том, что обращение элементу происходит по специальному ключу. Кроме того, ключи и значения с словаре расположены <strong>не по порядку добавления</strong>! Также словари по-другому инициируются. Рассмотрим такую задачу: пусть у нас есть какие-то овощи и фрукты, и для каждого вида нам нужно хранить его массу на складе:</p>
+
+<pre>
+<code class="language-python">l = {"banana":3.14, "apple":7, "onion":0}
+print(l["banana"])
+</code></pre>
+
+<p>Output:</p>
+
+<pre>
+<code class="language-no-highlight">3.14</code></pre>
+
+<p>Как мы видим, элементы словаря представляют собой пару <strong>ключ - значение</strong>. Ключом может быть любой неизменяемый тип данных, то есть сделать список ключом не получится. Значения могут быть любыми, в том числе список может быть значением:</p>
+
+<pre>
+<code class="language-python">l = {"banana":[1,2,3,7]}
+print(l["banana"][3])
+</code></pre>
+
+<p>Output:</p>
+
+<pre>
+<code class="language-no-highlight">7</code></pre>
+
+<p>То есть сначала происходит обращение по ключу, потом по индексу списка, который является <strong>значением</strong> ключа.</p>
+
+<p>Способов задать пустой словарь два либо через фигурные скобки, либо командой <code>dict()</code>:</p>
+
+<pre>
+<code class="language-python">l = {}
+r = dict()
+print(l)
+print(r)
+</code></pre>
+
+<p>Output:</p>
+
+<pre>
+<code>{}
+{}</code></pre>
+
+<p>Чтобы добавить новую пару ключ - значение в словарь, нужно просто задать значение по ключу:</p>
+
+<pre>
+<code class="language-python">l = {}
+l["apple"] = 12
+print(l["apple"])
+</code></pre>
+
+<p>Output:</p>
+
+<pre>
+<code class="language-no-highlight">12</code></pre>
+
+<p>Если обратиться по ключу, которого в словаре нет, возникнет ошибка:</p>
+
+<pre>
+<code class="language-python">l = {}
+l["apple"] = 12
+print(l["banana"])</code></pre>
+
+<p>Output:</p>
+
+<pre>
+<code class="language-no-highlight">Traceback (most recent call last):
+  File ..., line 3, in &lt;module&gt;
+    print(l["banana"])
+KeyError: 'banana'</code></pre>
+
+<h2 style="text-align:center">Методы словарей</h2>
+
+<p>Метод<strong> </strong><code>clear()</code> очищает словарь:</p>
+
+<pre>
+<code class="language-python">l = {}
+l["car"] = 12
+print(l)
+l.clear()
+print(l)</code></pre>
+
+<p>Output:</p>
+
+<pre>
+<code class="language-no-highlight">{'car': 12}
+{}
+</code></pre>
+
+<p>Метод<strong> </strong><code>copy()</code>&nbsp; возвращает копию словаря. Работает так же, как и со списками:</p>
+
+<pre>
+<code class="language-python">l = {"banana":3.14, "apple":7, "onion":0}
+r = l.copy()
+r["potato"] = 100
+print(l)
+print(r)</code></pre>
+
+<p>Output:</p>
+
+<pre>
+<code class="language-no-highlight">{'banana': 3.14, 'apple': 7, 'onion': 0}
+{'banana': 3.14, 'apple': 7, 'onion': 0, 'potato': 100}</code></pre>
+
+<p>Метод<strong> </strong><code>items()</code> возвращает пары (ключ, значение):</p>
+
+<pre>
+<code class="language-python">l = {"banana":3.14, "apple":7, "onion":0}
+print(l.items())</code></pre>
+
+<p>Output:</p>
+
+<pre>
+<code class="language-no-highlight">dict_items([('banana', 3.14), ('apple', 7), ('onion', 0)])</code></pre>
+
+<p>Метод<strong> </strong><code>keys()</code>&nbsp;возвращает ключи в словаре:</p>
+
+<pre>
+<code class="language-python">l = {"banana":3.14, "apple":7, "onion":0}
+print(l.keys())</code></pre>
+
+<p>Output:</p>
+
+<pre>
+<code class="language-no-highlight">dict_keys(['banana', 'apple', 'onion'])</code></pre>
+
+<p>Метод&nbsp;<code>get(key, default)</code>&nbsp;возвращает значение ключа, но если его нет, возвращает <code>default</code> (по умолчанию <code>None</code>):</p>
+
+<pre>
+<code class="language-python">l = {"banana":3.14, "apple":7, "onion":0}
+print(l.get("banana"))
+print(l.get("potato", "we don`t have potato"))</code></pre>
+
+<p>Output:</p>
+
+<pre>
+<code class="language-no-highlight">3.14
+we don`t have potato</code></pre>
+
+<p>Метод<strong>&nbsp;</strong><code>pop(key, default)</code>&nbsp;удаляет ключ и возвращает значение. Если ключа нет, возвращает <code>default</code> (по умолчанию бросает исключение):</p>
+
+<pre>
+<code class="language-python">l = {"banana":3.14, "apple":7, "onion":0}
+print(l.pop("banana"))
+print(l)
+print(l.pop("potato", "we don`t have potato"))
+</code></pre>
+
+<p>Output:</p>
+
+<pre>
+<code class="language-no-highlight">3.14
+{'apple': 7, 'onion': 0}
+we don`t have potato</code></pre>
+
+<p>Метод&nbsp;<code>setdefault(key, default)</code>&nbsp;возвращает значение ключа, но если его нет, создает ключ со значением default (по умолчанию <code>None</code>):</p>
+
+<pre>
+<code>l = {"banana":3.14, "apple":7, "onion":0}
+print(l.get("banana"))
+print(l.get("potato", 100))
+print(l)
+</code></pre>
+
+<p>Output:</p>
+
+<pre>
+<code class="language-no-highlight">3.14
+100
+{'banana': 3.14, 'apple': 7, 'onion': 0}</code></pre>
+
+<p>Метод&nbsp;<code>update([other])</code>&nbsp;обновляет словарь, добавляя пары (ключ, значение) из other. Существующие ключи перезаписываются. Возвращает <code>None</code> (<strong>не новый словарь!</strong>):</p>
+
+<pre>
+<code class="language-python">l = {"banana":3.14, "apple":7, "onion":0}
+r = {"potato":100, "apple":24}
+print(l)
+l.update(r)
+print(l)
+</code></pre>
+
+<p>Output:</p>
+
+<pre>
+<code class="language-no-highlight">{'banana': 3.14, 'apple': 7, 'onion': 0}
+{'banana': 3.14, 'apple': 24, 'onion': 0, 'potato': 100}</code></pre>
+
+<p>Метод&nbsp;<code>values()</code>&nbsp;возвращает значения в словаре:</p>
+
+<pre>
+<code class="language-python">l = {"banana":3.14, "apple":7, "onion":0}
+print(l.values())</code></pre>
+
+<p>Output:</p>
+
+<pre>
+<code class="language-no-highlight">dict_values([3.14, 7, 0])</code></pre>
+
+<p>&nbsp;</p>
+
+    
+</body>

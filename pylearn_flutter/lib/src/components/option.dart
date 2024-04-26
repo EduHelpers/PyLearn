@@ -3,22 +3,21 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'question_controller.dart';
 
 class Option extends StatelessWidget {
-  const Option({
-    super.key,
-    required this.text,
-    required this.index,
-    required this.press,
-    required this.quizid,
-  });
+  Option(this.text, this.index, this.press, this.quizid, this.duration,
+      this.lst, this.randNum,
+      {super.key});
   final String text;
   final int index;
   final VoidCallback press;
   final String quizid;
+  final int duration;
+  List<bool> lst = [];
+  int randNum = 0;
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<QuestionController>(
-        init: QuestionController(quizid),
+        init: QuestionController(quizid, duration, lst, randNum),
         builder: (qnController) {
           Color getTheRightColor() {
             if (qnController.isAnswered) {

@@ -38,6 +38,7 @@ void run(List<String> args) async {
         await send(message, smtpServer);
       } catch (e) {
         print(e);
+        print(1);
         return false;
       }
 
