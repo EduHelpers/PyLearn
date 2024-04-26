@@ -19,7 +19,33 @@ class RandomQuiz extends StatefulWidget {
 class Randik extends State<RandomQuiz> {
   int numOfQuestions = 1;
   int numOfSeconds = 30;
-  final List<bool> _checkboxValues = List.generate(20, (index) => false);
+  final List<bool> _checkboxValues = List.generate(24, (index) => false);
+  final List<String> topics = [
+    "Ввод и вывод \nданных",
+    "Числовые типы \nданных",
+    "Строковый тип \nданных",
+    "Целочисленная \nарифметика",
+    "Вещественная \nарифметика",
+    "Модуль math",
+    "Строковая \nарифметика",
+    "Индексация и срезы",
+    "Строковые методы",
+    "Условные \nоператоры",
+    "Вложенные условные \nоператоры",
+    "Split и Join",
+    "Цикл for",
+    "Цикл while",
+    "Операторы break \nи continue",
+    "Вложенные циклы",
+    "Списки",
+    "Словари",
+    "Функции \nбез параметров",
+    "Функции \nс параметрами",
+    "Глобальные \nи локальные\nпеременные",
+    "Функции \nс возвратом \nзначения",
+    "Пользовательские \nфункции \nвысшего порядка",
+    "Основные функции \nвысшего порядка"
+  ];
   bool isChecked = true;
   @override
   Widget build(BuildContext context) {
@@ -183,7 +209,7 @@ class Randik extends State<RandomQuiz> {
                   child: Column(
                     children: List.generate(_checkboxValues.length, (index) {
                       return CheckboxListTile(
-                        title: Text('Checkbox $index'),
+                        title: Text(topics[index]),
                         value: _checkboxValues[index],
                         shape: CircleBorder(),
                         onChanged: (bool? value) {
