@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pylearn_client/pylearn_client.dart';
+import 'package:pylearn_flutter/src/screen/Questions.dart';
 import 'package:pylearn_flutter/src/utils/client_api.dart';
 import 'package:pylearn_flutter/src/utils/stons.dart';
 
@@ -15,15 +18,15 @@ class FriendsProv extends StateNotifier<List<Friends>> {
     state = await friendsmngr.list();
   }
 
-  delete(int id) async {
-    await friendsmngr.delete(id);
+  delete(String email2) async {
+    await friendsmngr.delete(userId2: email2);
   }
 
-  add(int id1, int id2) async {
-    await friendsmngr.create(userId1: id1, userId2: id2);
+  add(String email2, String userName2) async {
+    await friendsmngr.create(userId2: email2, userName2: userName2);
   }
 
-  get() async {
+  Future<List<Friends>> get() async {
     return await friendsmngr.list();
   }
 

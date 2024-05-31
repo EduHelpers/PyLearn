@@ -77,14 +77,14 @@ class Endpoints extends _i1.EndpointDispatch {
         'create': _i1.MethodConnector(
           name: 'create',
           params: {
-            'userId1': _i1.ParameterDescription(
-              name: 'userId1',
-              type: _i1.getType<int>(),
-              nullable: false,
-            ),
             'userId2': _i1.ParameterDescription(
               name: 'userId2',
-              type: _i1.getType<int>(),
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+            'userName2': _i1.ParameterDescription(
+              name: 'userName2',
+              type: _i1.getType<String>(),
               nullable: false,
             ),
           },
@@ -94,8 +94,8 @@ class Endpoints extends _i1.EndpointDispatch {
           ) async =>
               (endpoints['friends'] as _i3.FriendsEndpoint).create(
             session,
-            userId1: params['userId1'],
             userId2: params['userId2'],
+            userName2: params['userName2'],
           ),
         ),
         'delete': _i1.MethodConnector(
@@ -103,7 +103,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'userId2': _i1.ParameterDescription(
               name: 'userId2',
-              type: _i1.getType<int>(),
+              type: _i1.getType<String>(),
               nullable: false,
             )
           },
@@ -113,7 +113,7 @@ class Endpoints extends _i1.EndpointDispatch {
           ) async =>
               (endpoints['friends'] as _i3.FriendsEndpoint).delete(
             session,
-            params['userId2'],
+            userId2: params['userId2'],
           ),
         ),
       },
@@ -130,6 +130,15 @@ class Endpoints extends _i1.EndpointDispatch {
             Map<String, dynamic> params,
           ) async =>
               (endpoints['stats'] as _i4.StatsEndpoint).list(session),
+        ),
+        'listAll': _i1.MethodConnector(
+          name: 'listAll',
+          params: {},
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['stats'] as _i4.StatsEndpoint).listAll(session),
         ),
         'ExistingEmail': _i1.MethodConnector(
           name: 'ExistingEmail',
@@ -204,6 +213,24 @@ class Endpoints extends _i1.EndpointDispatch {
             session,
             e: params['e'],
             u: params['u'],
+          ),
+        ),
+        'setPrivate': _i1.MethodConnector(
+          name: 'setPrivate',
+          params: {
+            'd': _i1.ParameterDescription(
+              name: 'd',
+              type: _i1.getType<double>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['stats'] as _i4.StatsEndpoint).setPrivate(
+            session,
+            d: params['d'],
           ),
         ),
         'setName': _i1.MethodConnector(

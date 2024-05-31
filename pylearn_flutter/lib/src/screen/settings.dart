@@ -16,7 +16,7 @@ class MainSet extends StatefulWidget {
 
 class Settings extends State<MainSet> {
   int val;
-
+  bool checkbox = false;
   Settings({required this.val});
 
   @override
@@ -191,11 +191,8 @@ class Settings extends State<MainSet> {
                         ));
                   })),
               Padding(
-                  padding: EdgeInsets.fromLTRB(
-                      sizeScreen.width * 0.02,
-                      sizeScreen.height * 0.015,
-                      sizeScreen.width * 0.02,
-                      sizeScreen.height * 0.1),
+                  padding: EdgeInsets.fromLTRB(sizeScreen.width * 0.02,
+                      sizeScreen.height * 0.015, sizeScreen.width * 0.02, 0),
                   child: Consumer(builder: (context, ref, _) {
                     return Material(
                         elevation: 5,
@@ -219,8 +216,9 @@ class Settings extends State<MainSet> {
                               padding: EdgeInsets.only(
                                   bottom: sizeScreen.height * 0.008),
                               child: CupertinoSlider(
-                                min: 1,
+                                min: 5,
                                 max: 120,
+                                divisions: 23,
                                 value: val.toDouble(),
                                 onChanged: (value) {
                                   setState(() {
@@ -245,22 +243,56 @@ class Settings extends State<MainSet> {
                               ))
                         ]));
                   })),
-
-              // Padding(
-              //     padding: EdgeInsets.fromLTRB(
-              //         sizeScreen.width * 0.02,
-              //         sizeScreen.height * 0.015,
-              //         sizeScreen.width * 0.02,
-              //         sizeScreen.height * 0.1),
-              //     child: Material(
-              //         elevation: 5,
-              //         borderRadius: BorderRadius.circular(20.0),
-              //         color: Colors.black,
-              //         child: Slider(
-              //           onChanged: (double value) {
-              //             setState(() {});
-              //           },
-              //         )))
+              Padding(
+                  padding: EdgeInsets.fromLTRB(
+                      sizeScreen.width * 0.02,
+                      sizeScreen.height * 0.015,
+                      sizeScreen.width * 0.02,
+                      sizeScreen.height * 0.1),
+                  child: Consumer(builder: (context, ref, _) {
+                    final f = ref.watch(prov_stats);
+                    if (f[0].quiz39 == 1.0) {
+                      checkbox = true;
+                    } else {
+                      checkbox = false;
+                    }
+                    return Material(
+                        elevation: 5,
+                        borderRadius: BorderRadius.circular(20.0),
+                        color: const Color.fromARGB(255, 72, 72, 72),
+                        child: Column(children: [
+                          Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                  sizeScreen.width * 0.1,
+                                  sizeScreen.height * 0.015,
+                                  sizeScreen.width * 0.1,
+                                  sizeScreen.height * 0.01),
+                              child: Text(
+                                '4. Сделать свою статистику приватной',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: sizeScreen.width * 0.04,
+                                    color: Colors.white),
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  bottom: sizeScreen.height * 0.008),
+                              child: CupertinoCheckbox(
+                                onChanged: (bool? value) {
+                                  setState(() {
+                                    checkbox = value!;
+                                  });
+                                  final f = ref.read(prov_stats.notifier);
+                                  if (value == false) {
+                                    f.setPrivate(0.0);
+                                  } else {
+                                    f.setPrivate(1.0);
+                                  }
+                                },
+                                value: checkbox,
+                              )),
+                        ]));
+                  }))
             ])));
   }
 }

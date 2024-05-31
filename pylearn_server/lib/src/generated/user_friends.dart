@@ -15,12 +15,14 @@ abstract class Friends extends _i1.TableRow {
     int? id,
     required this.userid1,
     required this.userid2,
+    required this.username2,
   }) : super(id);
 
   factory Friends({
     int? id,
     required int userid1,
-    required int userid2,
+    required String userid2,
+    required String username2,
   }) = _FriendsImpl;
 
   factory Friends.fromJson(
@@ -31,8 +33,10 @@ abstract class Friends extends _i1.TableRow {
       id: serializationManager.deserialize<int?>(jsonSerialization['id']),
       userid1:
           serializationManager.deserialize<int>(jsonSerialization['userid1']),
-      userid2:
-          serializationManager.deserialize<int>(jsonSerialization['userid2']),
+      userid2: serializationManager
+          .deserialize<String>(jsonSerialization['userid2']),
+      username2: serializationManager
+          .deserialize<String>(jsonSerialization['username2']),
     );
   }
 
@@ -42,7 +46,9 @@ abstract class Friends extends _i1.TableRow {
 
   int userid1;
 
-  int userid2;
+  String userid2;
+
+  String username2;
 
   @override
   _i1.Table get table => t;
@@ -50,7 +56,8 @@ abstract class Friends extends _i1.TableRow {
   Friends copyWith({
     int? id,
     int? userid1,
-    int? userid2,
+    String? userid2,
+    String? username2,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -58,6 +65,7 @@ abstract class Friends extends _i1.TableRow {
       if (id != null) 'id': id,
       'userid1': userid1,
       'userid2': userid2,
+      'username2': username2,
     };
   }
 
@@ -68,6 +76,7 @@ abstract class Friends extends _i1.TableRow {
       'id': id,
       'userid1': userid1,
       'userid2': userid2,
+      'username2': username2,
     };
   }
 
@@ -77,6 +86,7 @@ abstract class Friends extends _i1.TableRow {
       if (id != null) 'id': id,
       'userid1': userid1,
       'userid2': userid2,
+      'username2': username2,
     };
   }
 
@@ -95,6 +105,9 @@ abstract class Friends extends _i1.TableRow {
         return;
       case 'userid2':
         userid2 = value;
+        return;
+      case 'username2':
+        username2 = value;
         return;
       default:
         throw UnimplementedError();
@@ -249,23 +262,27 @@ class _FriendsImpl extends Friends {
   _FriendsImpl({
     int? id,
     required int userid1,
-    required int userid2,
+    required String userid2,
+    required String username2,
   }) : super._(
           id: id,
           userid1: userid1,
           userid2: userid2,
+          username2: username2,
         );
 
   @override
   Friends copyWith({
     Object? id = _Undefined,
     int? userid1,
-    int? userid2,
+    String? userid2,
+    String? username2,
   }) {
     return Friends(
       id: id is int? ? id : this.id,
       userid1: userid1 ?? this.userid1,
       userid2: userid2 ?? this.userid2,
+      username2: username2 ?? this.username2,
     );
   }
 }
@@ -276,21 +293,28 @@ class FriendsTable extends _i1.Table {
       'userid1',
       this,
     );
-    userid2 = _i1.ColumnInt(
+    userid2 = _i1.ColumnString(
       'userid2',
+      this,
+    );
+    username2 = _i1.ColumnString(
+      'username2',
       this,
     );
   }
 
   late final _i1.ColumnInt userid1;
 
-  late final _i1.ColumnInt userid2;
+  late final _i1.ColumnString userid2;
+
+  late final _i1.ColumnString username2;
 
   @override
   List<_i1.Column> get columns => [
         id,
         userid1,
         userid2,
+        username2,
       ];
 }
 

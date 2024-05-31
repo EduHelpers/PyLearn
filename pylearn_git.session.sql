@@ -1,2 +1,3 @@
 UPDATE stats
-SET duration = 30
+SET username = 'Евгений'
+WHERE id = 15

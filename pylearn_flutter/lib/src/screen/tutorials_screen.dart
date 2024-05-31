@@ -126,7 +126,8 @@ class _PythonTutorialAppState extends State<PythonTutorialApp> {
                 stats[0].quiz21,
                 stats[0].quiz22,
                 stats[0].quiz23,
-                stats[0].quiz24
+                stats[0].quiz24,
+                stats[0].quiz25
               ];
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -274,6 +275,7 @@ class _PythonTutorialAppState extends State<PythonTutorialApp> {
     "Функции \nс возвратом \nзначения",
     "Пользовательские \nфункции \nвысшего порядка",
     "Основные функции \nвысшего порядка",
+    "Работа с файлами"
   ];
 
   // ignore: non_constant_identifier_names
@@ -321,11 +323,13 @@ class _PythonTutorialAppState extends State<PythonTutorialApp> {
     "Глобальные \nи локальные\nпеременные":
         "/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/global_and_local_variables.html",
     "Функции \nс возвратом \nзначения":
-        "/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/global_and_local_variables.html",
+        "/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/functions_with_value_return.html",
     "Пользовательские \nфункции \nвысшего порядка":
         "/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/user_high_order_functions.html",
     "Основные функции \nвысшего порядка":
-        "/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/standard_high_order_functions.html"
+        "/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/standard_high_order_functions.html",
+    "Работа с файлами":
+        "/Users/fakhretdinov/PyLearn/pylearn_flutter/tutorials_html/files.html"
   };
 }
 
@@ -370,14 +374,6 @@ class CircularProgressBar extends StatelessWidget {
             valueColor: AlwaysStoppedAnimation<Color>(c),
           ),
         ),
-        // if (merge && percentage == 1.0)
-        //   Center(
-        //     child: Icon(
-        //       Icons.check,
-        //       size: size / 2,
-        //       color: Colors.green,
-        //     ),
-        //   ),
       ],
     );
   }

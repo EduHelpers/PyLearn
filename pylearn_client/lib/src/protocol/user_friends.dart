@@ -15,12 +15,14 @@ abstract class Friends extends _i1.SerializableEntity {
     this.id,
     required this.userid1,
     required this.userid2,
+    required this.username2,
   });
 
   factory Friends({
     int? id,
     required int userid1,
-    required int userid2,
+    required String userid2,
+    required String username2,
   }) = _FriendsImpl;
 
   factory Friends.fromJson(
@@ -31,8 +33,10 @@ abstract class Friends extends _i1.SerializableEntity {
       id: serializationManager.deserialize<int?>(jsonSerialization['id']),
       userid1:
           serializationManager.deserialize<int>(jsonSerialization['userid1']),
-      userid2:
-          serializationManager.deserialize<int>(jsonSerialization['userid2']),
+      userid2: serializationManager
+          .deserialize<String>(jsonSerialization['userid2']),
+      username2: serializationManager
+          .deserialize<String>(jsonSerialization['username2']),
     );
   }
 
@@ -43,12 +47,15 @@ abstract class Friends extends _i1.SerializableEntity {
 
   int userid1;
 
-  int userid2;
+  String userid2;
+
+  String username2;
 
   Friends copyWith({
     int? id,
     int? userid1,
-    int? userid2,
+    String? userid2,
+    String? username2,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -56,6 +63,7 @@ abstract class Friends extends _i1.SerializableEntity {
       if (id != null) 'id': id,
       'userid1': userid1,
       'userid2': userid2,
+      'username2': username2,
     };
   }
 }
@@ -66,23 +74,27 @@ class _FriendsImpl extends Friends {
   _FriendsImpl({
     int? id,
     required int userid1,
-    required int userid2,
+    required String userid2,
+    required String username2,
   }) : super._(
           id: id,
           userid1: userid1,
           userid2: userid2,
+          username2: username2,
         );
 
   @override
   Friends copyWith({
     Object? id = _Undefined,
     int? userid1,
-    int? userid2,
+    String? userid2,
+    String? username2,
   }) {
     return Friends(
       id: id is int? ? id : this.id,
       userid1: userid1 ?? this.userid1,
       userid2: userid2 ?? this.userid2,
+      username2: username2 ?? this.username2,
     );
   }
 }

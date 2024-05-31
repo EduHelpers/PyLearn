@@ -37,7 +37,7 @@
 
 <p>Метод — специализированная функция, связанная с объектом, к которому она применяется. Как и функция, метод вызывается для выполнения отдельной задачи, но он вызывается для определенного объекта и “знает” к какому именно объекту он применяется во время выполнения.</p>
 
-<p>Таким образом: метод — функция, применяемая к объекту. В нашем случае к строке. Метод вызывается в виде <code>имя_объекта.имя_метода(параметры)</code>. Обратите внимание, что все, что является методом, можно назвать функцией, но обратное не верно. (Это чтобы вы не путались в терминах).</p>
+<p>Таким образом: метод — функция, применяемая к объекту. В нашем случае к строке. Метод вызывается в виде <code class="language-python">имя_объекта.имя_метода(параметры)</code>. Обратите внимание, что все, что является методом, можно назвать функцией, но обратное не верно. (Это чтобы вы не путались в терминах).</p>
 
 <h2 style="text-align: center;">Конвертация регистра</h2>
 
@@ -45,61 +45,61 @@
 
 <h3>Метод capitalize()</h3>
 
-<p>Метод <code>capitalize()</code> возвращает копию строки <code>s</code>, в которой первый символ имеет верхний регистр, а все остальные символы имеют нижний регистр.</p>
+<p>Метод <code class="language-python">capitalize()</code> возвращает копию строки <code class="language-python">s</code>, в которой первый символ имеет верхний регистр, а все остальные символы имеют нижний регистр.</p>
 
-<pre><code>s = 'abR AcA daB RA quX'
+<pre><code class="language-python">s = 'abR AcA daB RA quX'
 print(s.capitalize())
 </code></pre>
 
 <p>Выведет:</p>
 
-<pre><code>Abr aca dab ra qux</code></pre>
+<pre><code class="language-python">Abr aca dab ra qux</code></pre>
 
 <h3>Метод swapcase()</h3>
 
-<p>Метод <code>swapcase()</code> возвращает копию строки <code>s</code>, в которой меняет регистр всех символов на противоположный. То есть все символы, имеющие верхний регистр, преобразуются в символы нижнего регистра и наоборот.</p>
+<p>Метод <code class="language-python">swapcase()</code> возвращает копию строки <code class="language-python">s</code>, в которой меняет регистр всех символов на противоположный. То есть все символы, имеющие верхний регистр, преобразуются в символы нижнего регистра и наоборот.</p>
 
-<pre><code>s = 'ABR aca DAB ra qUX'
+<pre><code class="language-python">s = 'ABR aca DAB ra qUX'
 print(s.swapcase())</code></pre>
 
 <p>Выведет:</p>
 
-<pre><code>abr ACA dab RA Qux</code></pre>
+<pre><code class="language-python">abr ACA dab RA Qux</code></pre>
 
 <h3>Метод title()</h3>
 
-<p>Метод <code>title()</code> возвращает копию строки <code>s</code>, в которой первый символ каждого слова переводится в верхний регистр.</p>
+<p>Метод <code class="language-python">title()</code> возвращает копию строки <code class="language-python">s</code>, в которой первый символ каждого слова переводится в верхний регистр.</p>
 
 <p>Результатом выполнения следующего кода:</p>
 
-<pre><code>s = 'my name is Sasha'
+<pre><code class="language-python">s = 'my name is Sasha'
 print(s.title())</code></pre>
 
 <p>Выведет:</p>
 
-<pre><code>My Name Is Sasha</code></pre>
+<pre><code class="language-python">My Name Is Sasha</code></pre>
 
 <h3> Метод lower()</h3>
 
-<p>Метод <code>lower()</code> возвращает копию строки <code>s</code>, в которой все символы имеют нижний регистр.</p>
+<p>Метод <code class="language-python">lower()</code> возвращает копию строки <code class="language-python">s</code>, в которой все символы имеют нижний регистр.</p>
 
-<pre><code>s = 'ABRA#_#CadaBRA'
+<pre><code class="language-python">s = 'ABRA#_#CadaBRA'
 print(s.lower())</code></pre>
 
 <p>Выведет:</p>
 
-<pre><code>abra#_#cadabra</code></pre>
+<pre><code class="language-python">abra#_#cadabra</code></pre>
 
 <h3>Метод upper()</h3>
 
-<p>Метод <code>upper()</code> возвращает копию строки <code>s</code>, в которой все символы имеют верхний регистр.</p>
+<p>Метод <code class="language-python">upper()</code> возвращает копию строки <code class="language-python">s</code>, в которой все символы имеют верхний регистр.</p>
 
 <p>Результатом выполнения следующего кода:</p>
 
-<pre><code>s = 'MarrY___cHRIStmas'
+<pre><code class="language-python">s = 'MarrY___cHRIStmas'
 print(s.upper())</code></pre>
 
 <p>Выведет:</p>
 
-<pre><code>MARRY___CHRISTMAS</code></pre>
+<pre><code class="language-python">MARRY___CHRISTMAS</code></pre>
 </body>

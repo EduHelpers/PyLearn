@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pylearn_flutter/src/provs/stats_prov.dart';
 import 'package:pylearn_flutter/src/screen/home.dart';
 import 'package:pylearn_flutter/src/screen/main_screen.dart';
 import 'package:pylearn_flutter/src/screen/quiz.dart';
@@ -72,10 +71,10 @@ class BottomBar extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
         color: Color.fromRGBO(6, 23, 54, 0.9),
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(0),
-          topRight: Radius.circular(0),
-        ),
+        // borderRadius: BorderRadius.only(
+        //   topLeft: Radius.circular(0),
+        //   topRight: Radius.circular(0),
+        // ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -95,7 +94,7 @@ class BottomBar extends StatelessWidget {
             onTap: onTap,
           ),
           BottomBarItem(
-            icon: Icons.person,
+            icon: Icons.account_circle_outlined,
             label: 'Profile',
             index: 2,
             currentIndex: currentIndex,
@@ -143,7 +142,7 @@ class BottomBarItem extends MainScreen {
               padding: const EdgeInsets.all(0),
               child: Icon(icon,
                   color: index == currentIndex ? Colors.white : Colors.grey,
-                  size: index == currentIndex ? 36 : 30),
+                  size: 36),
             ),
           ),
           const SizedBox(height: 5),

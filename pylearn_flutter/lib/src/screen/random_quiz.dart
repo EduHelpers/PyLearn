@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pylearn_flutter/src/provs/session.dart';
 import 'package:pylearn_flutter/src/provs/stats_prov.dart';
+import 'package:pylearn_flutter/src/screen/Questions.dart';
 import 'package:pylearn_flutter/src/screen/main_screen.dart';
 import 'quiz_screen.dart';
 import 'package:get/get.dart';
@@ -19,33 +20,7 @@ class RandomQuiz extends StatefulWidget {
 class Randik extends State<RandomQuiz> {
   int numOfQuestions = 1;
   int numOfSeconds = 30;
-  final List<bool> _checkboxValues = List.generate(24, (index) => false);
-  final List<String> topics = [
-    "Ввод и вывод \nданных",
-    "Числовые типы \nданных",
-    "Строковый тип \nданных",
-    "Целочисленная \nарифметика",
-    "Вещественная \nарифметика",
-    "Модуль math",
-    "Строковая \nарифметика",
-    "Индексация и срезы",
-    "Строковые методы",
-    "Условные \nоператоры",
-    "Вложенные условные \nоператоры",
-    "Split и Join",
-    "Цикл for",
-    "Цикл while",
-    "Операторы break \nи continue",
-    "Вложенные циклы",
-    "Списки",
-    "Словари",
-    "Функции \nбез параметров",
-    "Функции \nс параметрами",
-    "Глобальные \nи локальные\nпеременные",
-    "Функции \nс возвратом \nзначения",
-    "Пользовательские \nфункции \nвысшего порядка",
-    "Основные функции \nвысшего порядка"
-  ];
+  final List<bool> _checkboxValues = List.generate(25, (index) => false);
   bool isChecked = true;
   @override
   Widget build(BuildContext context) {
@@ -91,7 +66,7 @@ class Randik extends State<RandomQuiz> {
                   children: [
                     Column(
                       children: [
-                        Text("Количество вопросов",
+                        Text("Количество вопросов\n",
                             style: Theme.of(context)
                                 .textTheme
                                 .headlineMedium!
@@ -119,7 +94,7 @@ class Randik extends State<RandomQuiz> {
                                           blurRadius: 20,
                                           spreadRadius: 1)
                                     ]),
-                                maxValue: 20,
+                                maxValue: 200,
                                 radius: 80,
                                 color: const Color(0xffEEEEEE),
                                 sliderColor:

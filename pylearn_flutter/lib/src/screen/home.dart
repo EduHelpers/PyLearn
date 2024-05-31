@@ -10,9 +10,6 @@ class HomeScreen extends MainScreen {
 
   @override
   Widget body(BuildContext context, WidgetRef ref) {
-    // ignore: unused_local_variable
-    //final stats0 = ref.read(prov_stats.notifier).update();
-    //final stats = ref.read(prov_stats.notifier);
     final stats = ref.watch(prov_stats);
     double progressValue = (stats[0].quiz1.toDouble() +
             stats[0].quiz2.toDouble() +
@@ -37,8 +34,9 @@ class HomeScreen extends MainScreen {
             stats[0].quiz21.toDouble() +
             stats[0].quiz22.toDouble() +
             stats[0].quiz23.toDouble() +
-            stats[0].quiz24.toDouble()) /
-        24;
+            stats[0].quiz24.toDouble() +
+            stats[0].quiz25.toDouble()) /
+        25;
 
     final Size screenSize = MediaQuery.of(context).size;
     final Size sizeScreen = MediaQuery.of(context).size;
@@ -118,7 +116,7 @@ class HomeScreen extends MainScreen {
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        '${(progressValue * 100).toStringAsFixed(0)}% пройденных уроков', // Display the percentage value
+                        '${(progressValue * 100).toStringAsFixed(0)}% пройденных уроков',
                         style: TextStyle(
                           fontSize: screenSize.width * 0.035,
                           color: Colors.black,
@@ -167,42 +165,45 @@ class HomeScreen extends MainScreen {
                 ],
               ),
             ),
-            // Padding(
-            //     padding: EdgeInsets.fromLTRB(sizeScreen.width * 0.02,
-            //         sizeScreen.height * 0.05, sizeScreen.width * 0.02, 0),
-            //     child: Material(
-            //         elevation: 5,
-            //         borderRadius: BorderRadius.circular(20.0),
-            //         color: Colors.blue.shade300,
-            //         child: MaterialButton(
-            //           minWidth: sizeScreen.width * 0.8,
-            //           height: 55,
-            //           onPressed: () {
-            //             Navigator.push(
-            //                 context,
-            //                 MaterialPageRoute(
-            //                     builder: (context) =>  newCourses()));
-            //           },
-            //           child: Stack(
-            //             alignment: Alignment.center,
-            //             children: [
-            //               const Text(
-            //                 'Ваши друзья',
-            //                 style: TextStyle(fontSize: 16, color: Colors.white),
-            //               ),
-            //               Row(
-            //                 mainAxisAlignment: MainAxisAlignment.end,
-            //                 children: [
-            //                   Container(
-            //                     padding: const EdgeInsets.all(6),
-            //                     child: const Icon(Icons.people,
-            //                         color: Colors.white),
-            //                   )
-            //                 ],
-            //               )
-            //             ],
-            //           ),
-            //         )))
+            Padding(
+                padding: EdgeInsets.fromLTRB(
+                    sizeScreen.width * 0.04,
+                    sizeScreen.height * 0.05,
+                    sizeScreen.width * 0.04,
+                    sizeScreen.height * 0.12),
+                child: Material(
+                    elevation: 5,
+                    borderRadius: BorderRadius.circular(20.0),
+                    color: const Color.fromRGBO(6, 23, 54, 0.9),
+                    child: MaterialButton(
+                      minWidth: sizeScreen.width * 0.8,
+                      height: 55,
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const newCourse()));
+                      },
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          const Text(
+                            'Добавить новый курс',
+                            style: TextStyle(fontSize: 16, color: Colors.white),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.all(6),
+                                child:
+                                    const Icon(Icons.add, color: Colors.white),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    )))
           ],
         ),
       ),

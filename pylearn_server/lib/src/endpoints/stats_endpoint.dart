@@ -1,5 +1,6 @@
 // ignore_for_file: dead_code
 
+import 'dart:ffi';
 import 'dart:math';
 
 import 'package:pylearn_server/src/generated/protocol.dart';
@@ -20,7 +21,7 @@ class StatsEndpoint extends Endpoint {
     return await Stats.find(session, where: (i) => i.userId.equals(userId));
   }
 
-  Future<List<Stats>> ExistingEmail(Session session, {required String email}) async {
+  Future<List<Stats>> listAll(Session session) async {
     final userId = await session.auth.authenticatedUserId;
 
     if (userId == null) {
@@ -28,7 +29,18 @@ class StatsEndpoint extends Endpoint {
     }
 
     // ignore: deprecated_member_use_from_same_package
-    return await Stats.find(session, where: (i) => i.email.equals(email));
+    return await Stats.find(session);
+  }
+
+  Future<Stats?> ExistingEmail(Session session, {required String email}) {
+    //final userId = await session.auth.authenticatedUserId;
+
+    // if (userId == null) {
+    //   return null);
+    // }
+
+    // ignore: deprecated_member_use_from_same_package
+    return Stats.findSingleRow(session, where: (i) => i.email.equals(email));
   }
 
   Future<Stats?> restat(Session session,
@@ -76,6 +88,24 @@ class StatsEndpoint extends Endpoint {
         stata[0].quiz15 = d;
       } else if (s == 'Вложенные циклы') {
         stata[0].quiz16 = d;
+      } else if (s == 'Списки') {
+        stata[0].quiz17 = d;
+      } else if (s == 'Словари') {
+        stata[0].quiz18 = d;
+      } else if (s == 'Функции \nбез параметров') {
+        stata[0].quiz19 = d;
+      } else if (s == 'Функции \nс параметрами') {
+        stata[0].quiz20 = d;
+      } else if (s == 'Глобальные \nи локальные\nпеременные') {
+        stata[0].quiz21 = d;
+      } else if (s == 'Функции \nс возвратом \nзначения') {
+        stata[0].quiz22 = d;
+      } else if (s == 'Пользовательские \nфункции \nвысшего порядка') {
+        stata[0].quiz23 = d;
+      } else if (s == 'Основные функции \nвысшего порядка') {
+        stata[0].quiz24 = d;
+      } else if (s == 'Работа с файлами') {
+        stata[0].quiz25 = d;
       } else {
         stata[0].quiz200 = d;
       }
@@ -111,7 +141,7 @@ class StatsEndpoint extends Endpoint {
        stata[0].quiz28 = stata[0].quiz29 = stata[0].quiz30 =
        stata[0].quiz31 = stata[0].quiz32 = stata[0].quiz33 =
        stata[0].quiz34 = stata[0].quiz35 = stata[0].quiz36 =
-       stata[0].quiz37 = stata[0].quiz38 = stata[0].quiz39 = 
+       stata[0].quiz37 = stata[0].quiz38 = 
        stata[0].quiz200 = 0;
       await Stats.db.update(session, stata);
       return stata[0];
@@ -133,6 +163,25 @@ class StatsEndpoint extends Endpoint {
     if (stata[0] != null) {
       stata[0].email = e;
       stata[0].username = u;
+      await Stats.db.update(session, stata);
+      return stata[0];
+    }
+
+    return null;
+  }
+
+  Future<Stats?> setPrivate(Session session, {required double d}) async {
+    final userId = await session.auth.authenticatedUserId;
+    if (userId == null) return null;
+
+    // ignore: deprecated_member_use_from_same_package
+    final stata = await Stats.find(
+      session,
+      where: (item) => item.userId.equals(userId),
+    );
+
+    if (stata[0] != null) {
+      stata[0].quiz39 = d;
       await Stats.db.update(session, stata);
       return stata[0];
     }

@@ -28,7 +28,8 @@ class QuestionCard extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(25),
       ),
-      child: Column(
+      child: SingleChildScrollView(
+          child: Column(
         children: [
           Text(
             question.question,
@@ -49,7 +50,7 @@ class QuestionCard extends StatelessWidget {
                 randNum),
           ),
         ],
-      ),
+      )),
     );
   }
 }

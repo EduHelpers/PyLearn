@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:pylearn_flutter/src/components/option.dart';
 import 'package:pylearn_flutter/src/screen/Questions.dart';
 import 'score.dart';
 
@@ -22,9 +25,18 @@ class QuestionController extends GetxController
 
   late final List<Question> _questions = sample_data[quizId] ?? [];
   List<Question> get questions {
+    int l = 0;
     if (quizId == "Random") {
+      for (String i in sample_data.keys) {
+        if (lst[l] == true) {
+          for (Question j in sample_data[i]!) {
+            _questions.add(j);
+          }
+        }
+        l++;
+      }
       _questions.shuffle();
-      return _questions.sublist(0, randNum);
+      return _questions.sublist(0, min(randNum, _questions.length));
     }
 
     return _questions;
@@ -50,8 +62,9 @@ class QuestionController extends GetxController
         update();
       });
 
-    animationController.forward().whenComplete(nextQuestion);
+    animationController.forward();
     _pageControl = PageController();
+    animationController.forward().whenComplete(nextQuestion);
     super.onInit();
   }
 
@@ -72,9 +85,9 @@ class QuestionController extends GetxController
     animationController.stop();
     update();
 
-    Future.delayed(const Duration(seconds: 1), () {
-      nextQuestion();
-    });
+    // Future.delayed(const Duration(seconds: 1), () {
+    //   nextQuestion();
+    // });
   }
 
   void nextQuestion() {

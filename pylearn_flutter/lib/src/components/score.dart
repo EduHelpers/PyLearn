@@ -53,6 +53,7 @@ class ScoreScreen extends MainScreen {
                     qnController.numOfCorrectAns /
                         qnController.questions.length);
                 qnController.reset();
+                stats.reTime();
                 Get.offAll(const NavigationScreen());
               },
               child: const Text('Домой'),

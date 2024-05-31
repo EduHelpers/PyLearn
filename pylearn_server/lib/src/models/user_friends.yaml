@@ -2,4 +2,5 @@ class: Friends
 table: friends
 fields:
   userid1: int
-  userid2: int
+  userid2: String
+  username2: String

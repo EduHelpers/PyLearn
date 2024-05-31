@@ -17,7 +17,6 @@ class Quiz extends MainScreen {
     final prev_res = (stats[0].quiz200 * 100).toStringAsFixed(2);
     if (stats[0].email.isEmpty && stats[0].username.isEmpty) {
       final sess = ref.watch(prov);
-      emails[sess.u!.email.toString()] = stats[0].userId;
       ref.read(prov_stats.notifier).setEmailAndUser(
           sess.u!.email.toString(), sess.u!.userName.toString());
     }

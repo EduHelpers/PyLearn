@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Tutorial: Variables</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .language-python {
+            color: #3572A5;
+        }
+        pre code {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+<p>Заметьте, что после очередного вызова <code>readline()</code>&nbsp;, <strong>следующий</strong> ее вызов будет печатать <strong>следующую</strong> строку.</p>
+
+<p>Метод <code>readlines()</code> возвращает список строк из файла. (Строкой в файле считается объект заканчивающийся знаком <code>&#39;\n&#39;</code> )</p>
+
+<p>Тогда следующий код:</p>
+
+<pre>
+<code class="language-python">file = open('example.txt', 'r')
+text = file.readlines()
+print(text)
+file.close()</code></pre>
+
+<p>Выведет:</p>
+
+<pre>
+<code class="language-python">['Testing - FirstLine', 
+    'Testing - SecondLine',
+    'Testing - Third Line', 
+    'Testing - Fourth Line', 
+    'Testing - Fifth Line']</code></pre>
+
+<p>Таким образом мы можем итерироваться по строкам из текстового файла.</p>
+
+<pre>
+<code class="language-python">file = open('example.txt', 'r')
+text = file.readlines()
+for line in text:
+    print(line)
+file.close()</code></pre>
+
+<p>Выведет:</p>
+
+<pre>
+<code class="language-python">Testing - FirstLine
+Testing - SecondLine
+Testing - Third Line
+Testing - Fourth Line
+Testing - Fifth Line</code></pre>
+
+<h3 style="text-align:center">Запись в файл</h3>
+
+<p>Скорее всего вы уже поняли, что для записи какой-то информации в файл, его нужно открыть не в формате <code>&#39;r&#39;</code> (для чтения), а в формате <code>&#39;w&#39;</code> (для записи).</p>
+
+<p>Следующий программный код, открывает файл <code>test.txt</code> (Или создает, если такого не существует) и записывает в него строку <code>&quot;Hello, world!&quot;</code>, а затем закрывает файл:</p>
+
+<pre>
+<code class="language-python">file = open('test.txt', 'w')
+file.write("Hello, world!")
+file.close()</code></pre>
+
+<p>Метод <code>write()</code> позволяет записывать любую строку в открытый файл. Запись в файл построчно выполняется посредством записи нужной вам строки с последующей записью <code>&#39;\n&#39;</code> &mdash; символа перевода строки. То есть, если вы хотите записать несколько строк кода, обязательно разделяйте их специальным символом <code>&#39;\n&#39;</code>.</p>
+
+<pre>
+<code class="language-python">file = open("test.txt", "w")
+file.write("Люблю Python!\nЭто крутой язык!")
+file.close()</code></pre>
+
+<p>То же самое можно было сделать, добавив желаемые для записи в файл строки в список, а затем с помощью цикла <code>for</code> каждую записать в файл:</p>
+
+<pre>
+<code>lines = ['Я люблю Python!',
+    'Это крутой язык!', 
+    'Надеюсь я сдам экзамен']
+f = open('test.txt', 'w')
+for i in range(len(lines)):
+    f.write(lines[i] + '\n')
+f.close()</code></pre>
+
+<p>Не забываем разделять разные строки специальным символом <code>&#39;\n&#39;</code>.</p>
+</body>

@@ -19,21 +19,21 @@ class FriendsEndpoint extends Endpoint {
   }
 
   Future<bool> create(Session session,
-      {required int userId1, required int userId2}) async {
+      {required String userId2, required String userName2}) async {
     final userId = await session.auth.authenticatedUserId;
 
     if (userId == null) {
       return false;
     }
 
-    final fr = Friends(userid1: userId1, userid2: userId2);
+    final fr = Friends(userid1: userId, userid2: userId2, username2: userName2);
 
     // ignore: deprecated_member_use_from_same_package
     await Friends.insert(session, fr);
     return true;
   }
 
-  Future<bool> delete(Session session, int userId2) async {
+  Future<bool> delete(Session session, {required String userId2}) async {
     final userId = await session.auth.authenticatedUserId;
     if (userId == null) return false;
 

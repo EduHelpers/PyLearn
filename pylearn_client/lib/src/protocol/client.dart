@@ -44,19 +44,20 @@ class EndpointFriends extends _i1.EndpointRef {
       );
 
   _i2.Future<bool> create({
-    required int userId1,
-    required int userId2,
+    required String userId2,
+    required String userName2,
   }) =>
       caller.callServerEndpoint<bool>(
         'friends',
         'create',
         {
-          'userId1': userId1,
           'userId2': userId2,
+          'userName2': userName2,
         },
       );
 
-  _i2.Future<bool> delete(int userId2) => caller.callServerEndpoint<bool>(
+  _i2.Future<bool> delete({required String userId2}) =>
+      caller.callServerEndpoint<bool>(
         'friends',
         'delete',
         {'userId2': userId2},
@@ -77,8 +78,15 @@ class EndpointStats extends _i1.EndpointRef {
         {},
       );
 
-  _i2.Future<List<_i4.Stats>> ExistingEmail({required String email}) =>
+  _i2.Future<List<_i4.Stats>> listAll() =>
       caller.callServerEndpoint<List<_i4.Stats>>(
+        'stats',
+        'listAll',
+        {},
+      );
+
+  _i2.Future<_i4.Stats?> ExistingEmail({required String email}) =>
+      caller.callServerEndpoint<_i4.Stats?>(
         'stats',
         'ExistingEmail',
         {'email': email},
@@ -114,6 +122,13 @@ class EndpointStats extends _i1.EndpointRef {
           'e': e,
           'u': u,
         },
+      );
+
+  _i2.Future<_i4.Stats?> setPrivate({required double d}) =>
+      caller.callServerEndpoint<_i4.Stats?>(
+        'stats',
+        'setPrivate',
+        {'d': d},
       );
 
   _i2.Future<_i4.Stats?> setName({required String n}) =>

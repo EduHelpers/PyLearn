@@ -31,6 +31,10 @@ class StatsProv extends StateNotifier<List<Stats>> {
     return await statsmngr.list();
   }
 
+  Future<List<Stats>> listAll() async {
+    return await statsmngr.listAll();
+  }
+
   // ExistingEmail(String email) async {
   //   emailList = await statsmngr.ExistingEmail(email: email);
   // }
@@ -46,7 +50,6 @@ class StatsProv extends StateNotifier<List<Stats>> {
   }
 
   reWriteStats(String s, double d) async {
-    final stats = state[0];
     final upd = await statsmngr.restat(s: s, d: d);
 
     if (upd != null) {
@@ -58,7 +61,6 @@ class StatsProv extends StateNotifier<List<Stats>> {
   }
 
   reTime() async {
-    final time = state[0];
     final upd = await statsmngr.retime();
     if (upd != null) {
       state = [...state]
@@ -71,6 +73,22 @@ class StatsProv extends StateNotifier<List<Stats>> {
   setEmailAndUser(String email, String username) async {
     final stats = state[0];
     final upd = await statsmngr.setEmailAndUsername(e: email, u: username);
+
+    if (upd != null) {
+      state = [...state]
+        ..removeAt(0)
+        ..insert(0, upd);
+    }
+    update();
+  }
+
+  Future<Stats?> getFriendStats(String email) async {
+    return await statsmngr.ExistingEmail(email: email);
+  }
+
+  setPrivate(double d) async {
+    final stats = state[0];
+    final upd = await statsmngr.setPrivate(d: d);
 
     if (upd != null) {
       state = [...state]

@@ -6,10 +6,12 @@ friends:
   - delete:
 stats:
   - list:
+  - listAll:
   - ExistingEmail:
   - restat:
   - resetStats:
   - setEmailAndUsername:
+  - setPrivate:
   - setName:
   - setDuration:
   - retime:

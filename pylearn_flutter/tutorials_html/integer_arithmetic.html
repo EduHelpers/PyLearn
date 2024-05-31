@@ -37,24 +37,25 @@
 
 <p>Чтобы в Python создать переменную целого типа данных, нужно опустить кавычки при объявлении переменной. Рассмотрим следующий код:</p>
 
-<pre><code>num1 = 7            # num1 - это число
+<pre><code class="language-python">num1 = 7            # num1 - это число
 num2 = 10           # num2 - это число
 num3 = num1 + num2  # num3 - это число
-num2 += num1        # num2 - это число, запись num2 += num1 равносильна num2 = num2 + num1
-
+# num2 - это число, запись num2 += num1
+# равносильна num2 = num2 + num1
+num2 += num1       
 print(num3)
 print(num2)</code></pre>
 
 <p>В результате выполнения такой программы будет выведено:</p>
 
-<pre><code>17
+<pre><code class="language-python">17
 17</code></pre>
 
 <p>Запомните, что числа обозначаются без кавычек, а строки — с кавычками.</p>
 
 <h2>Основные операции с числами</h2>
 
-<p>В языке Python, как и в математике, над числами можно совершать 4 основные операции (<code>+</code>, <code><strong>−</strong></code>, <code>*</code>, <code>/</code>) - сложение, вычитание, умножение и деление соответсвенно.</p>
+<p>В языке Python, как и в математике, над числами можно совершать 4 основные операции (<code class="language-python">+</code>, <code class="language-python"><strong>−</strong></code>, <code class="language-python">*</code>, <code class="language-python">/</code>) - сложение, вычитание, умножение и деление соответсвенно.</p>
 
 <pre><code class="language-python">a = 3
 b = 2
@@ -75,27 +76,27 @@ print(a / b)</code></pre>
 
 <p>Порядок выполнения операций в Python аналогичен порядку выполнения операций, которые вы изучали на уроках математики.</p>
 
-<pre><code>num1 = 2 + 3 * 4
+<pre><code class="language-python">num1 = 2 + 3 * 4
 num2 = (2 + 3) * 4
 
 print(num1)
 print(num2)
 </code></pre>
 
-<p>Результатом выполнения такой программы будут числа <code>14</code> и <code>20</code>. </p>
+<p>Результатом выполнения такой программы будут числа <code class="language-python">14</code> и <code class="language-python">20</code>. </p>
 
 <h2>Преобразование типов</h2>
 
 <p>Напишем программу, которая считывает два целых числа и выводит на экран их сумму. Следующий код тут не сработает:</p>
 
-<pre><code>num1 = input()
+<pre><code class="language-python">num1 = input()
 num2 = input()
 
 print(num1 + num2)</code></pre>
 
-<p>Python считает, что в переменных <code>num1</code> и <code>num2</code> находится <strong>текст</strong>, поскольку команда <code>input()</code> по умолчанию считывает именно <strong>текст</strong>. Значит в переменные <code>num1</code> и <code>num2</code> требуется положить данные типа <code>int</code>, а значит мы должны применить функцию <code>int()</code>:</p>
+<p>Python считает, что в переменных <code class="language-python">num1</code> и <code class="language-python">num2</code> находится <strong>текст</strong>, поскольку команда <code class="language-python">input()</code> по умолчанию считывает именно <strong>текст</strong>. Значит в переменные <code class="language-python">num1</code> и <code class="language-python">num2</code> требуется положить данные типа <code class="language-python">int</code>, а значит мы должны применить функцию <code class="language-python">int()</code>:</p>
 
-<pre><code>num1 = int(input())
+<pre><code class="language-python">num1 = int(input())
 num2 = int(input())
 
 print(num1 + num2)</code></pre>

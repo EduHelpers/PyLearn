@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pylearn_flutter/src/auth/screen.dart';
 import 'package:pylearn_flutter/src/provs/session.dart';
 import 'package:pylearn_flutter/src/provs/stats_prov.dart';
 import 'package:pylearn_flutter/src/screen/about.dart';
@@ -13,23 +14,27 @@ class ProfileScreen extends MainScreen {
 
   @override
   Widget body(BuildContext context, WidgetRef ref) {
-    // ignore: unused_local_variable
     final stats0 = ref.read(prov_stats.notifier);
     final Size sizeScreen = MediaQuery.of(context).size;
     final stats = ref.watch(prov_stats);
     final session = ref.watch(prov);
-    //stats0.update();
 
     String day = stats[0].lastAction.day.toString();
     String month = stats[0].lastAction.month.toString();
+    if (day.length == 1) {
+      day = "0$day";
+    }
     if (month.length == 1) {
       month = "0$month";
     }
     String year = stats[0].lastAction.year.toString();
-    String hour = (stats[0].lastAction.hour + 3).toString();
+    String hour = ((stats[0].lastAction.hour + 3) % 24).toString();
     String minute = stats[0].lastAction.minute.toString();
     if (minute.length == 1) {
       minute = "0$minute";
+    }
+    if (hour.length == 1) {
+      hour = "0$hour";
     }
 
     return SafeArea(
@@ -85,7 +90,7 @@ class ProfileScreen extends MainScreen {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const FriendsW()));
+                                builder: (context) => FriendsW()));
                       },
                       child: Stack(
                         alignment: Alignment.center,
@@ -204,6 +209,7 @@ class ProfileScreen extends MainScreen {
                               title: 'Вы уверены что хотите выйти из аккаунта?',
                               btnOkOnPress: () {
                                 ref.read(prov.notifier).out();
+                                //MaterialPageRoute(builder: (context) => Auth());
                               },
                               btnCancelOnPress: () {})
                           .show();

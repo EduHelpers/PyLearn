@@ -202,21 +202,7 @@ class Settings extends MainScreen {
                           ],
                         ),
                       )))
-              // Padding(
-              //     padding: EdgeInsets.fromLTRB(
-              //         sizeScreen.width * 0.02,
-              //         sizeScreen.height * 0.015,
-              //         sizeScreen.width * 0.02,
-              //         sizeScreen.height * 0.1),
-              //     child: Material(
-              //         elevation: 5,
-              //         borderRadius: BorderRadius.circular(20.0),
-              //         color: Colors.black,
-              //         child: Slider(
-              //           onChanged: (double value) {
-              //             setState(() {});
-              //           },
-              //         )))
+
             ])));
   }
 }

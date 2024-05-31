@@ -18,15 +18,7 @@ class QuizScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        actions: [
-          TextButton(
-            onPressed: () {
-              Get.put(QuestionController(quizId, duration, lst, randNum));
-              Get.find<QuestionController>().nextQuestion();
-            },
-            child: const Text("Пропустить вопрос"),
-          ),
-        ],
+        actions: const [],
       ),
       body: Body(quizId, duration, lst, randNum),
     );

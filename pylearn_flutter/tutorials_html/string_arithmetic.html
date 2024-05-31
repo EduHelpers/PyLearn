@@ -43,7 +43,7 @@
 
 <p>Рассмотрим следующий программный код:</p>
 
-<pre><code>s1 = 'ab' + 'bc'
+<pre><code class="language-python">s1 = 'ab' + 'bc'
 s2 = 'bc' + 'ab'
 s3 = s1 + s2 + '!!'
 print(s1)
@@ -52,13 +52,13 @@ print(s3)</code></pre>
 
 <p>Результатом выполнения такого кода будет:</p>
 
-<pre><code>abbc
+<pre><code class="language-python">abbc
 bcab
 abbcbcab!!</code></pre>
 
 <p>Операция сложения строк в отличие от операции сложения чисел не является <a href="https://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D0%BC%D0%BC%D1%83%D1%82%D0%B0%D1%82%D0%B8%D0%B2%D0%BD%D0%B0%D1%8F_%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F" rel="noopener noreferrer nofollow" target="_blank">коммутативной</a>, то есть, от перестановки мест слагаемых-строк результат меняется!</p>
 
-<p>С помощью конкатенации строк можно эмулировать вывод данных, который раньше мы делали используя необязательные параметры <code>sep</code> и <code>end</code>. Следующие две строки кода делают одно и то же:</p>
+<p>С помощью конкатенации строк можно эмулировать вывод данных, который раньше мы делали используя необязательные параметры <code class="language-python">sep</code> и <code class="language-python">end</code>. Следующие две строки кода делают одно и то же:</p>
 
 <pre><code class="language-python">print('a', 'b', 'c', sep='*', end='!')
 print()
@@ -66,6 +66,6 @@ print('a' + '*' + 'b' + '*' + 'c' + '!')</code></pre>
 
 <p>Результатом выполнения такого кода будет:</p>
 
-<pre><code>a*b*c!
+<pre><code class="language-python">a*b*c!
 a*b*c!</code></pre>
 </body>

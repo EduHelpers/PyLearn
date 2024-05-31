@@ -1,25 +1,19 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pylearn_flutter/src/provs/session.dart';
-import 'package:pylearn_flutter/src/provs/stats_prov.dart';
 import 'package:pylearn_flutter/src/screen/main_screen.dart';
 
-class newCourses extends MainScreen {
+class newCourse extends MainScreen {
+  const newCourse({super.key});
+
   @override
   Widget body(BuildContext context, WidgetRef ref) {
-    final Size sizeScreen = MediaQuery.of(context).size;
-    //final f = ref.read(prov_stats.notifier);
-
-    final TextEditingController _controller = TextEditingController();
-    final FocusNode focusNode = FocusNode();
+    final Size screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
         appBar: AppBar(
           foregroundColor: Colors.white,
           title: const Text(
-            'Настройки',
+            'Список курсов',
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'MainFont',
@@ -27,11 +21,22 @@ class newCourses extends MainScreen {
               fontWeight: FontWeight.w600,
             ),
           ),
-          backgroundColor: Color.fromARGB(255, 72, 72, 72),
+          backgroundColor: const Color.fromRGBO(6, 23, 54, 0.9),
         ),
-        body: Padding(
-            padding: EdgeInsets.fromLTRB(sizeScreen.width * 0.05,
-                sizeScreen.height * 0.015, sizeScreen.width * 0.05, 0),
-            child: Column(children: [Text("Скоро здесь будут новые курсы!")])));
+        body: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.fromLTRB(screenSize.width * 0.08,
+                  screenSize.height * 0.28, screenSize.width * 0.08, 0),
+              child: Column(children: [
+                Text(
+                  "Пока что здесь пусто :-(\nНо в будущем здесь будут новые курсы!",
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(fontSize: screenSize.width * 0.055),
+                ),
+              ]),
+            ),
+          ],
+        ));
   }
 }
